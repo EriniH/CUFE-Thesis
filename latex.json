@@ -1,0 +1,223 @@
+{
+    "Thesis Information: Title": {
+        "prefix": "ThesisTitle",
+        "body": ["\\\\ThesisTitle{${1:Thesis Title}}"],
+        "description": "Set the thesis title"
+    },
+    "Thesis Information: Keywords": {
+        "prefix": "ThesisKeywords",
+        "body": ["\\\\ThesisKeywords{${1:Keywords separated by commas}}"],
+        "description": "Set thesis keywords"
+    },
+    "Thesis Information: Summary": {
+        "prefix": "ThesisSummary",
+        "body": ["\\\\ThesisSummary{${1:Brief summary of the thesis}}"],
+        "description": "Set the thesis summary"
+    },
+    "Personal Info: Engineer Name": {
+        "prefix": "EngineerName",
+        "body": ["\\\\EngineerName{${1:Full Name}}"],
+        "description": "Set the engineer's name"
+    },
+    "Personal Info: Birth Date": {
+        "prefix": "BirthDate",
+        "body": ["\\\\BirthDate{${1:DD}}{${2:MM}}{${3:YYYY}}"],
+        "description": "Set birth date"
+    },
+    "Personal Info: Nationality": {
+        "prefix": "Nationality",
+        "body": ["\\\\Nationality{${1:Egyptian}}"],
+        "description": "Set nationality"
+    },
+    "Personal Info: E-mail": {
+        "prefix": "EMail",
+        "body": ["\\\\EMail{${1:email@example.com}}"],
+        "description": "Set contact email"
+    },
+    "Personal Info: Phone": {
+        "prefix": "Phone",
+        "body": ["\\\\Phone{${1:+20 1X XXX XXXXX}}"],
+        "description": "Set phone number"
+    },
+    "Personal Info: Address": {
+        "prefix": "Address",
+        "body": ["\\\\Address{${1:Full Address}}"],
+        "description": "Set residential address"
+    },
+    "Personal Info: Photo": {
+        "prefix": "Photo",
+        "body": ["\\\\Photo{\\\\includegraphics[width=${1:3cm}]{${2:Figures/photo.jpg}}}"],
+        "description": "Add personal photo for info page"
+    },
+    "Dates: Registration": {
+        "prefix": "RegistrationDate",
+        "body": ["\\\\RegistrationDate{${1:DD}}{${2:MM}}{${3:YYYY}}"],
+        "description": "Set registration date"
+    },
+    "Dates: Submission": {
+        "prefix": "SubmissionDate",
+        "body": ["\\\\SubmissionDate{${1:Month}}{${2:YYYY}}"],
+        "description": "Set submission month and year"
+    },
+    "Dates: Awarding": {
+        "prefix": "AwardingDate",
+        "body": ["\\\\AwardingDate{${1:DD}}{${2:MM}}{${3:YYYY}}"],
+        "description": "Set awarding date"
+    },
+    "Committee: Main Supervisor": {
+        "prefix": "MainSupervisor",
+        "body": ["\\\\MainSupervisor{${1:Name}}{${2:Position}}"],
+        "description": "Add main supervisor"
+    },
+    "Committee: Co-Supervisor": {
+        "prefix": "CoSupervisor",
+        "body": ["\\\\CoSupervisor{${1:Name}}{${2:Position}}{${3:Department}}{${4:Affiliation}}"],
+        "description": "Add a co-supervisor (can be used up to 3 times)"
+    },
+    "Committee: Internal Examiner": {
+        "prefix": "InternalExaminer",
+        "body": ["\\\\InternalExaminer{${1:Name}}"],
+        "description": "Add internal examiner"
+    },
+    "Committee: External Examiner": {
+        "prefix": "ExternalExaminer",
+        "body": ["\\\\ExternalExaminer{${1:Name}}{${2:Position}}{${3:School}}{${4:University}}"],
+        "description": "Add external examiner"
+    },
+    "Committee: Member Examiner": {
+        "prefix": "MemberExaminer",
+        "body": ["\\\\MemberExaminer{${1:Name}}"],
+        "description": "Add an additional examining committee member (up to 2 times)"
+    },
+    "Structure: Preamble": {
+        "prefix": "Preamble",
+        "body": ["\\\\Preamble{${1:Title (e.g., Abstract/Acknowledgments)}}{${2:filename_without_ext}}"],
+        "description": "Include a preamble section (unnumbered chapter)"
+    },
+    "Structure: Chapter": {
+        "prefix": "Chapter",
+        "body": ["\\\\Chapter[${1:label}]{${2:Chapter Title}}{${3:filename_without_ext}}"],
+        "description": "Include a numbered chapter with label"
+    },
+    "Structure: Appendix": {
+        "prefix": "Appendix",
+        "body": ["\\\\Appendix[${1:label}]{${2:Appendix Title}}{${3:filename_without_ext}}"],
+        "description": "Include an appendix section"
+    },
+    "Structure: References": {
+        "prefix": "ReferencesChapter",
+        "body": ["\\\\ReferencesChapter"],
+        "description": "Print the bibliography chapter"
+    },
+    "Lists: Table of Contents": {
+        "prefix": "TableOfContents",
+        "body": ["\\\\TableOfContents"],
+        "description": "Generate TOC"
+    },
+    "Lists: List of Tables": {
+        "prefix": "ListOfTables",
+        "body": ["\\\\ListOfTables"],
+        "description": "Generate LOT"
+    },
+    "Lists: List of Figures": {
+        "prefix": "ListOfFigures",
+        "body": ["\\\\ListOfFigures"],
+        "description": "Generate LOF"
+    },
+    "Lists: List of Algorithms": {
+        "prefix": "ListOfAlgorithms",
+        "body": ["\\\\ListOfAlgorithms"],
+        "description": "Generate LOA"
+    },
+    "Lists: Nomenclature": {
+        "prefix": "Nomenclature",
+        "body": ["\\\\Nomenclature"],
+        "description": "Print the nomenclature list"
+    },
+    "Labels: Section": {
+        "prefix": "seclbl",
+        "body": ["\\\\seclbl{${1:label}}"],
+        "description": "Custom label for sections"
+    },
+    "Labels: Equation": {
+        "prefix": "eqnlbl",
+        "body": ["\\\\eqnlbl{${1:label}}"],
+        "description": "Custom label for equations"
+    },
+    "Labels: Table": {
+        "prefix": "tablbl",
+        "body": ["\\\\tablbl{${1:label}}"],
+        "description": "Custom label for tables"
+    },
+    "Labels: Figure": {
+        "prefix": "figlbl",
+        "body": ["\\\\figlbl{${1:label}}"],
+        "description": "Custom label for figures"
+    },
+    "Labels: Algorithm": {
+        "prefix": "alglbl",
+        "body": ["\\\\alglbl{${1:label}}"],
+        "description": "Custom label for algorithms"
+    },
+    "References: Chapter": {
+        "prefix": "chref",
+        "body": ["\\\\chref{${1:label}}"],
+        "description": "Cross-reference a chapter"
+    },
+    "References: Appendix": {
+        "prefix": "appref",
+        "body": ["\\\\appref{${1:label}}"],
+        "description": "Cross-reference an appendix"
+    },
+    "References: Section": {
+        "prefix": "secref",
+        "body": ["\\\\secref{${1:label}}"],
+        "description": "Cross-reference a section"
+    },
+    "References: Equation": {
+        "prefix": "eqnref",
+        "body": ["\\\\eqnref{${1:label}}"],
+        "description": "Cross-reference an equation"
+    },
+    "References: Table": {
+        "prefix": "tabref",
+        "body": ["\\\\tabref{${1:label}}"],
+        "description": "Cross-reference a table"
+    },
+    "References: Figure": {
+        "prefix": "figref",
+        "body": ["\\\\figref{${1:label}}"],
+        "description": "Cross-reference a figure"
+    },
+    "References: Algorithm": {
+        "prefix": "algref",
+        "body": ["\\\\algref{${1:label}}"],
+        "description": "Cross-reference an algorithm"
+    },
+    "Misc: CUFE Figure Command": {
+        "prefix": "gfigure",
+        "body": ["\\\\gfigure{${1:Caption text}}{${2:label}}{width=${3:\\\\linewidth}}{${4:Figures/path_to_image.jpg}}"],
+        "description": "Insert a centered, non-floating figure via cufethesis macro"
+    },
+    "Misc: Add Nomenclature Entry": {
+        "prefix": "newnom",
+        "body": ["\\\\newnom{${1:Symbol}}{${2:Description}}"],
+        "description": "Add an entry to the nomenclature list"
+    },
+    "Environment: CUFE Table": {
+        "prefix": "env-hctable",
+        "body": [
+            "\\\\begin{hctable}{${1:Caption text}}{${2:label}}",
+            "    \\\\begin{tabular}{${3:c c c}}",
+            "        \\\\toprule",
+            "        $4 \\\\\\\\",
+            "        \\\\midrule",
+            "        $5 \\\\\\\\",
+            "        \\\\bottomrule",
+            "    \\\\end{tabular}",
+            "\\\\end{hctable}"
+        ],
+        "description": "Centered table environment customized for CUFE template"
+    }
+
+}

@@ -1,0 +1,455 @@
+%%
+%% cufe.bbx  (v1.2)
+%% BibLaTeX bibliography style: CUFE
+%% Translated from cufe.bst (merlin.mbs, Patrick W. Daly, 2011)
+%%
+%% Usage:
+%%   \usepackage[style=cufe, backend=biber]{biblatex}
+%%
+\ProvidesFile{cufe.bbx}
+  [2025/01/01 v1.2 CUFE BibLaTeX bibliography style]
+
+\RequireBibliographyStyle{numeric}
+
+%% ---------------------------------------------------------------
+%% Global options
+%% ---------------------------------------------------------------
+\ExecuteBibliographyOptions{
+  maxnames   = 3,
+  minnames   = 3,
+  giveninits = true,
+  sorting    = none,        % references appear in order of citation
+}
+
+%% ---------------------------------------------------------------
+%% Name formatting: Family, G.I. (no spaces between initials)
+%% ---------------------------------------------------------------
+\DeclareNameAlias{default}{family-given}
+\DeclareNameAlias{sortname}{family-given}
+
+\renewcommand*{\bibinitdelim}{}   % "J.G." not "J. G."
+
+%% ---------------------------------------------------------------
+%% String overrides
+%% ---------------------------------------------------------------
+\DefineBibliographyStrings{english}{
+  edition = {edition},
+  editors = {editors},
+  editor  = {editor},
+  in      = {in},
+}
+
+%% ---------------------------------------------------------------
+%% Kill ALL italics/bold produced by biblatex.
+%% AtBeginDocument ensures this fires after any package that redefines these.
+%% ---------------------------------------------------------------
+\renewcommand*{\mkbibemph}[1]{#1}
+\renewcommand*{\mkbibbold}[1]{#1}
+\AtBeginDocument{%
+  \renewcommand*{\mkbibemph}[1]{#1}%
+  \renewcommand*{\mkbibbold}[1]{#1}%
+}
+
+%% ---------------------------------------------------------------
+%% Field formats — all declared inside \AtBeginDocument so they
+%% fire AFTER the base numeric style has finished its own declarations,
+%% guaranteeing our definitions win.
+%% ---------------------------------------------------------------
+\AtBeginDocument{%
+  %% Titles in double quotes for article-like entries
+  \DeclareFieldFormat[article,inproceedings,incollection,
+                      thesis,unpublished, report, proceedings]{title}{\mkbibquote{#1}}%
+  %% Book-like and misc titles: plain roman (no italics, no quotes)
+  \DeclareFieldFormat[book,inbook,manual,
+                      misc,booklet,online]{title}{#1}%
+  %% Journal, booktitle, series: plain roman for every relevant type
+  \DeclareFieldFormat[article,periodical,suppperiodical,review,
+                      inproceedings,incollection,book,inbook,
+                      proceedings,manual,report,thesis,misc,
+                      unpublished,online]{journaltitle}{#1}%
+  \DeclareFieldFormat[article,periodical,suppperiodical,review,
+                      inproceedings,incollection,book,inbook,
+                      proceedings,manual,report,thesis,misc,
+                      unpublished,online]{issuetitle}{#1}%
+  \DeclareFieldFormat[article,periodical,suppperiodical,review,
+                      inproceedings,incollection,book,inbook,
+                      proceedings,manual,report,thesis,misc,
+                      unpublished,online]{booktitle}{#1}%
+  \DeclareFieldFormat[article,periodical,suppperiodical,review,
+                      inproceedings,incollection,book,inbook,
+                      proceedings,manual,report,thesis,misc,
+                      unpublished,online]{series}{#1}%
+  %% Volume: "Vol. X"
+  \DeclareFieldFormat[article,book,inbook,proceedings,inproceedings]{volume}{Vol\adddot~#1}%
+  %% Number: "No. X" in articles
+  \DeclareFieldFormat[article]{number}{No\adddot~#1}%
+  %% Pages: "pp. A--B" or "p. A"
+  \DeclareFieldFormat{pages}{\mkpageprefix[bookpagination]{#1}}%
+  %% Edition: "2nd edition"
+  \DeclareFieldFormat{edition}{%
+    \ifinteger{#1}
+      {\cufe@ordinal{#1}\addnbspace\bibstring{edition}}
+      {\cufe@liftsuffix{#1}\addspace\bibstring{edition}}}%
+  %% URL: "URL <address>"
+  \DeclareFieldFormat{url}{URL\addspace\url{#1}}%
+}
+
+%% ---------------------------------------------------------------
+%% Superscript ordinal helpers
+%% ---------------------------------------------------------------
+
+%% \cufe@ordinal{<integer>} — used when edition field is a bare number
+\newcommand*{\cufe@ordinal}[1]{%
+  \number#1%
+  \ifnum\number#1=11 \textsuperscript{th}\else
+  \ifnum\number#1=12 \textsuperscript{th}\else
+  \ifnum\number#1=13 \textsuperscript{th}\else
+  \ifnum\numexpr\number#1-(\number#1/10)*10\relax=1 \textsuperscript{st}\else
+  \ifnum\numexpr\number#1-(\number#1/10)*10\relax=2 \textsuperscript{nd}\else
+  \ifnum\numexpr\number#1-(\number#1/10)*10\relax=3 \textsuperscript{rd}\else
+  \textsuperscript{th}%
+  \fi\fi\fi\fi\fi\fi}
+
+%% \cufe@liftsuffix{<text>} — used when edition field is text like "2nd".
+%% Replaces a trailing st/nd/rd/th with \textsuperscript{} using expl3
+%% (which is already loaded by biblatex, so no extra package needed).
+\ExplSyntaxOn
+\cs_new:Npn \cufe@liftsuffix #1 {
+  \int_compare:nTF { \tl_count:n {#1} > 2 }
+    {
+      \tl_set:Nn \l_tmpa_tl {#1}
+      \tl_set:Nx \l_tmpb_tl { \tl_range:Nnn \l_tmpa_tl {1} { \int_eval:n { \tl_count:N \l_tmpa_tl - 2 } } }
+      \tl_set:Nx \l_tmpc_tl { \tl_range:Nnn \l_tmpa_tl { \int_eval:n { \tl_count:N \l_tmpa_tl - 1 } } { -1 } }
+      \tl_set:Nx \l_tmpd_tl { \str_lower_case:f { \tl_use:N \l_tmpc_tl } }
+      \str_case:VnTF \l_tmpd_tl {
+        {st} { \tl_use:N \l_tmpb_tl \textsuperscript{st} }
+        {nd} { \tl_use:N \l_tmpb_tl \textsuperscript{nd} }
+        {rd} { \tl_use:N \l_tmpb_tl \textsuperscript{rd} }
+        {th} { \tl_use:N \l_tmpb_tl \textsuperscript{th} }
+      }
+      
+    }
+    { #1 }
+}
+\ExplSyntaxOff
+
+%% ---------------------------------------------------------------
+%% Date macros
+%% ---------------------------------------------------------------
+\renewbibmacro*{date}{%
+  \iffieldundef{year}{}{\printfield{year}}}
+
+\newbibmacro*{date:month+year}{%
+  \iffieldundef{month}
+    {\iffieldundef{year}{}{\printfield{year}}}
+    {\iffieldundef{year}
+       {\printfield{month}}
+       {\printfield{month}\addspace\printfield{year}}}%
+}
+
+%% ---------------------------------------------------------------
+%% Shared macros
+%% ---------------------------------------------------------------
+\newbibmacro*{cufe:author+year}{%
+  \ifnameundef{author}
+    {}
+    {\printnames{author}%
+     \setunit{\addcomma\addspace}%
+     \usebibmacro{date}}%
+}
+
+\newbibmacro*{cufe:editor+year}{%
+  \ifnameundef{editor}
+    {}
+    {\printnames{editor}%
+     \addcomma\addspace
+     \ifnumgreater{\value{editor}}{1}{\bibstring{editors}}{\bibstring{editor}}%
+     \setunit{\addcomma\addspace}%
+     \usebibmacro{date}}%
+}
+
+\newbibmacro*{cufe:author/editor+year}{%
+  \ifnameundef{author}
+    {\usebibmacro{cufe:editor+year}}
+    {\usebibmacro{cufe:author+year}}%
+}
+
+%% "in Editor(s)," -- used by @incollection only
+\newbibmacro*{cufe:in+editors}{%
+  \bibstring{in}\addspace
+  \ifnameundef{editor}
+    {}
+    {\printnames{editor}%
+     \addcomma\addspace
+     \ifnumgreater{\value{editor}}{1}{\bibstring{editors}}{\bibstring{editor}}%
+     \addcomma\addspace}%
+}
+
+%% "Vol. X, No. Y"
+\newbibmacro*{cufe:vol+num}{%
+  \iffieldundef{volume}
+    {}
+    {\printfield{volume}\iffieldundef{number}{}{\addcomma\addspace\printfield{number}}}%
+}
+
+\newbibmacro*{cufe:publisher+location}{%
+  \iflistundef{publisher}
+    {\printlist{location}}
+    {\printlist{publisher}%
+     \iflistundef{location}{}{\addcomma\addspace\printlist{location}}}%
+}
+
+\newbibmacro*{cufe:org+pub+location}{%
+  \iflistundef{publisher}
+    {\printlist{organization}%
+     \setunit{\addcomma\addspace}%
+     \printlist{location}}
+    {\iflistundef{organization}
+       {}
+       {\printlist{organization}\setunit{\addcomma\addspace}}%
+     \usebibmacro{cufe:publisher+location}}%
+}
+
+\newbibmacro*{cufe:institution+location}{%
+  \iflistundef{institution}
+    {\printlist{location}}
+    {\printlist{institution}%
+     \iflistundef{location}{}{\addcomma\addspace\printlist{location}}}%
+}
+
+\newbibmacro*{cufe:series+number}{%
+  \iffieldundef{series}
+    {}
+    {\printfield{series}%
+     \iffieldundef{number}{}{\addspace\printfield{number}}}%
+}
+
+\newbibmacro*{cufe:url}{%
+  \iffieldundef{url}{}{\printfield{url}}}
+
+%% ---------------------------------------------------------------
+%% Bibliography drivers
+%% ---------------------------------------------------------------
+
+%%  @article
+%%  Last, F.G., Year, "Title," Journal, Vol. X, No. Y, pp. A--B. URL. Note.
+\DeclareBibliographyDriver{article}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{cufe:author+year}%
+  \setunit{\addcomma\addspace}%
+  \printfield{title}%
+  \setunit{\addcomma\addspace}%
+  \printfield{journaltitle}%
+  \setunit{\addcomma\addspace}%
+  \usebibmacro{cufe:vol+num}%
+  \setunit{\addcomma\addspace}%
+  \printfield{pages}%
+  \newunit\newblock
+  \printfield{note}%
+  \usebibmacro{finentry}}
+
+%%  @book
+\DeclareBibliographyDriver{book}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{cufe:author/editor+year}%
+  \setunit{\addcomma\addspace}%
+  \printfield{title}%
+  \setunit{\addcomma\addspace}%
+  \iffieldundef{volume}{}{\printfield{volume}\setunit{\addcomma\addspace}}%
+  \usebibmacro{cufe:series+number}%
+  \setunit{\addcomma\addspace}%
+  \printfield{edition}%
+  \setunit{\addcomma\addspace}%
+  \usebibmacro{cufe:publisher+location}%
+  \newunit\newblock
+  \printfield{note}%
+  \usebibmacro{finentry}}
+
+%%  @inbook
+\DeclareBibliographyDriver{inbook}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{cufe:author/editor+year}%
+  \setunit{\addcomma\addspace}%
+  \printfield{title}%
+  \setunit{\addcomma\addspace}%
+  \iffieldundef{volume}{}{\printfield{volume}\setunit{\addcomma\addspace}}%
+  \printfield{chapter}%
+  \setunit{\addcomma\addspace}%
+  \usebibmacro{cufe:series+number}%
+  \setunit{\addcomma\addspace}%
+  \printfield{edition}%
+  \setunit{\addcomma\addspace}%
+  \usebibmacro{cufe:publisher+location}%
+  \setunit{\addcomma\addspace}%
+  \printfield{pages}%
+  \newunit\newblock
+  \printfield{note}%
+  \usebibmacro{finentry}}
+
+%%  @incollection  (has "in Editor(s),")
+\DeclareBibliographyDriver{incollection}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{cufe:author+year}%
+  \setunit{\addcomma\addspace}%
+  \printfield{title}%
+  \setunit{\addspace}%
+  \usebibmacro{cufe:in+editors}%
+  \printfield{booktitle}%
+  \setunit{\addcomma\addspace}%
+  \usebibmacro{cufe:series+number}%
+  \setunit{\addcomma\addspace}%
+  \printfield{edition}%
+  \setunit{\addcomma\addspace}%
+  \usebibmacro{cufe:publisher+location}%
+  \setunit{\addcomma\addspace}%
+  \printfield{pages}%
+  \newunit\newblock
+  \printfield{note}%
+  \usebibmacro{finentry}}
+
+%%  @inproceedings / @conference  (NO "in", comma after title)
+\DeclareBibliographyDriver{inproceedings}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{cufe:author+year}%
+  \setunit{\addcomma\addspace}%
+  \printfield{title}%
+  \setunit{\addcomma\addspace}%
+  \printfield{booktitle}%
+  \setunit{\addcomma\addspace}%
+  \usebibmacro{cufe:org+pub+location}%
+  \setunit{\addcomma\addspace}%
+  \printfield{pages}%
+  \newunit\newblock
+  \printfield{note}%
+  \usebibmacro{finentry}}
+
+\DeclareBibliographyAlias{conference}{inproceedings}
+
+%%  @thesis
+%%  Last, F.G., Year, "Title", type, Institution, Location. URL. Note.
+\DeclareBibliographyDriver{thesis}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{cufe:author+year}%
+  \setunit{\addcomma\addspace}%
+  \printfield{title}%
+  \setunit{\addcomma\addspace}%
+  \printfield{type}%
+  \setunit{\addcomma\addspace}%
+  \printlist{institution}%
+  \setunit{\addcomma\addspace}%
+  \printlist{location}%
+  \newunit\newblock
+  \printfield{note}%
+  \usebibmacro{finentry}}
+
+%%  @report / @techreport
+\DeclareBibliographyDriver{report}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{cufe:author+year}%
+  \setunit{\addcomma\addspace}%
+  \printfield{title}%
+  \setunit{\addcomma\addspace}%
+  \printlist{institution}
+  \setunit{\addspace}%
+  \iffieldundef{type}
+    {Technical Report}
+    {\printfield{type}}%
+  \iffieldundef{number}
+    {}
+    {\addspace No\adddot\addspace\printfield{number}}%
+  \setunit{\addcomma\addspace}%
+  \printlist{location}
+  \setunit{\addcomma\addspace}%
+  \printfield{note}%
+  \usebibmacro{finentry}}
+
+%%  @manual
+\DeclareBibliographyDriver{manual}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \ifnameundef{author}
+    {\printlist{organization}%
+     \setunit{\addcomma\addspace}%
+     \printlist{location}%
+     \setunit{\addcomma\addspace}%
+     \usebibmacro{date}}
+    {\usebibmacro{cufe:author+year}}%
+  \setunit{\addcomma\addspace}%
+  \printfield{title}%
+  \ifnameundef{author}
+    {\iflistundef{organization}
+       {\setunit{\addcomma\addspace}\printlist{location}}
+       {}}
+    {\setunit{\addcomma\addspace}%
+     \printlist{organization}%
+     \setunit{\addcomma\addspace}%
+     \printlist{location}}%
+  \setunit{\addcomma\addspace}%
+  \printfield{edition}%
+  \newunit\newblock
+  \usebibmacro{cufe:url}%
+  \newunit
+  \printfield{note}%
+  \usebibmacro{finentry}}
+
+%%  @proceedings
+\DeclareBibliographyDriver{proceedings}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \ifnameundef{editor}
+    {\printlist{organization}%
+     \setunit{\addcomma\addspace}%
+     \usebibmacro{date}}
+    {\usebibmacro{cufe:editor+year}}%
+  \setunit{\addcomma\addspace}%
+  \printfield{title}%
+  \setunit{\addcomma\addspace}%
+  \iffieldundef{volume}{}{\printfield{volume}\setunit{\addcomma\addspace}}%
+  \usebibmacro{cufe:series+number}%
+  \setunit{\addcomma\addspace}%
+  \ifnameundef{editor}
+    {\usebibmacro{cufe:publisher+location}}
+    {\usebibmacro{cufe:org+pub+location}}%
+  \newunit\newblock
+  \printfield{note}%
+  \usebibmacro{finentry}}
+
+%%  @misc  — Month Year with commas
+\DeclareBibliographyDriver{misc}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \ifnameundef{author}{}{\printnames{author}\newunit}%
+  \printfield{title}%
+  \setunit{\addcomma\addspace}%
+  \usebibmacro{date:month+year}%
+  \setunit{\addcomma\addspace}%
+  \printfield{howpublished}%
+  \newunit\newblock
+  \usebibmacro{cufe:url}%
+  \newunit
+  \printfield{note}%
+  \usebibmacro{finentry}}
+
+%%  @unpublished
+\DeclareBibliographyDriver{unpublished}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{cufe:author+year}%
+  \setunit{\addcomma\addspace}%
+  \printfield{title}%
+  \newunit\newblock
+  \usebibmacro{cufe:url}%
+  \newunit
+  \printfield{note}%
+  \usebibmacro{finentry}}
+
+\endinput
+%%
+%% End of file cufe.bbx

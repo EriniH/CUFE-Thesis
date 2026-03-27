@@ -1,0 +1,127 @@
+%------------------<Beginning of Master LaTeX Thesis File>---------------
+% mthesis.tex
+%------------------------------------------------------------------------
+\documentclass[eece, msc]{cufethesis} %pass the program of study ("msc" or "phd") and department as options to the document class, you can also pass the "nopraise" option to remove the praise page from the front matter
+
+
+%-------------------------Personal Packages---------------------------
+
+
+\usepackage[flushleft]{threeparttable}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+\usepackage[center,font=small]{caption}
+\usepackage{tikz}
+\usetikzlibrary{fit,shapes.geometric}
+\usetikzlibrary{plotmarks}
+\usepackage{mathdots}
+\usepackage{indentfirst}
+\usepackage{lipsum}
+\usepackage{setspace}
+\usepackage{mathtools}
+\usepackage{pdfpages}
+\usepackage{subcaption}
+\usepackage{rotating}
+\usepackage{longtable}
+\usepackage[graphicx]{realboxes}%
+\usepackage{emptypage}
+\usepackage{array}
+\usepackage{paralist}
+\usepackage{mathrsfs}
+\def\Laplace#1{\mathscr{L}^{-1}}
+\usepackage{titlesec}
+\titleformat{\chapter}[display]   
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}   
+\titlespacing*{\chapter}{0pt}{0pt}{40pt}
+\renewcommand{\baselinestretch}{1}
+
+\usepackage[normalem]{ulem}
+\usepackage{color,soul}
+
+% TikZ solution
+\newcommand\circletext[1]
+{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=1.2pt] (char) {#1};}} 
+
+
+%-------------------------Personal Information---------------------------
+
+\EngineerName{Engineer's Name}
+\BirthDate{dd}{mm}{yyyy}
+
+\Nationality{Engineer's Nationality}
+\EMail{Engineer's E-mail}
+\Phone{Engineer's Phone Number}
+\Address{Street, City, Province, Zip Code}
+\Photo{\includegraphics[width=3.4cm]{Biography/Personal_Photo.jpg}}
+
+% Program of Study Information
+
+\RegistrationDate{dd}{mm}{yyyy}
+\AwardingDate{--}{--}{yyyy}
+
+%----------------------------Thesis Information---------------------------
+
+\MainSupervisor{Dr./Prof. Dr. Main Supervisor}{Affiliation}
+\CoSupervisor{Dr./Prof. Dr. Co-supervisor}{Affiliation}{Department}{Faculty, University}
+\CoSupervisor{Dr./Prof. Dr. Co-supervisor}{Affiliation}{Department}{Faculty, University}
+
+\ExternalExaminer{Dr./Prof. Dr. Ext. Examiner}{Affiliation}{Faculty}{University}
+\InternalExaminer{Dr./Prof. Dr. Int. Examiner}
+\ThesisTitle{Thesis Title}
+
+\ThesisKeywords{Thesis Key Words separated by ;}
+
+\ThesisSummary{Thesis Summary}
+
+
+
+\SubmissionDate{mm}{yyyy}
+
+
+%--------------------------------------------------------------------------
+
+\addbibresource{thesis.bib}
+\begin{document}
+
+% Front Matter
+\Preamble{Disclaimer}{FrontMatter/Disclaimer}
+\Preamble{Dedication}{FrontMatter/Dedication}
+\Preamble{Acknowledgements}{FrontMatter/Acknowledgements}
+\TableOfContents
+\ListOfTables
+\ListOfFigures
+\Nomenclature
+\Preamble{List of Publications}{FrontMatter/Publications}
+\Preamble{Abstract}{FrontMatter/Abstract}
+
+\newgeometry{inner=35.4mm,outer=25.4mm,top=25.4mm,bottom=25.4mm}
+
+% Main Matter
+% to comply with thesis guidelines
+% each chapter starts on the right (odd numbered page)
+\Chapter[intro]{Introduction}{MainMatter/Chapter1}
+\Chapter[ch2]{Literature Review}{MainMatter/Chapter2}
+\Chapter[ch3]{Figures, Tables, and Equations}{MainMatter/Chapter3}
+\Chapter[ch4]{Chapter 4 Title}{MainMatter/Chapter4}
+\Chapter[ch5]{Chapter 5 Title}{MainMatter/Chapter5}
+\Chapter[conc]{Discussion and Conclusion}{MainMatter/Chapter6}
+
+% References
+\ReferencesChapter
+
+% Back Matter
+\begin{appendices}
+\Appendix[a]{Appendix A Title}{BackMatter/AppendixA}
+\Appendix[b]{Appendix B Title}{BackMatter/AppendixB}
+\end{appendices}
+
+% Arabic covers template is uploaded to this project as word file
+% it could be found in Arabic folder
+% edit the covers with your info and save it as PDF file
+% upload your PDF file to Arabic folder
+% add your PDF file in the next command
+\includepdf[pages=-]{Arabic/Arabic_Cover.pdf}
+
+\end{document}
+%--------------------------<End of File>---------------------------------

@@ -1,0 +1,9 @@
+\setstretch{1}
+\setlength{\parskip}{\baselineskip}
+
+You can add your publications in the bibliography file (\texttt{.bib}) with the keyword \texttt{mypub} and they will be included in the publications list.
+
+\begin{refsection}
+\nocite{*}
+\printbibliography[env=mypub, heading=none, resetnumbers=true, keyword=mypub]
+\end{refsection}
