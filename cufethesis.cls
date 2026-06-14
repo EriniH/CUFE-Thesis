@@ -61,7 +61,10 @@
 %%   Right bracket \]     Circumflex    \^     Underscore    \_
 %%   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %%   Right brace   \}     Tilde         \~}
+\newif\if@bsc\@bscfalse
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
+\def\@BSc{Bachelor of Science}
+\DeclareOption{bsc}{\def\@Degree{\@BSc}\@bsctrue\@praisefalse\@infopagefalse}
 \def\@MSc{Master of Science}
 \DeclareOption{msc}{\def\@Degree{\@MSc}}
 \def\@PhD{Doctor of Philosophy}
@@ -130,8 +133,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{amsthm}
-\usepackage[toc,page]{appendix}
-\usepackage[english]{babel}
+\RequirePackage[main=english]{babel}
 \usepackage{calc}
 \usepackage{epsfig}
 \usepackage{graphicx}
@@ -149,7 +151,6 @@
 \usepackage{tocloft}
 \usepackage[nottoc]{tocbibind}
 \usepackage{xstring}
-\usepackage{stringstrings}
 \usepackage[inner=35.4mm,outer=25.4mm,top=25.4mm,bottom=25.4mm,asymmetric]{geometry}
 \usepackage{csquotes}
 \usepackage[style=cufe, backend=biber, defernumbers=true]{biblatex}
@@ -157,6 +158,11 @@
   {\begin{enumerate}}
   {\end{enumerate}}
   {\item}
+
+\newenvironment{appendices}{\appendix}{\ignorespacesafterend}
+\newcommand{\appendixtitletocon}{}
+\newcommand{\appendixpageoff}{}
+\newcommand{\appendixtocoff}{}
 
 \def\faculty{Faculty of Engineering}
 \def\university{Cairo University}
@@ -221,6 +227,10 @@
 \newcommand{\ThesisTitle}[1]{\def\@ThesisTitle{#1}}
 \newcommand{\ThesisKeywords}[1]{\def\@ThesisKeywords{#1}}
 \newcommand{\ThesisSummary}[1]{\def\@ThesisSummary{#1}}
+\newcommand{\IndustryMentorship}[1]{\def\@IndustryMentorship{#1}}
+\def\@IndustryMentorship{}
+\newcommand{\IndustryLogo}[1]{\def\@IndustryLogo{#1}}
+\def\@IndustryLogo{}
 
 \newcommand{\Preamble}[2]{
     \@NNChapter{#1}
@@ -232,7 +242,7 @@
 \newcommand{\Chapter}[3][]{ %
     \cleardoublepage
     \phantomsection
-    \gchapter{\texorpdfstring{\caseupper{#2}}{#2}}
+    \gchapter{\texorpdfstring{\MakeUppercase{#2}}{#2}}
     \chapter{#2}      % <--- 4. Print the visual heading
     \label{Chapter:#1}
     \if@firstchapter
@@ -246,7 +256,7 @@
 \newcommand{\Appendix}[3][]{
     \cleardoublepage
     \phantomsection
-    \gchapter{\texorpdfstring{\caseupper{#2}}{#2}}
+    \gchapter{\texorpdfstring{\MakeUppercase{#2}}{#2}}
     \chapter{#2}
     \label{Appendix:#1}
     \input{#3.tex}
@@ -340,18 +350,31 @@
     \else
       \Large
     \fi
-    \textbf{\MakeTextUppercase{\textbf{\@ThesisTitle}}}\\[28pt]
-    \Large
-    \textrm{By}\\[16pt]
-    \textrm{\textbf{\@EngineerName}}\\[28pt]
-    \large A Thesis Submitted to the\\
+    \textbf{\MakeTextUppercase{\textbf{\@ThesisTitle}}}\\[24pt]
+    \large
+    \textrm{By}\\[12pt]
+    \textrm{\textbf{\@EngineerName}}\\[16pt]
+    \large \if@bsc A Graduation Project Report\else A Thesis\fi\ Submitted to the\\
         \faculty\vspace{1pt} at \university\\
-        in Partial Fulfillment of the\\
-        Requirements for the Degree of\\
+        in Partial Fulfillment of the Requirements for the Degree of\\
         \MakeTextUppercase{\textbf{\@Degree}}\\
-        in \\ \textbf{\@Specialization} \\[28pt]
+        in \\ \textbf{\@Specialization}
 }
-{   \vfill\large
+{   \\[14pt]
+    \large Under the Supervision of:\\[2pt]
+    \textbf{\@MainSupervisor}\\
+    \normalsize \@MainSupervisorPosition\\
+    \@Specialization\\
+    \faculty, \university\\[14pt]
+    \ifx\@IndustryMentorship\@empty\else
+        \large Industry Mentorship: 
+        \textbf{\@IndustryMentorship} \\[8pt]
+        \ifx\@IndustryLogo\@empty\else
+            \includegraphics[height=0.6in]{\@IndustryLogo}\\[12pt]
+        \fi
+        \vspace*{12pt}
+    \fi
+    \large
    \MakeTextUppercase{\faculty}, \MakeTextUppercase{\university}\\
     \MakeTextUppercase{\city}, \MakeTextUppercase{\country}\\
     \MakeTextUppercase{\@SYear}
@@ -366,7 +389,7 @@
     \fi
     \includegraphics[width=1.2in]{Logos/FE-Logo} \hfill
     \includegraphics[width=0.89in]{Logos/CU-Phero.png}
-    \vspace*{0.5in}
+    \vspace*{0.3in}
     \begin{@thesistitlepage}
     \end{@thesistitlepage}
     \end{changemargintop}
@@ -444,7 +467,7 @@
             \\\multicolumn{2}{l}{Approved by the Examining Committee:}
             \\\\
                 \\  \hline
-                \textbf{\@MainSupervisor},&Thesis Main Advisor
+                \textbf{\@MainSupervisor},&\if@bsc Project Main Advisor\else Thesis Main Advisor\fi
                 \\ \\ \\  \hline
                 \textbf{\@InternalExaminer},&Internal Examiner
                 \\ \\ \\  \hline
@@ -495,7 +518,7 @@
         & &\\
         \textbf{Examiners:}
             & &\\
-            & \textbf{\@MainSupervisor}  &\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!(Thesis Main Advisor)\\
+            & \textbf{\@MainSupervisor}  &\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!(\if@bsc Project\else Thesis\fi\ Main Advisor)\\
             & \textbf{\@InternalExaminer} &\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!(Internal Examiner) \\
             & \textbf{\@ExternalExaminer}  &\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!(External Examiner)\\
             & \multicolumn{2}{l}{\@\@ExternalExaminerPosition}\\
@@ -509,7 +532,7 @@
         & & \\
     \end{tabular}
 
-    \textbf{Title of Thesis:}
+    \textbf{Title of \if@bsc Project\else Thesis\fi:}
         \begin{center}
             \textbf{\@ThesisTitle}
         \end{center}
@@ -646,8 +669,8 @@
 
 \AtBeginDocument{
     \@MakeEnglishCoverPage
-    \@MakeEnglishSupervisionCommitteePage
-    \@MakeEnglishExaminingCommitteePage
+    % \@MakeEnglishSupervisionCommitteePage
+    % \@MakeEnglishExaminingCommitteePage
     \if@infopage
         \@MakeEnglishInformationPage
     \fi

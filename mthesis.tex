@@ -1,7 +1,6 @@
-%------------------<Beginning of Master LaTeX Thesis File>---------------
 % mthesis.tex
 %------------------------------------------------------------------------
-\documentclass[eece, msc]{cufethesis} %pass the program of study ("msc" or "phd") and department as options to the document class, you can also pass the "nopraise" option to remove the praise page from the front matter
+\documentclass[eece, bsc, nopraise]{cufethesis} %pass the program of study ("bsc", "msc" or "phd") and department as options to the document class, you can also pass the "nopraise" option to remove the praise page from the front matter
 
 
 %-------------------------Personal Packages---------------------------
@@ -46,29 +45,24 @@
 
 %-------------------------Personal Information---------------------------
 
-\EngineerName{Engineer's Name}
-\BirthDate{dd}{mm}{yyyy}
-
-\Nationality{Engineer's Nationality}
-\EMail{Engineer's E-mail}
-\Phone{Engineer's Phone Number}
-\Address{Street, City, Province, Zip Code}
-\Photo{\includegraphics[width=3.4cm]{Biography/Personal_Photo.jpg}}
-
-% Program of Study Information
-
-\RegistrationDate{dd}{mm}{yyyy}
-\AwardingDate{--}{--}{yyyy}
+\EngineerName{%
+    \begin{tabular}{@{}l@{\hspace{4em}}l@{}}
+        Ahmed Khalaf Mohamed & Erini Hosny Maher \\[4pt]
+        Mina Karam Fawzy & Moheb Mikhael Heshmat \\[4pt]
+        Mostafa Magdy Mostafa & Roaa Atef Mohamed \\[4pt]
+        \multicolumn{2}{c}{Sohaila Ahmed Mohamed}
+    \end{tabular}%
+}
 
 %----------------------------Thesis Information---------------------------
 
-\MainSupervisor{Dr./Prof. Dr. Main Supervisor}{Affiliation}
-\CoSupervisor{Dr./Prof. Dr. Co-supervisor}{Affiliation}{Department}{Faculty, University}
-\CoSupervisor{Dr./Prof. Dr. Co-supervisor}{Affiliation}{Department}{Faculty, University}
+\MainSupervisor{Dr. Mohammed Radwan}{Affiliation}
 
 \ExternalExaminer{Dr./Prof. Dr. Ext. Examiner}{Affiliation}{Faculty}{University}
 \InternalExaminer{Dr./Prof. Dr. Int. Examiner}
-\ThesisTitle{Thesis Title}
+\ThesisTitle{Tool Name: A SPICE-Compatible Circuit Simulator for Large-Scale Integrated Circuits}
+\IndustryMentorship{Si-Vision Academy}
+\IndustryLogo{Logos/Si-Vision Academy.png}
 
 \ThesisKeywords{Thesis Key Words separated by ;}
 
@@ -76,7 +70,7 @@
 
 
 
-\SubmissionDate{mm}{yyyy}
+\SubmissionDate{06}{2026}
 
 
 %--------------------------------------------------------------------------
@@ -85,14 +79,11 @@
 \begin{document}
 
 % Front Matter
-\Preamble{Disclaimer}{FrontMatter/Disclaimer}
-\Preamble{Dedication}{FrontMatter/Dedication}
 \Preamble{Acknowledgements}{FrontMatter/Acknowledgements}
 \TableOfContents
 \ListOfTables
 \ListOfFigures
 \Nomenclature
-\Preamble{List of Publications}{FrontMatter/Publications}
 \Preamble{Abstract}{FrontMatter/Abstract}
 
 \newgeometry{inner=35.4mm,outer=25.4mm,top=25.4mm,bottom=25.4mm}
@@ -100,12 +91,16 @@
 % Main Matter
 % to comply with thesis guidelines
 % each chapter starts on the right (odd numbered page)
-\Chapter[intro]{Introduction}{MainMatter/Chapter1}
+\Chapter[ch1]{Introduction}{MainMatter/Chapter1}
 \Chapter[ch2]{Literature Review}{MainMatter/Chapter2}
-\Chapter[ch3]{Figures, Tables, and Equations}{MainMatter/Chapter3}
-\Chapter[ch4]{Chapter 4 Title}{MainMatter/Chapter4}
-\Chapter[ch5]{Chapter 5 Title}{MainMatter/Chapter5}
-\Chapter[conc]{Discussion and Conclusion}{MainMatter/Chapter6}
+\Chapter[ch3]{Architecture}{MainMatter/Chapter2}
+\Chapter[ch3]{Netlist Reader}{MainMatter/Chapter3}
+\Chapter[ch4]{Mathematical Modelling}{MainMatter/Chapter4}
+\Chapter[ch5]{Simulation Engine}{MainMatter/Chapter5}
+\Chapter[ch6]{Post-Processing}{MainMatter/Chapter6}
+\Chapter[ch7]{Benchmarking}{MainMatter/Chapter7}
+\Chapter[ch8]{End-to-End Circuit Simulation}{MainMatter/Chapter8}
+% \Chapter[conc]{Discussion and Conclusion}{MainMatter/Chapter6}
 
 % References
 \ReferencesChapter
@@ -113,7 +108,6 @@
 % Back Matter
 \begin{appendices}
 \Appendix[a]{Appendix A Title}{BackMatter/AppendixA}
-\Appendix[b]{Appendix B Title}{BackMatter/AppendixB}
 \end{appendices}
 
 % Arabic covers template is uploaded to this project as word file
@@ -121,7 +115,6 @@
 % edit the covers with your info and save it as PDF file
 % upload your PDF file to Arabic folder
 % add your PDF file in the next command
-\includepdf[pages=-]{Arabic/Arabic_Cover.pdf}
 
 \end{document}
 %--------------------------<End of File>---------------------------------
