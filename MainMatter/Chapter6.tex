@@ -2,11 +2,432 @@
 \setlength{\parskip}{\baselineskip}
 
 \section{Introduction}
-References throughout the thesis are cited using a number between square brackets [\#]. The default bibliography style used is CUFE included in files \texttt{cufe.bbx} and \texttt{cufe.bst} for BibLaTeX and BibTeX, respectively. 
+\seclbl{sim-intro}
 
-You can cite a source \cite{Bouwkamp1963}, two sources \cite{Newmark1971,Caravani1973}, or multiple sources \cite{Ruiz1969, INFORMS,Ibrahim2012} at once. The references will appear in the references list at the end of your thesis by their citation order.
-\section{Related Work}
-\lipsum[150]
+The simulation engine is the computational core of the SPICE-compatible circuit simulator. It receives the parsed netlist from the netlist reader (Chapter~4), converts the components into device objects using the mathematical models developed in Chapter~5, and applies numerical methods to compute circuit responses for DC operating point, DC sweep, AC small-signal, and transient analyses.
+
+The overall flow through the simulation engine is as follows. The \texttt{Simulator} class orchestrates the pipeline: it invokes the netlist parser, constructs device objects via the \texttt{DeviceFactory}, parses control blocks, and dispatches analysis commands through the \texttt{AnalysisManager}. The \texttt{AnalysisManager} routes each command (\texttt{.OP}, \texttt{.DC}, \texttt{.AC}, \texttt{.TRAN}) to the appropriate analysis handler, which uses the linear solver and Newton-Raphson infrastructure described in this chapter.
+
+This chapter is organised as follows. Section~6.2 describes the device factory that bridges parsing and modelling. Section~6.3 presents the simulation parameter system. Section~6.4 describes the linear solver architecture and its concrete implementations. Section~6.5 details the Newton-Raphson nonlinear solver and convergence aids. Section~6.6 describes the analysis framework that dispatches simulation modes. Section~6.7 covers transient integration and adaptive timestep control. Section~6.8 explains how results are written to output files.
+
+\gfigure{Architecture of the simulation engine showing the data flow from
+  Simulator::run() through DeviceFactory and AnalysisManager to the
+  individual analysis handlers, with the shared solver infrastructure.}
+  {fig-sim-architecture}{width=0.95\textwidth}{Figures/Ch6/fig-sim-architecture}
+
+\section{Device Factory}
+\seclbl{device-factory}
+
+The \texttt{DeviceFactory} class bridges the netlist parser (Chapter~4) with the device modelling layer (Chapter~5). It takes the parsed \texttt{Component} list produced by the \texttt{Parser} and the raw netlist lines, then produces a vector of \texttt{Device} pointers ready for simulation.
+
+\subsection{Model Extraction}
+\seclbl{model-extraction}
+
+The first stage of device construction processes \texttt{.MODEL} cards. Each model card defines a device type (NMOS, PMOS, NPN, PNP, diode, etc.) and a set of parameters. The \texttt{modelparser} module parses these cards into \texttt{Model} structs containing the model name, device type, and parameter map. These models are stored alongside the device list and referenced during device creation.
+
+\subsection{Node Registration and Branch Assignment}
+\seclbl{node-registration}
+
+In the first pass, the factory registers all unique node names into the node map (a \texttt{std::map<std::string, int>}), assigning each node a unique integer index. The ground node (``0'' or ``GND'') receives index 0. Additionally, each voltage source and inductor is assigned a branch index for the MNA current variables. The total node count and branch count determine the MNA matrix dimensions.
+
+\subsection{Device Instantiation}
+\seclbl{device-instantiation}
+
+In the second pass, each \texttt{Component} is converted to its corresponding \texttt{Device} subclass. The factory creates instances of:
+\begin{itemize}
+  \item \texttt{res}, \texttt{cap}, \texttt{Inductor} --- passive linear devices.
+  \item \texttt{VoltageSource}, \texttt{cs} --- independent sources, with waveform support (\texttt{PULSE}, \texttt{SIN}, \texttt{EXP}, \texttt{PWL}).
+  \item \texttt{diode} --- nonlinear junction device.
+  \item \texttt{MosfetFactory::createMOSFET()} --- MOSFET Level~1, 2, 3, and BSIM4 models.
+  \item \texttt{BJT\_NPN}, \texttt{BJT\_PNP} --- bipolar junction transistors.
+  \item \texttt{VCCS}, \texttt{VCVS}, \texttt{CCCS}, \texttt{CCVS} --- controlled sources.
+\end{itemize}
+
+Each device receives its node connections and model parameters from the parsed component data. The factory returns a vector of \texttt{std::unique\_ptr<Device>} along with raw pointers for the analysis engine.
+
+\section{Simulation Parameters}
+\seclbl{sim-params}
+
+The \texttt{SimulationOptions} struct is a central configuration object that carries all convergence tolerances, iteration limits, and control flags throughout the simulation engine. Every component that needs to check convergence or adjust its behaviour references this struct.
+
+\subsection{Convergence Tolerances}
+\seclbl{conv-tolerances}
+
+The convergence tolerances follow the standard SPICE3 defaults:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lccp{0.45\textwidth}}
+\toprule
+Parameter & Default & SPICE Equivalent & Purpose \\
+\midrule
+\texttt{RELTOL} & $10^{-3}$ & RELTOL & Relative error tolerance for all variables \\
+\texttt{ABSTOL} & $10^{-12}$~A & ABSTOL & Absolute current tolerance \\
+\texttt{VNTOL} & $10^{-6}$~V & VNTOL & Absolute voltage tolerance \\
+\texttt{GMIN} & $10^{-12}$~S & GMIN & Minimum conductance added to PN junctions \\
+\texttt{PIVTOL} & $10^{-13}$ & PIVTOL & Minimum absolute pivot for LU factorisation \\
+\bottomrule
+\end{tabular}
+\tablbl{conv-tolerances}
+\caption{SPICE convergence tolerances and their default values.}
+\end{table}
+
+\subsection{Iteration Limits}
+\seclbl{iteration-limits}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\toprule
+Parameter & Default & Purpose \\
+\midrule
+\texttt{ITL1} & 100 & Maximum Newton-Raphson iterations for DC operating point \\
+\texttt{ITL2} & 50 & Maximum NR iterations for DC transfer curve \\
+\texttt{ITL4} & 10 & Maximum NR iterations per transient timepoint \\
+\texttt{sourceSteps} & 10 & Number of source stepping stages \\
+\bottomrule
+\end{tabular}
+\tablbl{iteration-limits}
+\caption{Newton-Raphson iteration limits for each analysis type.}
+\end{table}
+
+\subsection{Transient and Solver Configuration}
+\seclbl{tran-solver-config}
+
+The transient integration method is selected through the \texttt{IntegrationMethod} enum, supporting \texttt{TRAP} (trapezoidal, default), \texttt{BE} (backward Euler), and \texttt{GEAR} (Gear-2). The \texttt{TRTOL} factor (default 7.0) controls transient error estimation.
+
+Convergence aids are configured through boolean flags: \texttt{useGminStepping} (default true), \texttt{useSourceStepping} (default true), and \texttt{useLimiting} (default false). The GMIN stepping schedule is controlled by \texttt{gminSteps} (10), \texttt{gminInit} (1.0), and \texttt{gminFinal} ($10^{-12}$).
+
+The solver backend is selected via the \texttt{SolverType} enum, currently supporting \texttt{KLU} (default) and \texttt{NICSLU} (optional).
+
+\section{Linear Solver Architecture}
+\seclbl{linear-solver}
+
+The solution of the linear system $\mathbf{A} \cdot \mathbf{x} = \mathbf{b}$ is the most computationally intensive step in circuit simulation. The matrices $\mathbf{A}$ are produced by the \texttt{CircuitMatrix} class (Chapter~5) in CSC format for each analysis mode: $\mathbf{G}$ for DC/OP, $\mathbf{G} + j\omega\mathbf{C}$ for AC, and $\mathbf{G} + \alpha\mathbf{C}$ for transient. To support different sparse solver backends, a unified abstract interface is defined.
+
+\subsection{Abstract Solver Interface}
+\seclbl{abstract-solver}
+
+The \texttt{LinearSolver} abstract base class defines a four-phase lifecycle that maps directly to the KLU API:
+
+\begin{enumerate}
+  \item \texttt{analyze(SparseMatrix\& A)} --- Symbolic analysis: computes fill-reducing ordering (AMD/BTF) and allocates workspace. Called once when the matrix sparsity pattern is first established.
+  \item \texttt{factorize(SparseMatrix\& A)} --- Numeric LU factorisation: computes $\mathbf{P}\mathbf{A} = \mathbf{L}\mathbf{U}$. Called on the first Newton-Raphson iteration.
+  \item \texttt{refactorize(SparseMatrix\& A)} --- Numeric refactorisation: updates $\mathbf{L}$ and $\mathbf{U}$ using the existing pivot sequence. Called on subsequent NR iterations where the sparsity pattern is unchanged.
+  \item \texttt{solve(const SparseMatrix\& A, std::vector<double>\& b)} --- Forward/backward substitution: $\mathbf{x} = \mathbf{U}^{-1}\mathbf{L}^{-1}\mathbf{P}\mathbf{b}$, writing the solution back into $\mathbf{b}$.
+\end{enumerate}
+
+The \texttt{SolverFactory} function \texttt{createSolver()} returns a solver instance based on compile-time flags, defaulting to KLU when available.
+
+\subsection{KLU Solver}
+\seclbl{klu-solver}
+
+KLU (Clark Kent LU) is a sparse direct LU factorisation library developed by Timothy A.~Davis as part of SuiteSparse. It is specifically designed for circuit simulation matrices, which typically exhibit a nearly lower-triangular block structure.
+
+\gfigure{KLU solver four-phase lifecycle within the Newton-Raphson
+  iteration. The first iteration performs analyse + factorise, while
+  subsequent iterations reuse the symbolic ordering via refactorise.}
+  {fig-klu-lifecycle}{width=0.9\textwidth}{Figures/Ch6/fig-klu-lifecycle}
+
+The KLU wrapper configures the solver with circuit-optimised settings:
+\begin{itemize}
+  \item \texttt{btf = 1} --- Block Triangular Form ordering decomposes the matrix into independent diagonal blocks, factorising each block separately. This is highly effective because circuit MNA matrices are almost lower-triangular by construction.
+  \item \texttt{ordering = 0} --- Approximate Minimum Degree (AMD) ordering reduces fill-in during factorisation.
+  \item \texttt{scale = 2} --- Maximum row scaling improves numerical stability.
+  \item \texttt{tol = 0.001} --- Pivot tolerance for threshold partial pivoting.
+\end{itemize}
+
+The \texttt{refactorize()} method provides a significant performance advantage: by reusing the symbolic analysis and pivot sequence from the first iteration, subsequent NR iterations avoid the expensive reordering step entirely. If numerical values change significantly and refactorisation fails, the method falls back to a full factorisation automatically. Condition number estimation is available via \texttt{klu\_rcond()}.
+
+\subsection{NICSLU Solver}
+\seclbl{nicslu-solver}
+
+NICSLU, developed at Tsinghua University, is a multi-threaded sparse LU solver that provides an alternative backend for large-scale circuits. It uses identical four-phase semantics through the \texttt{LinearSolver} interface, guarded by conditional compilation (\texttt{HAS\_NICSLU}). The solver auto-detects the optimal thread count and configures a pivot tolerance of $10^{-3}$.
+
+\subsection{Complex Solver for AC Analysis}
+\seclbl{complex-solver}
+
+AC small-signal analysis requires solving the complex system $(\mathbf{G} + j\omega\mathbf{C}) \cdot \mathbf{V} = \mathbf{I}$ at each frequency point. This is handled by a separate \texttt{ComplexKluSolver} that wraps KLU's complex routines (\texttt{klu\_analyze}, \texttt{klu\_z\_factor}, \texttt{klu\_z\_solve}). The complex matrix is stored in interleaved format: each non-zero entry occupies two consecutive \texttt{double} positions representing the real and imaginary parts. The solver supports multiple right-hand sides for multi-port analysis.
+
+\section{Nonlinear Solution -- Newton-Raphson Method}
+\seclbl{nr-method}
+
+Nonlinear devices (MOSFETs, BJTs, diodes) require an iterative solution method. The Newton-Raphson algorithm linearises the nonlinear equations around the current operating point and solves the resulting linear system repeatedly until convergence. Each iteration calls \texttt{Device::updateState(V)} to compute the linearised model, then \texttt{Device::stampDC(G, I)} to stamp into the MNA matrix produced by the \texttt{CircuitMatrix} manager (Chapter~5).
+
+\subsection{Newton-Raphson Iteration}
+\seclbl{nr-iteration}
+
+The core iteration loop proceeds as follows:
+
+\begin{enumerate}
+  \item Assemble the MNA matrix in DC mode via \texttt{CircuitMatrix::assembleMNA\_DC()}.
+  \item Add GMIN to all diagonal entries for numerical stability.
+  \item Finalise matrix assembly.
+  \item Extract the RHS vector.
+  \item Solve the linear system: \texttt{analyze} + \texttt{factorize} on the first iteration, \texttt{refactorize} on subsequent iterations.
+  \item Apply junction voltage limiting.
+  \item Check convergence using the SPICE criterion.
+  \item Update the solution vector.
+  \item Repeat until convergence or \texttt{ITL1} = 100.
+\end{enumerate}
+
+The solution vector is 1-based and preserved between calls, enabling warm-starting from the previous converged solution --- essential for GMIN stepping and DC sweep performance.
+
+\gfigure{Newton-Raphson convergence for a common-source NMOS amplifier
+  with source degeneration. The drain voltage converges from the initial
+  guess (0~V) to the operating point (~3.16~V) in 6 iterations.}
+  {fig-nr-convergence}{width=0.7\textwidth}{Figures/Ch6/fig-nr-convergence}
+
+\subsection{SPICE Convergence Criterion}
+\seclbl{convergence-criterion}
+
+The \texttt{ConvergenceChecker} implements the standard SPICE convergence test. For each MNA variable $i$, the change between successive iterations must satisfy:
+
+\[
+|V_{\text{new}}[i] - V_{\text{old}}[i]| < \text{TOL} + \text{RELTOL} \cdot \max\left(|V_{\text{new}}[i]|, |V_{\text{old}}[i]|\right)
+\]
+
+where TOL is $\text{VNTOL} = 10^{-6}\text{V}$ for node voltages and $\text{ABSTOL} = 10^{-12}\text{A}$ for branch currents. The checker also detects NaN and Inf values in the solution vector, and flags diverging solutions (voltages exceeding $10^6$~V or currents exceeding $10^6$~A).
+
+\subsection{Convergence Aids}
+\seclbl{convergence-aids}
+
+Three convergence aids form a fallback chain when standard NR fails:
+
+\textbf{Junction Limiting.} The \texttt{JunctionLimiting} class clamps voltage changes between iterations to a maximum of $3.0$~V per iteration, preventing $\exp(v/V_T)$ overflow in PN junction models. Additionally, the per-device \texttt{pnjlim()} function provides critical-voltage-based limiting directly in the device model.
+
+\textbf{GMIN Stepping.} The \texttt{GminStepping} class implements a geometric reduction of the minimum conductance GMIN. Starting from $\text{GMIN}_{\text{init}} = 1.0$~S, the value decreases geometrically over $\texttt{gminSteps} = 10$ stages to $\text{GMIN}_{\text{final}} = 10^{-12}$~S:
+
+\[
+r = \left(\frac{\text{GMIN}_{\text{init}}}{\text{GMIN}_{\text{final}}}\right)^{1/\text{steps}},
+\qquad
+\text{GMIN}_{\text{step}(k)} = \frac{\text{GMIN}_{\text{init}}}{r^k}
+\]
+
+Each GMIN step converges using the previous step's solution as the initial guess, and the final solve is performed with the target GMIN value.
+
+\gfigure{GMIN geometric reduction schedule across 10 steps. Each GMIN
+  value (log scale) is solved to convergence, seeding the next step.}
+  {fig-gmin-stepping}{width=0.7\textwidth}{Figures/Ch6/fig-gmin-stepping}
+
+\textbf{Source Stepping.} When GMIN stepping also fails, source stepping ramps all independent source values from 0 to their nominal values over configurable steps:
+
+\[
+\alpha_k = \frac{k}{\text{numSteps}}, \quad k = 0, 1, \ldots, \text{numSteps}
+\]
+
+The \texttt{SourceSteppingController} manages the ramp through the \texttt{ScaleableSource} interface. The complete fallback chain is:
+
+\[
+\text{Standard NR} \rightarrow \text{GMIN Stepping} \rightarrow \text{Source Stepping} \rightarrow \text{FAIL}
+\]
+
+\subsection{DC Operating Point Analysis}
+\seclbl{op-analysis}
+
+The \texttt{OPAnalysis} class orchestrates the DC operating point computation. Its \texttt{run()} method:
+\begin{enumerate}
+  \item Creates a linear solver via the \texttt{SolverFactory}.
+  \item Remaps device branch indices to their MNA matrix positions via \texttt{CircuitMatrix::remapBranchIndices()}.
+  \item Runs \texttt{NewtonRaphson::solveWithGminStepping()}, which attempts standard NR first and falls back to GMIN stepping if needed.
+  \item If GMIN stepping fails and source stepping is enabled, attempts source stepping via \texttt{solveWithSourceStepping()}.
+  \item Returns an \texttt{OPResult} struct containing the solution vector (1-based node voltages and branch currents), iteration count, and convergence status.
+\end{enumerate}
+
+The OP result serves as the starting point for AC small-signal analysis (which linearises nonlinear devices around the operating point) and transient analysis (which uses the operating point as initial condition when \texttt{UIC} is not specified).
+
+\section{Analysis Framework}
+\seclbl{analysis-framework}
+
+The \texttt{AnalysisManager} serves as the central dispatcher for all simulation analyses. It receives parsed control blocks from the netlist reader and routes each command to the appropriate analysis handler.
+
+\subsection{Analysis Manager and Command Dispatch}
+\seclbl{analysis-dispatch}
+
+\texttt{executeAnalyses()} iterates over parsed control blocks and dispatches commands:
+\begin{itemize}
+  \item \texttt{.OP} $\rightarrow$ \texttt{runOperatingPoint()}, which calls \texttt{OPAnalysis::run()}.
+  \item \texttt{.DC} $\rightarrow$ \texttt{runDCAnalysis()}, a sweep loop with warm-started OP per point.
+  \item \texttt{.AC} $\rightarrow$ \texttt{runACAnalysis()}, a frequency-domain small-signal sweep.
+  \item \texttt{.TRAN} $\rightarrow$ \texttt{runTransientAnalysis()}, time-domain integration.
+  \item \texttt{.PRINT} and \texttt{SAVE} $\rightarrow$ handled inline for output.
+\end{itemize}
+
+If no analysis commands are found, a default \texttt{.OP} is inserted automatically. The \texttt{evalExpression()} method provides recursive-descent parsing of \texttt{V(node)} expressions for \texttt{PRINT}/\texttt{SAVE} commands.
+
+\gfigure{Analysis dispatch flow through the AnalysisManager.}
+  {fig-analysis-dispatch}{width=0.85\textwidth}{Figures/Ch6/fig-analysis-dispatch}
+
+\subsection{DC Sweep Analysis}
+\seclbl{dc-sweep}
+
+DC sweep performs a parametric sweep of an independent voltage source:
+\[
+V_{\text{src}} \in [V_{\text{start}}, V_{\text{stop}}] \text{ with step } V_{\text{step}}
+\]
+
+At each sweep point, \texttt{OPAnalysis::run()} is called with the previous point's converged solution as the initial guess. This warm-starting reduces the Newton-Raphson iteration count from 5--15 iterations per point (cold start) to 1--3 iterations per point in practice.
+
+\subsection{AC Small-Signal Analysis}
+\seclbl{ac-analysis}
+
+The AC analysis computes the small-signal frequency response by solving the complex system at each frequency point:
+\[
+(\mathbf{G} + j\omega\mathbf{C}) \cdot \mathbf{V}(\omega) = \mathbf{I}(\omega)
+\]
+
+The conductance matrix $\mathbf{G}$ and capacitance matrix $\mathbf{C}$ are assembled from the linearised device models at the DC operating point. Three sweep types are supported, matching the SPICE \texttt{.AC} command:
+\begin{itemize}
+  \item \texttt{DEC} --- logarithmic decade sweep, $N$ points per decade.
+  \item \texttt{LIN} --- linear sweep, $N$ evenly-spaced points.
+  \item \texttt{OCT} --- logarithmic octave sweep, $N$ points per octave.
+\end{itemize}
+
+At each frequency point $\omega = 2\pi f$, the complex matrix is assembled and solved by the \texttt{ComplexKluSolver}. Results are stored as interleaved real/imaginary pairs in the output raw file.
+
+Post-processing utilities in \texttt{AcOutputUtils.hpp} provide \texttt{magnitude()}, \texttt{phase()}, and \texttt{dB()} conversions for interpretation.
+
+\gfigure{AC analysis matrix construction: G + jwC complex matrix assembly
+  and solution at each frequency point.}
+  {fig-ac-matrix}{width=0.75\textwidth}{Figures/Ch6/fig-ac-matrix}
+
+\section{Transient Analysis}
+\seclbl{transient-analysis}
+
+Transient analysis is the most complex simulation mode. It computes the time-domain response of the circuit by numerically integrating the differential-algebraic equations that arise from energy-storage elements (capacitors and inductors).
+
+\subsection{Time-Stepping Loop}
+\seclbl{tran-timestepping}
+
+The transient analysis loop proceeds as follows:
+
+\begin{enumerate}
+  \item Parse the \texttt{.TRAN} command to obtain timestep parameters.
+  \item If \texttt{UIC} (Use Initial Conditions) is not specified, run an initial DC operating point analysis.
+  \item Classify devices into linear and nonlinear subsets for stamping efficiency.
+  \item Create the integration method and timestep controller.
+  \item For each timestep $t$ until $t_{\text{stop}}$:
+  \begin{enumerate}
+    \item Set transient context (current time, timestep) on all devices.
+    \item Call \texttt{updateState(x, dt)} on each device to update history-dependent models.
+    \item Assemble the MNA system: $\mathbf{G}' = \mathbf{G} + \alpha\mathbf{C}$.
+    \item Solve the nonlinear system via Newton-Raphson.
+    \item Estimate the Local Truncation Error (LTE) and accept or reject the step.
+    \item If accepted: advance device states, adjust the next timestep based on LTE, and record output if at a print interval.
+    \item If rejected: restore the previous state, halve the timestep, and retry.
+  \end{enumerate}
+\end{enumerate}
+
+\subsection{Integration Methods}
+\seclbl{integration-methods}
+
+Three implicit integration methods are implemented, all based on the companion model approach. The capacitor differential equation
+\[
+i(t) = C \cdot \frac{dv(t)}{dt}
+\]
+is discretised as
+\[
+i(t_{n+1}) = \alpha C \cdot v(t_{n+1}) + i_{\text{history}}
+\]
+
+The coefficient $\alpha$ and history term depend on the method:
+
+\begin{itemize}
+  \item \textbf{Backward Euler (BE):} $\alpha = 1/\Delta t$. First-order accurate and $A$-stable. Introduces numerical damping that suppresses oscillations artificially. Suitable for stiff circuits.
+  \item \textbf{Trapezoidal (TRAP):} $\alpha = 2/\Delta t$. Second-order accurate with better energy conservation than BE. Can exhibit ``trap ringing'' on sharp transitions. This is the default method.
+  \item \textbf{Gear-2 (GEAR2):} $\alpha$ depends on both $\Delta t_n$ and $\Delta t_{n-1}$. Second-order accurate with less ringing than trapezoidal, suitable for circuits with discontinuities.
+\end{itemize}
+
+\gfigure{Transient companion model: a capacitor is replaced by a
+  conductance $\alpha C$ in parallel with a current source, enabling
+  purely algebraic MNA solution at each timestep.}
+  {fig-transient-companion}{width=0.75\textwidth}{Figures/Ch6/fig-transient-companion}
+
+\subsection{Adaptive Timestep Control}
+\seclbl{adaptive-timestep}
+
+The \texttt{TimestepController} implements SPICE3-style LTE-based adaptive timestep control. For the trapezoidal method, the LTE at each node is estimated as:
+
+\[
+\text{LTE}_i \approx \frac{\Delta t^2}{12} \cdot \frac{V_i(t_{n+1}) - 2V_i(t_n) + V_i(t_{n-1})}{\Delta t \cdot \Delta t_{n-1}}
+\]
+
+The normalised error per node is:
+
+\[
+\epsilon_i = \frac{|\text{LTE}_i|}{\text{VNTOL} + \text{RELTOL} \cdot \max_j |V_j|}
+\]
+
+and the overall error is $\epsilon = \max_i \epsilon_i$. The step is accepted if $\epsilon \leq 1$ and rejected otherwise. The next timestep is:
+
+\[
+\Delta t_{\text{new}} = \Delta t \cdot
+\begin{cases}
+\min\left(2.0, \; 0.9 \cdot \epsilon^{-1/3}\right), & \epsilon \leq 1 \\[4pt]
+\max\left(0.5, \; 0.9 \cdot \epsilon^{-1/3}\right), & \epsilon > 1
+\end{cases}
+\]
+
+Breakpoint handling ensures that the timestep lands exactly on signal transitions (e.g., PWL source corners, pulse edges). Devices report their breakpoints via \texttt{getBreakpoints()}.
+
+\gfigure{Adaptive timestep behaviour during a transient simulation:
+  timestep shrinks during rapid transitions and grows during quiescent
+  periods.}
+  {fig-adaptive-timestep}{width=0.75\textwidth}{Figures/Ch6/fig-adaptive-timestep}
+
+\section{Output Generation}
+\seclbl{output-generation}
+
+Simulation results are written through the abstract \texttt{OutputManager} interface, supporting two backends.
+
+\subsection{Console Output}
+\seclbl{console-output}
+
+\texttt{ConsoleOutputManager} prints results to \texttt{std::cout} for diagnostic runs and CI pipeline validation. It is used when no \texttt{--raw} flag is specified.
+
+\subsection{Raw File Output}
+\seclbl{raw-output}
+
+\texttt{RawOutputManager} writes NGSpice-compatible \texttt{.raw} files. The format combines an ASCII header with binary IEEE-754 double-precision data:
+
+\begin{verbatim}
+Title: <circuit_name>
+Date: <timestamp>
+Plotname: Transient Analysis
+Flags: real
+No. Variables: 3
+No. Points: 1000
+Variables:
+    0   time        time
+    1   V(out)      voltage
+    2   I(R1)       current
+Binary:
+<packed IEEE-754 doubles, row-major>
+\end{verbatim}
+
+The \texttt{RawfileWriter} back-patches the \texttt{No. Points:} field using \texttt{seekp()} after all data points are written. For AC analysis, \texttt{flags} is set to \texttt{complex} and each variable occupies two consecutive doubles (real and imaginary parts). Variable types are inferred from header names (e.g., \texttt{V(...)} $\rightarrow$ voltage, \texttt{I(...)} $\rightarrow$ current).
+
+\gfigure{Structure of the NGSpice-compatible .raw output file.}
+  {fig-raw-format}{width=0.85\textwidth}{Figures/Ch6/fig-raw-format}
+
+\subsection{Diagnostic Reporting}
+\seclbl{diag-reporting}
+
+The \texttt{AnalysisReporter} class provides structured diagnostic messages for all analysis phases: OP begin/end, convergence status, DC sweep per-point status, AC solver errors, transient step retries, and unhandled commands. All messages are routed through \texttt{OutputManager::print()} for consistent display regardless of output backend.
+
 \section{Summary}
-\lipsum[100]
+\seclbl{sim-summary}
 
+This chapter presented the simulation engine, the computational core of the SPICE-compatible circuit simulator. The following components were described:
+
+\begin{itemize}
+  \item The \textbf{device factory} converts parsed netlist components into device objects, performing model extraction, node registration, and MNA branch assignment.
+  \item The \textbf{simulation parameters} define convergence tolerances and iteration limits following SPICE3 conventions.
+  \item The \textbf{linear solver architecture} defines a four-phase abstract interface (analyze, factorize, solve, refactorize) implemented by KLU (default) and NICSLU (optional parallel backend), with a separate complex solver for AC analysis.
+  \item The \textbf{Newton-Raphson nonlinear solver} implements the SPICE convergence criterion and a three-tier fallback chain (standard NR $\rightarrow$ GMIN stepping $\rightarrow$ source stepping) that ensures robust convergence for difficult nonlinear circuits.
+  \item The \textbf{analysis framework} dispatches four analysis types (OP, DC sweep, AC, transient) through a unified \texttt{AnalysisManager}, with warm-starting to accelerate multi-point analyses.
+  \item \textbf{Transient integration} uses Backward Euler, Trapezoidal, or Gear-2 methods with LTE-based adaptive timestep control and breakpoint handling.
+  \item \textbf{Output generation} produces NGSpice-compatible raw files through an abstract \texttt{OutputManager} interface with console and file backends.
+\end{itemize}
+
+The simulation engine seamlessly integrates with the netlist reader (Chapter~4) and the mathematical device models (Chapter~5) to form a complete circuit simulation pipeline. Chapter~7 describes the post-processing tool that reads the raw output files and provides waveform visualisation, measurement, and analysis capabilities.
