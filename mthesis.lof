@@ -1,0 +1,91 @@
+\babel@toc {english}{}\relax 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces UML Class Diagram of the Mathematical Modeling Architecture.}}{10}{figure.caption.11}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Workflow and Matrix Stamping Flowchart for the Resistor.}}{12}{figure.caption.12}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Workflow and Analysis-Dependent Matrix Stamping for the Capacitor.}}{14}{figure.caption.13}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Workflow and Analysis-Dependent Matrix Stamping for the Inductor.}}{16}{figure.caption.14}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Workflow and Newton-Raphson Stamping Flow for the Diode.}}{18}{figure.caption.15}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Workflow and Analysis-Dependent Matrix Stamping for the Non-linear JFET.}}{20}{figure.caption.16}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Workflow and Matrix Stamping for the Multi-Level MOSFET Model.}}{22}{figure.caption.17}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Workflow and Newton-Raphson Stamping Flow for the BJT.}}{24}{figure.caption.18}%
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Workflow, Waveform Evaluation, and MNA Stamping for the Voltage Source.}}{26}{figure.caption.19}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Workflow, Waveform Evaluation, and RHS-only Stamping for the Current Source.}}{28}{figure.caption.20}%
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Workflow and Stamping Flow for the Voltage-Controlled Current Source (VCCS).}}{29}{figure.caption.21}%
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Workflow and Stamping Flow for the Voltage-Controlled Voltage Source (VCVS).}}{30}{figure.caption.22}%
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Workflow and Stamping Flow for the Current-Controlled Current Source (CCCS).}}{31}{figure.caption.23}%
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Workflow and Stamping Flow for the Current-Controlled Voltage Source (CCVS).}}{32}{figure.caption.24}%
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Resistor Simulation Verification against NGSpice (Test 1).}}{35}{figure.caption.25}%
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Resistor Simulation Verification against NGSpice (Test 2).}}{35}{figure.caption.25}%
+\contentsline {figure}{\numberline {5.17}{\ignorespaces Resistor Simulation Verification against NGSpice (Test 3).}}{35}{figure.caption.26}%
+\contentsline {figure}{\numberline {5.18}{\ignorespaces Resistor Simulation Verification against NGSpice (Test 4).}}{35}{figure.caption.26}%
+\contentsline {figure}{\numberline {5.19}{\ignorespaces Capacitor Voltage Verification (Test 1).}}{36}{figure.caption.27}%
+\contentsline {figure}{\numberline {5.20}{\ignorespaces Capacitor Current Verification (Test 2).}}{36}{figure.caption.27}%
+\contentsline {figure}{\numberline {5.21}{\ignorespaces Capacitor Charge vs. Voltage Characteristic under Varactor Mode (Test 3).}}{36}{figure.caption.28}%
+\contentsline {figure}{\numberline {5.22}{\ignorespaces Inductor AC Impedance Validation.}}{37}{figure.caption.29}%
+\contentsline {figure}{\numberline {5.23}{\ignorespaces Inductor Transient Step Response.}}{37}{figure.caption.29}%
+\contentsline {figure}{\numberline {5.24}{\ignorespaces Inductor Energy Conservation Balance.}}{38}{figure.caption.30}%
+\contentsline {figure}{\numberline {5.25}{\ignorespaces Inductor Area and Temp Scaling.}}{38}{figure.caption.30}%
+\contentsline {figure}{\numberline {5.26}{\ignorespaces Diode Forward I-V Characteristic.}}{39}{figure.caption.31}%
+\contentsline {figure}{\numberline {5.27}{\ignorespaces Diode Reverse Breakdown Sweep.}}{39}{figure.caption.31}%
+\contentsline {figure}{\numberline {5.28}{\ignorespaces Diode Reverse Gmin Current Leakage.}}{39}{figure.caption.32}%
+\contentsline {figure}{\numberline {5.29}{\ignorespaces Diode Junction Capacitance vs. Bias.}}{39}{figure.caption.32}%
+\contentsline {figure}{\numberline {5.30}{\ignorespaces JFET Transfer Characteristics ($I_d$ vs. $V_{gs}$).}}{40}{figure.caption.33}%
+\contentsline {figure}{\numberline {5.31}{\ignorespaces JFET Output Characteristics ($I_d$ vs. $V_{ds}$).}}{40}{figure.caption.33}%
+\contentsline {figure}{\numberline {5.32}{\ignorespaces JFET Gate-Source and Gate-Drain Junction Capacitance.}}{40}{figure.caption.34}%
+\contentsline {figure}{\numberline {5.33}{\ignorespaces MOSFET Characteristic Test 1.}}{41}{figure.caption.35}%
+\contentsline {figure}{\numberline {5.34}{\ignorespaces MOSFET Characteristic Test 2.}}{41}{figure.caption.35}%
+\contentsline {figure}{\numberline {5.35}{\ignorespaces MOSFET Characteristic Test 3.}}{42}{figure.caption.36}%
+\contentsline {figure}{\numberline {5.36}{\ignorespaces MOSFET Characteristic Test 4.}}{42}{figure.caption.36}%
+\contentsline {figure}{\numberline {5.37}{\ignorespaces MOSFET Characteristic Test 5.}}{42}{figure.caption.37}%
+\contentsline {figure}{\numberline {5.38}{\ignorespaces MOSFET Characteristic Test 6.}}{42}{figure.caption.37}%
+\contentsline {figure}{\numberline {5.39}{\ignorespaces MOSFET Characteristic Test 7.}}{42}{figure.caption.38}%
+\contentsline {figure}{\numberline {5.40}{\ignorespaces MOSFET Characteristic Test 8.}}{42}{figure.caption.38}%
+\contentsline {figure}{\numberline {5.41}{\ignorespaces MOSFET Characteristic Test 9.}}{42}{figure.caption.39}%
+\contentsline {figure}{\numberline {5.42}{\ignorespaces MOSFET Characteristic Test 10.}}{42}{figure.caption.39}%
+\contentsline {figure}{\numberline {5.43}{\ignorespaces MOSFET Characteristic Test 11.}}{43}{figure.caption.40}%
+\contentsline {figure}{\numberline {5.44}{\ignorespaces BJT Gummel Plot ($I_c, I_b$ vs. $V_{be}$).}}{44}{figure.caption.41}%
+\contentsline {figure}{\numberline {5.45}{\ignorespaces BJT Output Characteristics ($I_c$ vs. $V_{ce}$).}}{44}{figure.caption.41}%
+\contentsline {figure}{\numberline {5.46}{\ignorespaces BJT Junction Capacitances ($C_{be}, C_{bc}$).}}{44}{figure.caption.42}%
+\contentsline {figure}{\numberline {5.47}{\ignorespaces BJT Transient Amplifier Waveforms.}}{44}{figure.caption.42}%
+\contentsline {figure}{\numberline {5.48}{\ignorespaces Voltage Source Transient Waveform Test 1.}}{45}{figure.caption.43}%
+\contentsline {figure}{\numberline {5.49}{\ignorespaces Voltage Source Transient Waveform Test 2.}}{45}{figure.caption.43}%
+\contentsline {figure}{\numberline {5.50}{\ignorespaces Voltage Source Transient Waveform Test 3.}}{45}{figure.caption.44}%
+\contentsline {figure}{\numberline {5.51}{\ignorespaces Current Source Transient Waveform Test 1.}}{46}{figure.caption.45}%
+\contentsline {figure}{\numberline {5.52}{\ignorespaces Current Source Transient Waveform Test 2.}}{46}{figure.caption.45}%
+\contentsline {figure}{\numberline {5.53}{\ignorespaces Current Source Transient Waveform Test 3.}}{46}{figure.caption.46}%
+\contentsline {figure}{\numberline {5.54}{\ignorespaces VCCS Transfer Characteristic Test 1.}}{47}{figure.caption.47}%
+\contentsline {figure}{\numberline {5.55}{\ignorespaces VCCS Transfer Characteristic Test 2.}}{47}{figure.caption.47}%
+\contentsline {figure}{\numberline {5.56}{\ignorespaces VCCS Transfer Characteristic Test 3.}}{48}{figure.caption.48}%
+\contentsline {figure}{\numberline {5.57}{\ignorespaces VCVS Voltage Transfer Test 1.}}{49}{figure.caption.49}%
+\contentsline {figure}{\numberline {5.58}{\ignorespaces VCVS Voltage Transfer Test 2.}}{49}{figure.caption.49}%
+\contentsline {figure}{\numberline {5.59}{\ignorespaces VCVS Voltage Transfer Test 3.}}{49}{figure.caption.50}%
+\contentsline {figure}{\numberline {5.60}{\ignorespaces CCCS Current Transfer Test 1.}}{50}{figure.caption.51}%
+\contentsline {figure}{\numberline {5.61}{\ignorespaces CCCS Current Transfer Test 2.}}{50}{figure.caption.51}%
+\contentsline {figure}{\numberline {5.62}{\ignorespaces CCCS Current Transfer Test 3.}}{50}{figure.caption.52}%
+\contentsline {figure}{\numberline {5.63}{\ignorespaces CCCS Current Transfer Test 4.}}{50}{figure.caption.52}%
+\contentsline {figure}{\numberline {5.64}{\ignorespaces CCCS Current Transfer Test 5.}}{51}{figure.caption.53}%
+\contentsline {figure}{\numberline {5.65}{\ignorespaces CCCS Current Transfer Test 6.}}{51}{figure.caption.53}%
+\contentsline {figure}{\numberline {5.66}{\ignorespaces CCVS Transresistance Test 1.}}{52}{figure.caption.54}%
+\contentsline {figure}{\numberline {5.67}{\ignorespaces CCVS Transresistance Test 2.}}{52}{figure.caption.54}%
+\contentsline {figure}{\numberline {5.68}{\ignorespaces CCVS Transresistance Test 3.}}{52}{figure.caption.55}%
+\contentsline {figure}{\numberline {5.69}{\ignorespaces CCVS Transresistance Test 4.}}{52}{figure.caption.55}%
+\contentsline {figure}{\numberline {5.70}{\ignorespaces CCVS Transresistance Test 5.}}{52}{figure.caption.56}%
+\contentsline {figure}{\numberline {5.71}{\ignorespaces CCVS Transresistance Test 6.}}{52}{figure.caption.56}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Architecture of the simulation engine showing the data flow from Simulator::run() through DeviceFactory and AnalysisManager to the individual analysis handlers, with the shared solver infrastructure.}}{53}{figure.6.1}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces KLU solver four-phase lifecycle within the Newton-Raphson iteration. The first iteration performs analyse + factorise, while subsequent iterations reuse the symbolic ordering via refactorise.}}{57}{figure.6.2}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Newton-Raphson convergence for a common-source NMOS amplifier with source degeneration. The drain voltage converges from the initial guess (0~V) to the operating point (~3.16~V) in 6 iterations.}}{59}{figure.6.3}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces GMIN geometric reduction schedule across 10 steps. Each GMIN value (log scale) is solved to convergence, seeding the next step.}}{60}{figure.6.4}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Analysis dispatch flow through the AnalysisManager.}}{61}{figure.6.5}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces AC analysis matrix construction: G + jwC complex matrix assembly and solution at each frequency point.}}{62}{figure.6.6}%
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Transient companion model: a capacitor is replaced by a conductance $\alpha C$ in parallel with a current source, enabling purely algebraic MNA solution at each timestep.}}{64}{figure.6.7}%
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Adaptive timestep behaviour during a transient simulation: timestep shrinks during rapid transitions and grows during quiescent periods.}}{65}{figure.6.8}%
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Structure of the NGSpice-compatible .raw output file.}}{66}{figure.6.9}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
