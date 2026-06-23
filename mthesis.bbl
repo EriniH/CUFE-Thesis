@@ -1,0 +1,200 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{Bouwkamp1963}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=97d125b3bb1d42b5562b74cabf31b7a0}{%
+           family={Bouwkamp},
+           familyi={B\bibinitperiod},
+           given={J.\bibnamedelimi G.},
+           giveni={J\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=f1e7f708d22912ff82151eee8efd8b6d}{%
+           family={Bolhom},
+           familyi={B\bibinitperiod},
+           given={J.\bibnamedelimi K.},
+           giveni={J\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \strng{namehash}{93cf0d66fa5020b7cbad277d34c6a462}
+      \strng{fullhash}{93cf0d66fa5020b7cbad277d34c6a462}
+      \strng{fullhashraw}{93cf0d66fa5020b7cbad277d34c6a462}
+      \strng{bibnamehash}{93cf0d66fa5020b7cbad277d34c6a462}
+      \strng{authorbibnamehash}{93cf0d66fa5020b7cbad277d34c6a462}
+      \strng{authornamehash}{93cf0d66fa5020b7cbad277d34c6a462}
+      \strng{authorfullhash}{93cf0d66fa5020b7cbad277d34c6a462}
+      \strng{authorfullhashraw}{93cf0d66fa5020b7cbad277d34c6a462}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Bulletin of the Seismological Society of America}
+      \field{month}{12}
+      \field{number}{6}
+      \field{title}{Dynamic Response of a Two-Story Steel Frame Structure}
+      \field{volume}{56}
+      \field{year}{1963}
+      \field{pages}{1289\bibrangedash 1303}
+      \range{pages}{15}
+    \endentry
+    \entry{Newmark1971}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=a65c3b194b4b69a857a7c3cf12c8c0db}{%
+           family={Newmark},
+           familyi={N\bibinitperiod},
+           given={N.\bibnamedelimi M.},
+           giveni={N\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=fc83b89daa6e4938bf6acd7369ff9efc}{%
+           family={Resenblueth},
+           familyi={R\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Prentice-Hall Inc., Englewood cliffs, N.J.}%
+      }
+      \strng{namehash}{cecbb59dac5d8e729fab4cf814f8cae0}
+      \strng{fullhash}{cecbb59dac5d8e729fab4cf814f8cae0}
+      \strng{fullhashraw}{cecbb59dac5d8e729fab4cf814f8cae0}
+      \strng{bibnamehash}{cecbb59dac5d8e729fab4cf814f8cae0}
+      \strng{authorbibnamehash}{cecbb59dac5d8e729fab4cf814f8cae0}
+      \strng{authornamehash}{cecbb59dac5d8e729fab4cf814f8cae0}
+      \strng{authorfullhash}{cecbb59dac5d8e729fab4cf814f8cae0}
+      \strng{authorfullhashraw}{cecbb59dac5d8e729fab4cf814f8cae0}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2nd}
+      \field{title}{Fundamentals of Earthquake Engineering}
+      \field{volume}{xx}
+      \field{year}{1971}
+    \endentry
+    \entry{Caravani1973}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=7b6d8621a598bd61486b6202f5d3f550}{%
+           family={Caravani},
+           familyi={C\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=41b82cdd943daf905e90e8a5d790ca4b}{%
+           family={Thomson},
+           familyi={T\bibinitperiod},
+           given={W.\bibnamedelimi T.},
+           giveni={W\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Rome, Italy}%
+      }
+      \strng{namehash}{ecf63814353cbaefd148ae195b37184d}
+      \strng{fullhash}{ecf63814353cbaefd148ae195b37184d}
+      \strng{fullhashraw}{ecf63814353cbaefd148ae195b37184d}
+      \strng{bibnamehash}{ecf63814353cbaefd148ae195b37184d}
+      \strng{authorbibnamehash}{ecf63814353cbaefd148ae195b37184d}
+      \strng{authornamehash}{ecf63814353cbaefd148ae195b37184d}
+      \strng{authorfullhash}{ecf63814353cbaefd148ae195b37184d}
+      \strng{authorfullhashraw}{ecf63814353cbaefd148ae195b37184d}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Fifth World Conference on Earthquake Engineering}
+      \field{title}{Identification of Damping Coefficients from System Response}
+      \field{year}{1973}
+    \endentry
+    \entry{Ruiz1969}{report}{}{}
+      \name{author}{2}{}{%
+        {{hash=eb346b24c24bce64d7e92206dd8c1386}{%
+           family={Ruiz},
+           familyi={R\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=96659ececc49cba0a02d90bbb718c3b6}{%
+           family={Penzien},
+           familyi={P\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Earthquake Engineering Research Center}%
+      }
+      \list{location}{1}{%
+        {University of California, Berkeley, Calif., USA}%
+      }
+      \strng{namehash}{02d0afd907733d8a4c600a4d042d7adb}
+      \strng{fullhash}{02d0afd907733d8a4c600a4d042d7adb}
+      \strng{fullhashraw}{02d0afd907733d8a4c600a4d042d7adb}
+      \strng{bibnamehash}{02d0afd907733d8a4c600a4d042d7adb}
+      \strng{authorbibnamehash}{02d0afd907733d8a4c600a4d042d7adb}
+      \strng{authornamehash}{02d0afd907733d8a4c600a4d042d7adb}
+      \strng{authorfullhash}{02d0afd907733d8a4c600a4d042d7adb}
+      \strng{authorfullhashraw}{02d0afd907733d8a4c600a4d042d7adb}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{3}
+      \field{number}{EERC 69-3}
+      \field{title}{Probabilistic Study on the Behavior of Structures During Earthquake}
+      \field{type}{Report}
+      \field{year}{1969}
+    \endentry
+    \entry{INFORMS}{misc}{}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{http://www.informs.org}}
+      \field{month}{1}
+      \field{title}{INFORMS web site}
+      \field{year}{2012}
+    \endentry
+    \entry{Ibrahim2012}{thesis}{}{}
+      \name{author}{1}{}{%
+        {{hash=c4fe201a3ccc52c731dd6f06bd89018a}{%
+           family={Ibrahim},
+           familyi={I\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Faculty of Engineering, Cairo University}%
+      }
+      \list{location}{1}{%
+        {Giza, Egypt}%
+      }
+      \strng{namehash}{c4fe201a3ccc52c731dd6f06bd89018a}
+      \strng{fullhash}{c4fe201a3ccc52c731dd6f06bd89018a}
+      \strng{fullhashraw}{c4fe201a3ccc52c731dd6f06bd89018a}
+      \strng{bibnamehash}{c4fe201a3ccc52c731dd6f06bd89018a}
+      \strng{authorbibnamehash}{c4fe201a3ccc52c731dd6f06bd89018a}
+      \strng{authornamehash}{c4fe201a3ccc52c731dd6f06bd89018a}
+      \strng{authorfullhash}{c4fe201a3ccc52c731dd6f06bd89018a}
+      \strng{authorfullhashraw}{c4fe201a3ccc52c731dd6f06bd89018a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{A parametric study on $\ldots$}
+      \field{type}{MSc. Thesis}
+      \field{year}{2012}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

@@ -2412,12 +2412,6 @@
     <bcf:citekey order="18" intorder="1">Ruiz1969</bcf:citekey>
     <bcf:citekey order="18" intorder="2">INFORMS</bcf:citekey>
     <bcf:citekey order="18" intorder="3">Ibrahim2012</bcf:citekey>
-    <bcf:citekey order="19" intorder="1">Bouwkamp1963</bcf:citekey>
-    <bcf:citekey order="20" intorder="1">Newmark1971</bcf:citekey>
-    <bcf:citekey order="20" intorder="2">Caravani1973</bcf:citekey>
-    <bcf:citekey order="21" intorder="1">Ruiz1969</bcf:citekey>
-    <bcf:citekey order="21" intorder="2">INFORMS</bcf:citekey>
-    <bcf:citekey order="21" intorder="3">Ibrahim2012</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

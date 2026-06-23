@@ -81,11 +81,23 @@
 \contentsline {figure}{\numberline {6.3}{\ignorespaces Newton-Raphson convergence for a common-source NMOS amplifier with source degeneration. The drain voltage converges from the initial guess (0~V) to the operating point (~3.16~V) in 6 iterations.}}{59}{figure.6.3}%
 \contentsline {figure}{\numberline {6.4}{\ignorespaces GMIN geometric reduction schedule across 10 steps. Each GMIN value (log scale) is solved to convergence, seeding the next step.}}{60}{figure.6.4}%
 \contentsline {figure}{\numberline {6.5}{\ignorespaces Analysis dispatch flow through the AnalysisManager.}}{61}{figure.6.5}%
-\contentsline {figure}{\numberline {6.6}{\ignorespaces AC analysis matrix construction: G + jwC complex matrix assembly and solution at each frequency point.}}{62}{figure.6.6}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces AC analysis matrix construction: G + jwC complex matrix assembly and solution at each frequency point.}}{63}{figure.6.6}%
 \contentsline {figure}{\numberline {6.7}{\ignorespaces Transient companion model: a capacitor is replaced by a conductance $\alpha C$ in parallel with a current source, enabling purely algebraic MNA solution at each timestep.}}{64}{figure.6.7}%
 \contentsline {figure}{\numberline {6.8}{\ignorespaces Adaptive timestep behaviour during a transient simulation: timestep shrinks during rapid transitions and grows during quiescent periods.}}{65}{figure.6.8}%
 \contentsline {figure}{\numberline {6.9}{\ignorespaces Structure of the NGSpice-compatible .raw output file.}}{66}{figure.6.9}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {7.1}{\ignorespaces High-level post-processing data flow and control hierarchy.}}{70}{figure.caption.61}%
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Expression parsing and evaluation pipeline.}}{80}{figure.caption.63}%
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Transient plot of \texttt {V(1)} and \texttt {V(2)} overlaid on a single panel.}}{84}{figure.caption.64}%
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Automatic dual-panel split for mixed voltage/current signals.}}{84}{figure.caption.65}%
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Single-signal Bode plot showing the magnitude in decibels of \texttt {V(2)}.}}{85}{figure.caption.66}%
+\contentsline {figure}{\numberline {7.6}{\ignorespaces One-signal Bode plot for \texttt {V(2)}.}}{85}{figure.caption.67}%
+\contentsline {figure}{\numberline {7.7}{\ignorespaces Class relationships of the Application Entry Point and the Core Interpreter.}}{87}{figure.caption.68}%
+\contentsline {figure}{\numberline {7.8}{\ignorespaces Class relationships detailing the Command Dispatch System and Command Hierarchy.}}{88}{figure.caption.69}%
+\contentsline {figure}{\numberline {7.9}{\ignorespaces Class relationships and internal structures of the Expression Calculator Engine.}}{89}{figure.caption.70}%
+\contentsline {figure}{\numberline {7.10}{\ignorespaces Class relationships and dependencies of the measurement and visualization subsystems.}}{90}{figure.caption.71}%
+\contentsline {figure}{\numberline {7.11}{\ignorespaces Class relationships representing the Waveform Database and Data Management layer.}}{91}{figure.caption.72}%
+\contentsline {figure}{\numberline {7.12}{\ignorespaces Class relationships of the File I/O layer and Rawfile parsing structures.}}{92}{figure.caption.73}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

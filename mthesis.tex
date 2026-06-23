@@ -23,6 +23,23 @@
 \usepackage{subcaption}
 \usepackage{rotating}
 \usepackage{longtable}
+% Additional packages required by some chapters
+\usepackage{algorithm2e} % provides algorithm environment
+\usepackage{listings}    % provides lstlisting environment
+\usepackage{tabularx}    % provides tabularx environment
+\usepackage{booktabs}    % provides \toprule, \midrule, \bottomrule
+\usepackage{siunitx}     % provides \si for units
+
+% Define a simple listings style used in the chapters
+\lstdefinestyle{spicerepl}{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    numbers=none,
+    breaklines=true,
+    columns=fullflexible,
+    frame=single,
+    showstringspaces=false,
+}
 \usepackage[graphicx]{realboxes}%
 \usepackage{emptypage}
 \usepackage{array}
@@ -35,6 +52,14 @@
 \titlespacing*{\chapter}{0pt}{0pt}{40pt}
 \renewcommand{\baselinestretch}{1}
 
+\usepackage{hyperref} % Ensure hyperref is loaded
+
+% Reduce hyperref bookmark-depth warnings and allow mild line-breaking tolerance
+\AtBeginDocument{%
+    \setcounter{tocdepth}{3}%
+    \hypersetup{bookmarksdepth=3}%
+    \sloppy%
+}
 \usepackage[normalem]{ulem}
 \usepackage{color,soul}
 
