@@ -1,6 +1,6 @@
-PWD d:\SI_VISION\thesis_erinia1\CUFE-Thesis
+PWD d:\SI_VISION\erinia_thesis\CUFE-Thesis
 INPUT C:\Users\ahmed\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT d:\SI_VISION\thesis_erinia1\CUFE-Thesis\mthesis.tex
+INPUT d:\SI_VISION\erinia_thesis\CUFE-Thesis\mthesis.tex
 OUTPUT mthesis.log
 INPUT .\cufethesis.cls
 INPUT cufethesis.cls
@@ -1268,6 +1268,14 @@ INPUT .\Figures\ch7\P_UML6.png
 INPUT .\Figures\ch7\P_UML6.png
 INPUT .\Figures\ch7\P_UML6.png
 INPUT D:\MiKTex\fonts\tfm\public\newtx\ntx-Regular-tlf-ot1.tfm
+INPUT D:\MiKTex\fonts\vf\public\newtx\ntx-Regular-tlf-ot1.vf
+INPUT D:\MiKTex\fonts\tfm\public\newtx\txmiaX.tfm
+INPUT D:\MiKTex\fonts\tfm\public\newtx\ntx-Regular-tlf-ot1r.tfm
+INPUT D:\MiKTex\tex\latex\newtx\ts1ntxtt.fd
+INPUT D:\MiKTex\tex\latex\newtx\ts1ntxtt.fd
+INPUT D:\MiKTex\tex\latex\newtx\ts1ntxtt.fd
+INPUT D:\MiKTex\fonts\tfm\public\cm\cmtt12.tfm
+INPUT D:\MiKTex\fonts\tfm\jknappen\ec\tctt1200.tfm
 INPUT D:\MiKTex\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
 INPUT D:\MiKTex\fonts\tfm\public\cm\cmbx10.tfm
 INPUT D:\MiKTex\fonts\tfm\public\cm\cmbx7.tfm
@@ -1278,13 +1286,10 @@ INPUT D:\MiKTex\fonts\tfm\public\latex-fonts\lasy5.tfm
 INPUT C:\Users\ahmed\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs5.tfm
 INPUT D:\MiKTex\fonts\tfm\public\newtx\ntx-Bold-tlf-ot1.tfm
 INPUT D:\MiKTex\fonts\tfm\public\txfonts\txtt.tfm
+INPUT D:\MiKTex\fonts\tfm\public\newtx\ntx-Bold-tlf-ot1.tfm
 INPUT D:\MiKTex\fonts\vf\public\newtx\ntx-Bold-tlf-ot1.vf
 INPUT D:\MiKTex\fonts\tfm\public\newtx\txbmiaX.tfm
 INPUT D:\MiKTex\fonts\tfm\public\newtx\ntx-Bold-tlf-ot1r.tfm
-INPUT D:\MiKTex\fonts\vf\public\newtx\ntx-Regular-tlf-ot1.vf
-INPUT D:\MiKTex\fonts\tfm\public\newtx\txmiaX.tfm
-INPUT D:\MiKTex\fonts\tfm\public\newtx\ntx-Regular-tlf-ot1r.tfm
-INPUT D:\MiKTex\fonts\tfm\public\newtx\ntx-Bold-tlf-ot1.tfm
 INPUT D:\MiKTex\fonts\vf\public\newtx\ntx-Bold-tlf-ot1.vf
 INPUT D:\MiKTex\fonts\tfm\public\newtx\txbmiaX.tfm
 INPUT D:\MiKTex\fonts\tfm\public\newtx\ntx-Bold-tlf-ot1r.tfm
@@ -1302,6 +1307,8 @@ INPUT .\mthesis.out
 INPUT .\mthesis.out
 INPUT mthesis.run.xml
 OUTPUT mthesis.run.xml
+INPUT C:\Users\ahmed\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tctt1200.pk
+INPUT C:\Users\ahmed\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tctt1200.pk
 INPUT D:\MiKTex\fonts\type1\public\amsfonts\cm\cmbx12.pfb
 INPUT D:\MiKTex\fonts\type1\public\amsfonts\cm\cmbx12.pfb
 INPUT D:\MiKTex\fonts\type1\public\amsfonts\cm\cmex10.pfb

@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.6.20)  23 JUN 2026 04:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.6.20)  26 JUN 2026 23:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**d:/SI_VISION/thesis_erinia1/CUFE-Thesis/mthesis.tex
-(d:/SI_VISION/thesis_erinia1/CUFE-Thesis/mthesis.tex
+**d:/SI_VISION/erinia_thesis/CUFE-Thesis/mthesis.tex
+(d:/SI_VISION/erinia_thesis/CUFE-Thesis/mthesis.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
 (cufethesis.cls
@@ -1516,12 +1516,12 @@ Package biblatex Info: ... file 'mthesis.bbl' found.
  (mthesis.bbl)
 Package biblatex Info: Reference section=0 on input line 104.
 Package biblatex Info: Reference segment=0 on input line 104.
-<Logos/FE-Logo.png, id=890, 947.54pt x 949.5475pt>
+<Logos/FE-Logo.png, id=910, 947.54pt x 949.5475pt>
 File: Logos/FE-Logo.png Graphic file (type png)
 <use Logos/FE-Logo.png>
 Package pdftex.def Info: Logos/FE-Logo.png  used on input line 104.
 (pdftex.def)             Requested size: 86.72377pt x 86.90446pt.
-<Logos/CU-Phero.png, id=892, 647.41875pt x 863.47594pt>
+<Logos/CU-Phero.png, id=912, 647.41875pt x 863.47594pt>
 File: Logos/CU-Phero.png Graphic file (type png)
 <use Logos/CU-Phero.png>
 Package pdftex.def Info: Logos/CU-Phero.png  used on input line 104.
@@ -1557,7 +1557,7 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 104
  (D:\MiKTex\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-<Logos/Si-Vision Academy.png, id=893, 403.5075pt x 125.46875pt>
+<Logos/Si-Vision Academy.png, id=913, 403.5075pt x 125.46875pt>
 File: Logos/Si-Vision Academy.png Graphic file (type png)
 <use Logos/Si-Vision Academy.png>
 Package pdftex.def Info: Logos/Si-Vision Academy.png  used on input line 104.
@@ -1685,7 +1685,7 @@ Chapter 4.
 ]
 Chapter 5.
 (MainMatter/Chapter5.tex
-<Figures/Ch5/mathematical_modeling.png, id=1450, 2378.8875pt x 3685.77pt>
+<Figures/Ch5/mathematical_modeling.png, id=1481, 2378.8875pt x 3685.77pt>
 File: Figures/Ch5/mathematical_modeling.png Graphic file (type png)
 <use Figures/Ch5/mathematical_modeling.png>
 Package pdftex.def Info: Figures/Ch5/mathematical_modeling.png  used on input line 8.
@@ -1751,224 +1751,224 @@ Underfull \hbox (badness 1028) in paragraph at lines 824--826
  []
 
 [33] [34]
-<Figures/Ch5/Res-1.png, id=1629, 818.30719pt x 293.59688pt>
+<Figures/Ch5/Res-1.png, id=1660, 818.30719pt x 293.59688pt>
 File: Figures/Ch5/Res-1.png Graphic file (type png)
 <use Figures/Ch5/Res-1.png>
 Package pdftex.def Info: Figures/Ch5/Res-1.png  used on input line 861.
 (pdftex.def)             Requested size: 203.76546pt x 73.10783pt.
-<Figures/Ch5/Res-2.png, id=1630, 817.55438pt x 292.84406pt>
+<Figures/Ch5/Res-2.png, id=1661, 817.55438pt x 292.84406pt>
 File: Figures/Ch5/Res-2.png Graphic file (type png)
 <use Figures/Ch5/Res-2.png>
 Package pdftex.def Info: Figures/Ch5/Res-2.png  used on input line 867.
 (pdftex.def)             Requested size: 203.76546pt x 72.98741pt.
-<Figures/Ch5/Res-3.png, id=1631, 815.29594pt x 292.84406pt>
+<Figures/Ch5/Res-3.png, id=1662, 815.29594pt x 292.84406pt>
 File: Figures/Ch5/Res-3.png Graphic file (type png)
 <use Figures/Ch5/Res-3.png>
 Package pdftex.def Info: Figures/Ch5/Res-3.png  used on input line 877.
 (pdftex.def)             Requested size: 203.76546pt x 73.18849pt.
-<Figures/Ch5/Res-4.png, id=1632, 815.29594pt x 294.34969pt>
+<Figures/Ch5/Res-4.png, id=1663, 815.29594pt x 294.34969pt>
 File: Figures/Ch5/Res-4.png Graphic file (type png)
 <use Figures/Ch5/Res-4.png>
 Package pdftex.def Info: Figures/Ch5/Res-4.png  used on input line 883.
 (pdftex.def)             Requested size: 203.76546pt x 73.56477pt.
  [35 <./Figures/Ch5/Res-1.png> <./Figures/Ch5/Res-2.png> <./Figures/Ch5/Res-3.png> <./Figures/Ch5/Res-4.png>]
-<Figures/Ch5/Cap-1.png, id=1643, 931.22906pt x 292.09125pt>
+<Figures/Ch5/Cap-1.png, id=1674, 931.22906pt x 292.09125pt>
 File: Figures/Ch5/Cap-1.png Graphic file (type png)
 <use Figures/Ch5/Cap-1.png>
 Package pdftex.def Info: Figures/Ch5/Cap-1.png  used on input line 909.
 (pdftex.def)             Requested size: 203.76546pt x 63.91261pt.
-<Figures/Ch5/Cap-2.png, id=1644, 874.01532pt x 292.09125pt>
+<Figures/Ch5/Cap-2.png, id=1675, 874.01532pt x 292.09125pt>
 File: Figures/Ch5/Cap-2.png Graphic file (type png)
 <use Figures/Ch5/Cap-2.png>
 Package pdftex.def Info: Figures/Ch5/Cap-2.png  used on input line 915.
 (pdftex.def)             Requested size: 203.76546pt x 68.09769pt.
-<Figures/Ch5/Cap-3.png, id=1645, 815.29594pt x 292.84406pt>
+<Figures/Ch5/Cap-3.png, id=1676, 815.29594pt x 292.84406pt>
 File: Figures/Ch5/Cap-3.png Graphic file (type png)
 <use Figures/Ch5/Cap-3.png>
 Package pdftex.def Info: Figures/Ch5/Cap-3.png  used on input line 923.
 (pdftex.def)             Requested size: 254.71169pt x 91.48672pt.
  [36 <./Figures/Ch5/Cap-1.png> <./Figures/Ch5/Cap-2.png> <./Figures/Ch5/Cap-3.png>]
-<Figures/Ch5/Inductor-1.png, id=1655, 722.7pt x 578.16pt>
+<Figures/Ch5/Inductor-1.png, id=1686, 722.7pt x 578.16pt>
 File: Figures/Ch5/Inductor-1.png Graphic file (type png)
 <use Figures/Ch5/Inductor-1.png>
 Package pdftex.def Info: Figures/Ch5/Inductor-1.png  used on input line 948.
 (pdftex.def)             Requested size: 203.76546pt x 163.01291pt.
-<Figures/Ch5/Inductor-2.png, id=1656, 722.7pt x 722.7pt>
+<Figures/Ch5/Inductor-2.png, id=1687, 722.7pt x 722.7pt>
 File: Figures/Ch5/Inductor-2.png Graphic file (type png)
 <use Figures/Ch5/Inductor-2.png>
 Package pdftex.def Info: Figures/Ch5/Inductor-2.png  used on input line 954.
 (pdftex.def)             Requested size: 203.76546pt x 203.76613pt.
-<Figures/Ch5/Inductor-3.png, id=1657, 722.7pt x 433.62pt>
+<Figures/Ch5/Inductor-3.png, id=1688, 722.7pt x 433.62pt>
 File: Figures/Ch5/Inductor-3.png Graphic file (type png)
 <use Figures/Ch5/Inductor-3.png>
 Package pdftex.def Info: Figures/Ch5/Inductor-3.png  used on input line 964.
 (pdftex.def)             Requested size: 203.76546pt x 122.25967pt.
-<Figures/Ch5/Inductor-4.png, id=1658, 722.7pt x 433.62pt>
+<Figures/Ch5/Inductor-4.png, id=1689, 722.7pt x 433.62pt>
 File: Figures/Ch5/Inductor-4.png Graphic file (type png)
 <use Figures/Ch5/Inductor-4.png>
 Package pdftex.def Info: Figures/Ch5/Inductor-4.png  used on input line 970.
 (pdftex.def)             Requested size: 203.76546pt x 122.25967pt.
  [37 <./Figures/Ch5/Inductor-1.png> <./Figures/Ch5/Inductor-2.png>]
-<Figures/Ch5/Diode-1.png, id=1667, 939.51pt x 397.485pt>
+<Figures/Ch5/Diode-1.png, id=1698, 939.51pt x 397.485pt>
 File: Figures/Ch5/Diode-1.png Graphic file (type png)
 <use Figures/Ch5/Diode-1.png>
 Package pdftex.def Info: Figures/Ch5/Diode-1.png  used on input line 996.
 (pdftex.def)             Requested size: 203.76546pt x 86.20361pt.
-<Figures/Ch5/Diode-2.png, id=1668, 939.51pt x 397.485pt>
+<Figures/Ch5/Diode-2.png, id=1699, 939.51pt x 397.485pt>
 File: Figures/Ch5/Diode-2.png Graphic file (type png)
 <use Figures/Ch5/Diode-2.png>
 Package pdftex.def Info: Figures/Ch5/Diode-2.png  used on input line 1002.
 (pdftex.def)             Requested size: 203.76546pt x 86.20361pt.
  [38 <./Figures/Ch5/Inductor-3.png> <./Figures/Ch5/Inductor-4.png>]
-<Figures/Ch5/Diode-3.png, id=1676, 939.51pt x 397.485pt>
+<Figures/Ch5/Diode-3.png, id=1707, 939.51pt x 397.485pt>
 File: Figures/Ch5/Diode-3.png Graphic file (type png)
 <use Figures/Ch5/Diode-3.png>
 Package pdftex.def Info: Figures/Ch5/Diode-3.png  used on input line 1012.
 (pdftex.def)             Requested size: 203.76546pt x 86.20361pt.
-<Figures/Ch5/Diode-4.png, id=1677, 939.51pt x 397.485pt>
+<Figures/Ch5/Diode-4.png, id=1708, 939.51pt x 397.485pt>
 File: Figures/Ch5/Diode-4.png Graphic file (type png)
 <use Figures/Ch5/Diode-4.png>
 Package pdftex.def Info: Figures/Ch5/Diode-4.png  used on input line 1018.
 (pdftex.def)             Requested size: 203.76546pt x 86.20361pt.
  [39 <./Figures/Ch5/Diode-1.png> <./Figures/Ch5/Diode-2.png> <./Figures/Ch5/Diode-3.png> <./Figures/Ch5/Diode-4.png>]
-<Figures/Ch5/JFET-1.png, id=1688, 581.92406pt x 347.79938pt>
+<Figures/Ch5/JFET-1.png, id=1719, 581.92406pt x 347.79938pt>
 File: Figures/Ch5/JFET-1.png Graphic file (type png)
 <use Figures/Ch5/JFET-1.png>
 Package pdftex.def Info: Figures/Ch5/JFET-1.png  used on input line 1045.
 (pdftex.def)             Requested size: 203.76546pt x 121.78467pt.
-<Figures/Ch5/JFET-2.png, id=1689, 581.92406pt x 350.81062pt>
+<Figures/Ch5/JFET-2.png, id=1720, 581.92406pt x 350.81062pt>
 File: Figures/Ch5/JFET-2.png Graphic file (type png)
 <use Figures/Ch5/JFET-2.png>
 Package pdftex.def Info: Figures/Ch5/JFET-2.png  used on input line 1051.
 (pdftex.def)             Requested size: 203.76546pt x 122.83908pt.
-<Figures/Ch5/JFET-3.png, id=1690, 583.42969pt x 347.04657pt>
+<Figures/Ch5/JFET-3.png, id=1721, 583.42969pt x 347.04657pt>
 File: Figures/Ch5/JFET-3.png Graphic file (type png)
 <use Figures/Ch5/JFET-3.png>
 Package pdftex.def Info: Figures/Ch5/JFET-3.png  used on input line 1059.
 (pdftex.def)             Requested size: 254.71169pt x 151.50946pt.
  [40 <./Figures/Ch5/JFET-1.png> <./Figures/Ch5/JFET-2.png> <./Figures/Ch5/JFET-3.png>]
-<Figures/Ch5/MOSFET-1.png, id=1701, 582.67688pt x 350.05782pt>
+<Figures/Ch5/MOSFET-1.png, id=1732, 582.67688pt x 350.05782pt>
 File: Figures/Ch5/MOSFET-1.png Graphic file (type png)
 <use Figures/Ch5/MOSFET-1.png>
 Package pdftex.def Info: Figures/Ch5/MOSFET-1.png  used on input line 1089.
 (pdftex.def)             Requested size: 203.76546pt x 122.41524pt.
-<Figures/Ch5/MOSFET-2.png, id=1702, 583.42969pt x 350.81062pt>
+<Figures/Ch5/MOSFET-2.png, id=1733, 583.42969pt x 350.81062pt>
 File: Figures/Ch5/MOSFET-2.png Graphic file (type png)
 <use Figures/Ch5/MOSFET-2.png>
 Package pdftex.def Info: Figures/Ch5/MOSFET-2.png  used on input line 1095.
 (pdftex.def)             Requested size: 203.76546pt x 122.52325pt.
-<Figures/Ch5/MOSFET-3.png, id=1703, 583.42969pt x 350.05782pt>
+<Figures/Ch5/MOSFET-3.png, id=1734, 583.42969pt x 350.05782pt>
 File: Figures/Ch5/MOSFET-3.png Graphic file (type png)
 <use Figures/Ch5/MOSFET-3.png>
 Package pdftex.def Info: Figures/Ch5/MOSFET-3.png  used on input line 1105.
 (pdftex.def)             Requested size: 203.76546pt x 122.26033pt.
-<Figures/Ch5/MOSFET-4.png, id=1704, 584.1825pt x 352.31625pt>
+<Figures/Ch5/MOSFET-4.png, id=1735, 584.1825pt x 352.31625pt>
 File: Figures/Ch5/MOSFET-4.png Graphic file (type png)
 <use Figures/Ch5/MOSFET-4.png>
 Package pdftex.def Info: Figures/Ch5/MOSFET-4.png  used on input line 1111.
 (pdftex.def)             Requested size: 203.76546pt x 122.88783pt.
  [41 <./Figures/Ch5/MOSFET-1.png> <./Figures/Ch5/MOSFET-2.png>]
-<Figures/Ch5/MOSFET-5.png, id=1711, 582.67688pt x 348.55219pt>
+<Figures/Ch5/MOSFET-5.png, id=1742, 582.67688pt x 348.55219pt>
 File: Figures/Ch5/MOSFET-5.png Graphic file (type png)
 <use Figures/Ch5/MOSFET-5.png>
 Package pdftex.def Info: Figures/Ch5/MOSFET-5.png  used on input line 1121.
 (pdftex.def)             Requested size: 203.76546pt x 121.88872pt.
-<Figures/Ch5/MOSFET-6.png, id=1712, 582.67688pt x 350.81062pt>
+<Figures/Ch5/MOSFET-6.png, id=1743, 582.67688pt x 350.81062pt>
 File: Figures/Ch5/MOSFET-6.png Graphic file (type png)
 <use Figures/Ch5/MOSFET-6.png>
 Package pdftex.def Info: Figures/Ch5/MOSFET-6.png  used on input line 1127.
 (pdftex.def)             Requested size: 203.76546pt x 122.67848pt.
-<Figures/Ch5/MOSFET-7.png, id=1713, 582.67688pt x 351.56343pt>
+<Figures/Ch5/MOSFET-7.png, id=1744, 582.67688pt x 351.56343pt>
 File: Figures/Ch5/MOSFET-7.png Graphic file (type png)
 <use Figures/Ch5/MOSFET-7.png>
 Package pdftex.def Info: Figures/Ch5/MOSFET-7.png  used on input line 1137.
 (pdftex.def)             Requested size: 203.76546pt x 122.94174pt.
-<Figures/Ch5/MOSFET-8.png, id=1714, 582.67688pt x 350.05782pt>
+<Figures/Ch5/MOSFET-8.png, id=1745, 582.67688pt x 350.05782pt>
 File: Figures/Ch5/MOSFET-8.png Graphic file (type png)
 <use Figures/Ch5/MOSFET-8.png>
 Package pdftex.def Info: Figures/Ch5/MOSFET-8.png  used on input line 1143.
 (pdftex.def)             Requested size: 203.76546pt x 122.41524pt.
-<Figures/Ch5/MOSFET-9.png, id=1715, 584.93532pt x 353.06906pt>
+<Figures/Ch5/MOSFET-9.png, id=1746, 584.93532pt x 353.06906pt>
 File: Figures/Ch5/MOSFET-9.png Graphic file (type png)
 <use Figures/Ch5/MOSFET-9.png>
 Package pdftex.def Info: Figures/Ch5/MOSFET-9.png  used on input line 1153.
 (pdftex.def)             Requested size: 203.76546pt x 122.99417pt.
-<Figures/Ch5/MOSFET-10.png, id=1716, 583.42969pt x 350.05782pt>
+<Figures/Ch5/MOSFET-10.png, id=1747, 583.42969pt x 350.05782pt>
 File: Figures/Ch5/MOSFET-10.png Graphic file (type png)
 <use Figures/Ch5/MOSFET-10.png>
 Package pdftex.def Info: Figures/Ch5/MOSFET-10.png  used on input line 1159.
 (pdftex.def)             Requested size: 203.76546pt x 122.26033pt.
-<Figures/Ch5/MOSFET-11.png, id=1717, 583.42969pt x 351.56343pt>
+<Figures/Ch5/MOSFET-11.png, id=1748, 583.42969pt x 351.56343pt>
 File: Figures/Ch5/MOSFET-11.png Graphic file (type png)
 <use Figures/Ch5/MOSFET-11.png>
 Package pdftex.def Info: Figures/Ch5/MOSFET-11.png  used on input line 1167.
 (pdftex.def)             Requested size: 254.71169pt x 153.48138pt.
  [42 <./Figures/Ch5/MOSFET-3.png> <./Figures/Ch5/MOSFET-4.png> <./Figures/Ch5/MOSFET-5.png> <./Figures/Ch5/MOSFET-6.png> <./Figures/Ch5/MOSFET-7.png> <./Figures/Ch5/MOSFET-8.png> <./Figures/Ch5/MOSFET-9.png> <./Figures/Ch5/MOSFET-10.png>]
-<Figures/Ch5/BJT-1.png, id=1732, 650.43pt x 361.35pt>
+<Figures/Ch5/BJT-1.png, id=1763, 650.43pt x 361.35pt>
 File: Figures/Ch5/BJT-1.png Graphic file (type png)
 <use Figures/Ch5/BJT-1.png>
 Package pdftex.def Info: Figures/Ch5/BJT-1.png  used on input line 1191.
 (pdftex.def)             Requested size: 203.76546pt x 113.20279pt.
-<Figures/Ch5/BJT-2.png, id=1733, 650.43pt x 361.35pt>
+<Figures/Ch5/BJT-2.png, id=1764, 650.43pt x 361.35pt>
 File: Figures/Ch5/BJT-2.png Graphic file (type png)
 <use Figures/Ch5/BJT-2.png>
 Package pdftex.def Info: Figures/Ch5/BJT-2.png  used on input line 1197.
 (pdftex.def)             Requested size: 203.76546pt x 113.20279pt.
  [43 <./Figures/Ch5/MOSFET-11.png>]
-<Figures/Ch5/BJT-3.png, id=1739, 722.7pt x 433.62pt>
+<Figures/Ch5/BJT-3.png, id=1770, 722.7pt x 433.62pt>
 File: Figures/Ch5/BJT-3.png Graphic file (type png)
 <use Figures/Ch5/BJT-3.png>
 Package pdftex.def Info: Figures/Ch5/BJT-3.png  used on input line 1207.
 (pdftex.def)             Requested size: 203.76546pt x 122.25967pt.
-<Figures/Ch5/BJT-4.png, id=1740, 722.7pt x 722.7pt>
+<Figures/Ch5/BJT-4.png, id=1771, 722.7pt x 722.7pt>
 File: Figures/Ch5/BJT-4.png Graphic file (type png)
 <use Figures/Ch5/BJT-4.png>
 Package pdftex.def Info: Figures/Ch5/BJT-4.png  used on input line 1213.
 (pdftex.def)             Requested size: 203.76546pt x 203.76613pt.
  [44 <./Figures/Ch5/BJT-1.png> <./Figures/Ch5/BJT-2.png> <./Figures/Ch5/BJT-3.png> <./Figures/Ch5/BJT-4.png>]
-<Figures/Ch5/VS-1.png, id=1752, 674.52pt x 405.76593pt>
+<Figures/Ch5/VS-1.png, id=1783, 674.52pt x 405.76593pt>
 File: Figures/Ch5/VS-1.png Graphic file (type png)
 <use Figures/Ch5/VS-1.png>
 Package pdftex.def Info: Figures/Ch5/VS-1.png  used on input line 1237.
 (pdftex.def)             Requested size: 203.76546pt x 122.57275pt.
-<Figures/Ch5/VS-2.png, id=1753, 676.77844pt x 408.77719pt>
+<Figures/Ch5/VS-2.png, id=1784, 676.77844pt x 408.77719pt>
 File: Figures/Ch5/VS-2.png Graphic file (type png)
 <use Figures/Ch5/VS-2.png>
 Package pdftex.def Info: Figures/Ch5/VS-2.png  used on input line 1243.
 (pdftex.def)             Requested size: 203.76546pt x 123.07695pt.
-<Figures/Ch5/VS-3.png, id=1754, 893.58844pt x 356.83313pt>
+<Figures/Ch5/VS-3.png, id=1785, 893.58844pt x 356.83313pt>
 File: Figures/Ch5/VS-3.png Graphic file (type png)
 <use Figures/Ch5/VS-3.png>
 Package pdftex.def Info: Figures/Ch5/VS-3.png  used on input line 1251.
 (pdftex.def)             Requested size: 254.71169pt x 101.70938pt.
  [45 <./Figures/Ch5/VS-1.png> <./Figures/Ch5/VS-2.png> <./Figures/Ch5/VS-3.png>]
-<Figures/Ch5/CS-1.png, id=1764, 685.8122pt x 408.77719pt>
+<Figures/Ch5/CS-1.png, id=1795, 685.8122pt x 408.77719pt>
 File: Figures/Ch5/CS-1.png Graphic file (type png)
 <use Figures/Ch5/CS-1.png>
 Package pdftex.def Info: Figures/Ch5/CS-1.png  used on input line 1274.
 (pdftex.def)             Requested size: 203.76546pt x 121.45522pt.
-<Figures/Ch5/CS-2.png, id=1765, 684.30656pt x 408.77719pt>
+<Figures/Ch5/CS-2.png, id=1796, 684.30656pt x 408.77719pt>
 File: Figures/Ch5/CS-2.png Graphic file (type png)
 <use Figures/Ch5/CS-2.png>
 Package pdftex.def Info: Figures/Ch5/CS-2.png  used on input line 1280.
 (pdftex.def)             Requested size: 203.76546pt x 121.7172pt.
-<Figures/Ch5/CS-3.png, id=1766, 942.52126pt x 375.65344pt>
+<Figures/Ch5/CS-3.png, id=1797, 942.52126pt x 375.65344pt>
 File: Figures/Ch5/CS-3.png Graphic file (type png)
 <use Figures/Ch5/CS-3.png>
 Package pdftex.def Info: Figures/Ch5/CS-3.png  used on input line 1288.
 (pdftex.def)             Requested size: 254.71169pt x 101.51375pt.
  [46 <./Figures/Ch5/CS-1.png> <./Figures/Ch5/CS-2.png> <./Figures/Ch5/CS-3.png>]
-<Figures/Ch5/vccs_1.png, id=1776, 578.16pt x 361.35pt>
+<Figures/Ch5/vccs_1.png, id=1807, 578.16pt x 361.35pt>
 File: Figures/Ch5/vccs_1.png Graphic file (type png)
 <use Figures/Ch5/vccs_1.png>
 Package pdftex.def Info: Figures/Ch5/vccs_1.png  used on input line 1310.
 (pdftex.def)             Requested size: 203.76546pt x 127.35107pt.
-<Figures/Ch5/vccs_2.png, id=1777, 722.7pt x 578.16pt>
+<Figures/Ch5/vccs_2.png, id=1808, 722.7pt x 578.16pt>
 File: Figures/Ch5/vccs_2.png Graphic file (type png)
 <use Figures/Ch5/vccs_2.png>
 Package pdftex.def Info: Figures/Ch5/vccs_2.png  used on input line 1316.
 (pdftex.def)             Requested size: 203.76546pt x 163.01291pt.
-<Figures/Ch5/vccs_3.png, id=1778, 578.16pt x 361.35pt>
+<Figures/Ch5/vccs_3.png, id=1809, 578.16pt x 361.35pt>
 File: Figures/Ch5/vccs_3.png Graphic file (type png)
 <use Figures/Ch5/vccs_3.png>
 Package pdftex.def Info: Figures/Ch5/vccs_3.png  used on input line 1324.
@@ -1977,49 +1977,49 @@ Package pdftex.def Info: Figures/Ch5/vccs_3.png  used on input line 1324.
 Underfull \vbox (badness 3780) has occurred while \output is active []
 
  [47 <./Figures/Ch5/vccs_1.png> <./Figures/Ch5/vccs_2.png>]
-<Figures/Ch5/vcvs_1.png, id=1787, 1011.78pt x 361.35pt>
+<Figures/Ch5/vcvs_1.png, id=1818, 1011.78pt x 361.35pt>
 File: Figures/Ch5/vcvs_1.png Graphic file (type png)
 <use Figures/Ch5/vcvs_1.png>
 Package pdftex.def Info: Figures/Ch5/vcvs_1.png  used on input line 1347.
 (pdftex.def)             Requested size: 203.76546pt x 72.77046pt.
-<Figures/Ch5/vcvs_2.png, id=1788, 722.7pt x 578.16pt>
+<Figures/Ch5/vcvs_2.png, id=1819, 722.7pt x 578.16pt>
 File: Figures/Ch5/vcvs_2.png Graphic file (type png)
 <use Figures/Ch5/vcvs_2.png>
 Package pdftex.def Info: Figures/Ch5/vcvs_2.png  used on input line 1353.
 (pdftex.def)             Requested size: 203.76546pt x 163.01291pt.
  [48 <./Figures/Ch5/vccs_3.png>]
-<Figures/Ch5/vcvs_3.png, id=1794, 722.7pt x 578.16pt>
+<Figures/Ch5/vcvs_3.png, id=1825, 722.7pt x 578.16pt>
 File: Figures/Ch5/vcvs_3.png Graphic file (type png)
 <use Figures/Ch5/vcvs_3.png>
 Package pdftex.def Info: Figures/Ch5/vcvs_3.png  used on input line 1361.
 (pdftex.def)             Requested size: 254.71169pt x 203.77054pt.
  [49 <./Figures/Ch5/vcvs_1.png> <./Figures/Ch5/vcvs_2.png> <./Figures/Ch5/vcvs_3.png>]
-<Figures/Ch5/cccs_1.png, id=1804, 578.16pt x 361.35pt>
+<Figures/Ch5/cccs_1.png, id=1835, 578.16pt x 361.35pt>
 File: Figures/Ch5/cccs_1.png Graphic file (type png)
 <use Figures/Ch5/cccs_1.png>
 Package pdftex.def Info: Figures/Ch5/cccs_1.png  used on input line 1384.
 (pdftex.def)             Requested size: 203.76546pt x 127.35107pt.
-<Figures/Ch5/cccs_2.png, id=1805, 722.7pt x 578.16pt>
+<Figures/Ch5/cccs_2.png, id=1836, 722.7pt x 578.16pt>
 File: Figures/Ch5/cccs_2.png Graphic file (type png)
 <use Figures/Ch5/cccs_2.png>
 Package pdftex.def Info: Figures/Ch5/cccs_2.png  used on input line 1390.
 (pdftex.def)             Requested size: 203.76546pt x 163.01291pt.
-<Figures/Ch5/cccs_3.png, id=1806, 578.16pt x 361.35pt>
+<Figures/Ch5/cccs_3.png, id=1837, 578.16pt x 361.35pt>
 File: Figures/Ch5/cccs_3.png Graphic file (type png)
 <use Figures/Ch5/cccs_3.png>
 Package pdftex.def Info: Figures/Ch5/cccs_3.png  used on input line 1400.
 (pdftex.def)             Requested size: 203.76546pt x 127.35107pt.
-<Figures/Ch5/cccs_4.png, id=1807, 722.7pt x 578.16pt>
+<Figures/Ch5/cccs_4.png, id=1838, 722.7pt x 578.16pt>
 File: Figures/Ch5/cccs_4.png Graphic file (type png)
 <use Figures/Ch5/cccs_4.png>
 Package pdftex.def Info: Figures/Ch5/cccs_4.png  used on input line 1406.
 (pdftex.def)             Requested size: 203.76546pt x 163.01291pt.
-<Figures/Ch5/cccs_5.png, id=1808, 722.7pt x 578.16pt>
+<Figures/Ch5/cccs_5.png, id=1839, 722.7pt x 578.16pt>
 File: Figures/Ch5/cccs_5.png Graphic file (type png)
 <use Figures/Ch5/cccs_5.png>
 Package pdftex.def Info: Figures/Ch5/cccs_5.png  used on input line 1416.
 (pdftex.def)             Requested size: 203.76546pt x 163.01291pt.
-<Figures/Ch5/cccs_6.png, id=1809, 722.7pt x 578.16pt>
+<Figures/Ch5/cccs_6.png, id=1840, 722.7pt x 578.16pt>
 File: Figures/Ch5/cccs_6.png Graphic file (type png)
 <use Figures/Ch5/cccs_6.png>
 Package pdftex.def Info: Figures/Ch5/cccs_6.png  used on input line 1422.
@@ -2028,33 +2028,33 @@ Package pdftex.def Info: Figures/Ch5/cccs_6.png  used on input line 1422.
 Underfull \vbox (badness 3323) has occurred while \output is active []
 
  [50 <./Figures/Ch5/cccs_1.png> <./Figures/Ch5/cccs_2.png> <./Figures/Ch5/cccs_3.png> <./Figures/Ch5/cccs_4.png>]
-<Figures/Ch5/ccvs_1.png, id=1821, 1011.78pt x 361.35pt>
+<Figures/Ch5/ccvs_1.png, id=1852, 1011.78pt x 361.35pt>
 File: Figures/Ch5/ccvs_1.png Graphic file (type png)
 <use Figures/Ch5/ccvs_1.png>
 Package pdftex.def Info: Figures/Ch5/ccvs_1.png  used on input line 1446.
 (pdftex.def)             Requested size: 203.76546pt x 72.77046pt.
-<Figures/Ch5/ccvs_2.png, id=1822, 722.7pt x 578.16pt>
+<Figures/Ch5/ccvs_2.png, id=1853, 722.7pt x 578.16pt>
 File: Figures/Ch5/ccvs_2.png Graphic file (type png)
 <use Figures/Ch5/ccvs_2.png>
 Package pdftex.def Info: Figures/Ch5/ccvs_2.png  used on input line 1452.
 (pdftex.def)             Requested size: 203.76546pt x 163.01291pt.
  [51 <./Figures/Ch5/cccs_5.png> <./Figures/Ch5/cccs_6.png>]
-<Figures/Ch5/ccvs_3.png, id=1829, 722.7pt x 578.16pt>
+<Figures/Ch5/ccvs_3.png, id=1860, 722.7pt x 578.16pt>
 File: Figures/Ch5/ccvs_3.png Graphic file (type png)
 <use Figures/Ch5/ccvs_3.png>
 Package pdftex.def Info: Figures/Ch5/ccvs_3.png  used on input line 1462.
 (pdftex.def)             Requested size: 203.76546pt x 163.01291pt.
-<Figures/Ch5/ccvs_4.png, id=1830, 722.7pt x 578.16pt>
+<Figures/Ch5/ccvs_4.png, id=1861, 722.7pt x 578.16pt>
 File: Figures/Ch5/ccvs_4.png Graphic file (type png)
 <use Figures/Ch5/ccvs_4.png>
 Package pdftex.def Info: Figures/Ch5/ccvs_4.png  used on input line 1468.
 (pdftex.def)             Requested size: 203.76546pt x 163.01291pt.
-<Figures/Ch5/ccvs_5.png, id=1831, 722.7pt x 578.16pt>
+<Figures/Ch5/ccvs_5.png, id=1862, 722.7pt x 578.16pt>
 File: Figures/Ch5/ccvs_5.png Graphic file (type png)
 <use Figures/Ch5/ccvs_5.png>
 Package pdftex.def Info: Figures/Ch5/ccvs_5.png  used on input line 1478.
 (pdftex.def)             Requested size: 203.76546pt x 163.01291pt.
-<Figures/Ch5/ccvs_6.png, id=1832, 722.7pt x 578.16pt>
+<Figures/Ch5/ccvs_6.png, id=1863, 722.7pt x 578.16pt>
 File: Figures/Ch5/ccvs_6.png Graphic file (type png)
 <use Figures/Ch5/ccvs_6.png>
 Package pdftex.def Info: Figures/Ch5/ccvs_6.png  used on input line 1484.
@@ -2062,7 +2062,7 @@ Package pdftex.def Info: Figures/Ch5/ccvs_6.png  used on input line 1484.
 ) [52 <./Figures/Ch5/ccvs_1.png> <./Figures/Ch5/ccvs_2.png> <./Figures/Ch5/ccvs_3.png> <./Figures/Ch5/ccvs_4.png> <./Figures/Ch5/ccvs_5.png> <./Figures/Ch5/ccvs_6.png>]
 Chapter 6.
 (MainMatter/Chapter6.tex
-<Figures/Ch6/fig-sim-architecture.jpg, id=1843, 540.51938pt x 184.43906pt>
+<Figures/Ch6/fig-sim-architecture.jpg, id=1874, 540.51938pt x 184.43906pt>
 File: Figures/Ch6/fig-sim-architecture.jpg Graphic file (type jpg)
 <use Figures/Ch6/fig-sim-architecture.jpg>
 Package pdftex.def Info: Figures/Ch6/fig-sim-architecture.jpg  used on input line 16.
@@ -2084,13 +2084,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 117--118
  []
 
 [56]
-<Figures/Ch6/fig-klu-lifecycle.jpg, id=1867, 540.51938pt x 184.43906pt>
+<Figures/Ch6/fig-klu-lifecycle.jpg, id=1898, 540.51938pt x 184.43906pt>
 File: Figures/Ch6/fig-klu-lifecycle.jpg Graphic file (type jpg)
 <use Figures/Ch6/fig-klu-lifecycle.jpg>
 Package pdftex.def Info: Figures/Ch6/fig-klu-lifecycle.jpg  used on input line 130.
 (pdftex.def)             Requested size: 382.06105pt x 130.3729pt.
  [57 <./Figures/Ch6/fig-klu-lifecycle.jpg>] [58]
-<Figures/Ch6/fig-nr-convergence.jpg, id=1885, 540.51938pt x 184.43906pt>
+<Figures/Ch6/fig-nr-convergence.jpg, id=1916, 540.51938pt x 184.43906pt>
 File: Figures/Ch6/fig-nr-convergence.jpg Graphic file (type jpg)
 <use Figures/Ch6/fig-nr-convergence.jpg>
 Package pdftex.def Info: Figures/Ch6/fig-nr-convergence.jpg  used on input line 179.
@@ -2099,7 +2099,7 @@ Package pdftex.def Info: Figures/Ch6/fig-nr-convergence.jpg  used on input line 
 Underfull \vbox (badness 3148) has occurred while \output is active []
 
  [59 <./Figures/Ch6/fig-nr-convergence.jpg>]
-<Figures/Ch6/fig-gmin-stepping.jpg, id=1890, 540.51938pt x 184.43906pt>
+<Figures/Ch6/fig-gmin-stepping.jpg, id=1921, 540.51938pt x 184.43906pt>
 File: Figures/Ch6/fig-gmin-stepping.jpg Graphic file (type jpg)
 <use Figures/Ch6/fig-gmin-stepping.jpg>
 Package pdftex.def Info: Figures/Ch6/fig-gmin-stepping.jpg  used on input line 211.
@@ -2115,13 +2115,13 @@ Underfull \hbox (badness 4713) in paragraph at lines 231--232
  []
 
 [60 <./Figures/Ch6/fig-gmin-stepping.jpg>]
-<Figures/Ch6/fig-analysis-dispatch.jpg, id=1898, 540.51938pt x 184.43906pt>
+<Figures/Ch6/fig-analysis-dispatch.jpg, id=1929, 540.51938pt x 184.43906pt>
 File: Figures/Ch6/fig-analysis-dispatch.jpg Graphic file (type jpg)
 <use Figures/Ch6/fig-analysis-dispatch.jpg>
 Package pdftex.def Info: Figures/Ch6/fig-analysis-dispatch.jpg  used on input line 259.
 (pdftex.def)             Requested size: 360.84047pt x 123.13167pt.
  [61 <./Figures/Ch6/fig-analysis-dispatch.jpg>]
-<Figures/Ch6/fig-ac-matrix.jpg, id=1905, 540.51938pt x 184.43906pt>
+<Figures/Ch6/fig-ac-matrix.jpg, id=1936, 540.51938pt x 184.43906pt>
 File: Figures/Ch6/fig-ac-matrix.jpg Graphic file (type jpg)
 <use Figures/Ch6/fig-ac-matrix.jpg>
 Package pdftex.def Info: Figures/Ch6/fig-ac-matrix.jpg  used on input line 292.
@@ -2130,13 +2130,13 @@ Package pdftex.def Info: Figures/Ch6/fig-ac-matrix.jpg  used on input line 292.
 Underfull \vbox (badness 1845) has occurred while \output is active []
 
  [62] [63 <./Figures/Ch6/fig-ac-matrix.jpg>]
-<Figures/Ch6/fig-transient-companion.jpg, id=1927, 540.51938pt x 184.43906pt>
+<Figures/Ch6/fig-transient-companion.jpg, id=1958, 540.51938pt x 184.43906pt>
 File: Figures/Ch6/fig-transient-companion.jpg Graphic file (type jpg)
 <use Figures/Ch6/fig-transient-companion.jpg>
 Package pdftex.def Info: Figures/Ch6/fig-transient-companion.jpg  used on input line 344.
 (pdftex.def)             Requested size: 318.38637pt x 108.6436pt.
  [64 <./Figures/Ch6/fig-transient-companion.jpg>]
-<Figures/Ch6/fig-adaptive-timestep.jpg, id=1932, 540.51938pt x 184.43906pt>
+<Figures/Ch6/fig-adaptive-timestep.jpg, id=1963, 540.51938pt x 184.43906pt>
 File: Figures/Ch6/fig-adaptive-timestep.jpg Graphic file (type jpg)
 <use Figures/Ch6/fig-adaptive-timestep.jpg>
 Package pdftex.def Info: Figures/Ch6/fig-adaptive-timestep.jpg  used on input line 376.
@@ -2145,7 +2145,7 @@ Package pdftex.def Info: Figures/Ch6/fig-adaptive-timestep.jpg  used on input li
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [65 <./Figures/Ch6/fig-adaptive-timestep.jpg>]
-<Figures/Ch6/fig-raw-format.jpg, id=1937, 540.51938pt x 184.43906pt>
+<Figures/Ch6/fig-raw-format.jpg, id=1968, 540.51938pt x 184.43906pt>
 File: Figures/Ch6/fig-raw-format.jpg Graphic file (type jpg)
 <use Figures/Ch6/fig-raw-format.jpg>
 Package pdftex.def Info: Figures/Ch6/fig-raw-format.jpg  used on input line 411.
@@ -2154,226 +2154,219 @@ Package pdftex.def Info: Figures/Ch6/fig-raw-format.jpg  used on input line 411.
 
 ]
 Chapter 7.
-(MainMatter/Chapter7.tex
+(MainMatter/Chapter7.tex [69
+
+]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/sc' will be
-(Font)              scaled to size 12.0pt on input line 38.
+(Font)              scaled to size 12.0pt on input line 57.
 Package microtype Info: Character `013' is missing
 (microtype)             in font `OT1/ntxtlf/m/sc/12'.
 (microtype)             Ignoring protrusion settings for this character.
 LaTeX Font Info:    Font shape `OT1/ntxtt/m/n' will be
-(Font)              scaled to size 10.95pt on input line 38.
- [69
-
-] [70]
+(Font)              scaled to size 10.95pt on input line 57.
+ [70] [71]
 LaTeX Font Info:    Font shape `OT1/ntxtt/b/n' will be
-(Font)              scaled to size 14.4pt on input line 87.
- [71]
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 12.0pt on input line 132.
+(Font)              scaled to size 14.4pt on input line 106.
  [72]
-Underfull \hbox (badness 10000) in paragraph at lines 180--181
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
+(Font)              scaled to size 12.0pt on input line 151.
+ [73]
+Underfull \hbox (badness 10000) in paragraph at lines 199--200
 []\OT1/ntxtlf/b/n/12 (+20) Measurement Com-mand: \OT1/ntxtt/m/n/12 meas <MeasureType> <Signal>
  []
 
-[73]
-LaTeX Font Info:    Trying to load font information for OT1+txtt on input line 199.
- (D:\MiKTex\tex/latex/txfonts\ot1txtt.fd
+LaTeX Font Info:    Trying to load font information for OT1+txtt on input line 226.
+(D:\MiKTex\tex/latex/txfonts\ot1txtt.fd
 File: ot1txtt.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Font shape `OT1/ntxtt/m/it' in size <12> not available
-(Font)              Font shape `OT1/txtt/m/sl' tried instead on input line 199.
+(Font)              Font shape `OT1/txtt/m/sl' tried instead on input line 226.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `txtt' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [74]
 LaTeX Font Info:    Font shape `OT1/ntxtt/b/n' will be
-(Font)              scaled to size 12.0pt on input line 247.
-
-Underfull \vbox (badness 2495) has occurred while \output is active []
-
+(Font)              scaled to size 12.0pt on input line 266.
  [75]
 LaTeX Font Info:    Font shape `OT1/ntxtt/b/n' will be
-(Font)              scaled to size 10.95pt on input line 275.
- [76] [77]
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 380--388
+(Font)              scaled to size 10.95pt on input line 294.
+ [76] [77] [78]
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 399--407
 $[]$ 
  []
 
-[78] [79] [80] [81] [82]
-Underfull \hbox (badness 10000) in paragraph at lines 596--598
+[79] [80] [81]
+Underfull \vbox (badness 4168) has occurred while \output is active []
+
+ [82] [83]
+Underfull \hbox (badness 10000) in paragraph at lines 615--617
 [] [] |\OT1/ntxtlf/b/n/12 (+20) 7.5.7.2.1  Shared Axis Plot[] Com-mand: \OT1/ntxtt/m/n/12 plot time V(1) V(2) --out
  []
 
-[83]
-<Figures/ch7/Multiple_signals.png, id=2078, 1204.5pt x 602.25pt>
+[84]
+<Figures/ch7/Multiple_signals.png, id=2113, 1204.5pt x 602.25pt>
 File: Figures/ch7/Multiple_signals.png Graphic file (type png)
 <use Figures/ch7/Multiple_signals.png>
-Package pdftex.def Info: Figures/ch7/Multiple_signals.png  used on input line 601.
-(pdftex.def)             Requested size: 318.38637pt x 159.19115pt.
-<Figures/ch7/dualpanel.png, id=2079, 1204.5pt x 602.25pt>
+Package pdftex.def Info: Figures/ch7/Multiple_signals.png  used on input line 620.
+(pdftex.def)             Requested size: 360.84047pt x 180.41908pt.
+<Figures/ch7/dualpanel.png, id=2114, 1204.5pt x 602.25pt>
 File: Figures/ch7/dualpanel.png Graphic file (type png)
 <use Figures/ch7/dualpanel.png>
-Package pdftex.def Info: Figures/ch7/dualpanel.png  used on input line 612.
-(pdftex.def)             Requested size: 318.38637pt x 159.19115pt.
+Package pdftex.def Info: Figures/ch7/dualpanel.png  used on input line 631.
+(pdftex.def)             Requested size: 360.84047pt x 180.41908pt.
 
-Underfull \hbox (badness 4846) in paragraph at lines 623--625
+Underfull \hbox (badness 4846) in paragraph at lines 642--644
 [] [] |\OT1/ntxtlf/b/n/12 (+20) 7.5.7.3.1  Com-plex Ac-ces-sors[] Com-mand: \OT1/ntxtt/m/n/12 plot freq[]Hz db(V(2)) --out
  []
 
-<Figures/ch7/complex_Accessors.png, id=2080, 1204.5pt x 602.25pt>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [85 <./Figures/ch7/Multiple_signals.png> <./Figures/ch7/dualpanel.png>]
+<Figures/ch7/complex_Accessors.png, id=2121, 1204.5pt x 602.25pt>
 File: Figures/ch7/complex_Accessors.png Graphic file (type png)
 <use Figures/ch7/complex_Accessors.png>
-Package pdftex.def Info: Figures/ch7/complex_Accessors.png  used on input line 628.
-(pdftex.def)             Requested size: 318.38637pt x 159.19115pt.
-[84 <./Figures/ch7/Multiple_signals.png> <./Figures/ch7/dualpanel.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 634--636
+Package pdftex.def Info: Figures/ch7/complex_Accessors.png  used on input line 647.
+(pdftex.def)             Requested size: 360.84047pt x 180.41908pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 653--655
 [] [] |\OT1/ntxtlf/b/n/12 (+20) 7.5.7.3.2  Full Bode Plots[] Com-mand: \OT1/ntxtt/m/n/12 plot freq[]Hz V(2) --out
  []
 
-<Figures/ch7/Full_bode_plot.png, id=2088, 1204.5pt x 803.0pt>
+<Figures/ch7/Full_bode_plot.png, id=2122, 1204.5pt x 803.0pt>
 File: Figures/ch7/Full_bode_plot.png Graphic file (type png)
 <use Figures/ch7/Full_bode_plot.png>
-Package pdftex.def Info: Figures/ch7/Full_bode_plot.png  used on input line 639.
-(pdftex.def)             Requested size: 318.38637pt x 212.25487pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [85 <./Figures/ch7/complex_Accessors.png> <./Figures/ch7/Full_bode_plot.png>]
-<Figures/ch7/P_UML1.png, id=2095, 1246.6575pt x 925.4575pt>
+Package pdftex.def Info: Figures/ch7/Full_bode_plot.png  used on input line 658.
+(pdftex.def)             Requested size: 360.84047pt x 240.55878pt.
+[86 <./Figures/ch7/complex_Accessors.png> <./Figures/ch7/Full_bode_plot.png>] [87]
+<Figures/ch7/P_UML1.png, id=2136, 1246.6575pt x 925.4575pt>
 File: Figures/ch7/P_UML1.png Graphic file (type png)
 <use Figures/ch7/P_UML1.png>
-Package pdftex.def Info: Figures/ch7/P_UML1.png  used on input line 685.
-(pdftex.def)             Requested size: 318.38637pt x 236.34863pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [86]
-<Figures/ch7/P_UML2.png, id=2103, 1353.055pt x 918.43124pt>
+Package pdftex.def Info: Figures/ch7/P_UML1.png  used on input line 704.
+(pdftex.def)             Requested size: 360.84047pt x 267.86743pt.
+ [88 <./Figures/ch7/P_UML1.png>]
+<Figures/ch7/P_UML2.png, id=2143, 1353.055pt x 918.43124pt>
 File: Figures/ch7/P_UML2.png Graphic file (type png)
 <use Figures/ch7/P_UML2.png>
-Package pdftex.def Info: Figures/ch7/P_UML2.png  used on input line 704.
-(pdftex.def)             Requested size: 318.38637pt x 216.11165pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [87 <./Figures/ch7/P_UML1.png>]
-<Figures/ch7/P_UML3.png, id=2109, 703.62875pt x 1087.06125pt>
+Package pdftex.def Info: Figures/ch7/P_UML2.png  used on input line 723.
+(pdftex.def)             Requested size: 360.84047pt x 244.92467pt.
+ [89 <./Figures/ch7/P_UML2.png>]
+<Figures/ch7/P_UML3.png, id=2149, 703.62875pt x 1087.06125pt>
 File: Figures/ch7/P_UML3.png Graphic file (type png)
 <use Figures/ch7/P_UML3.png>
-Package pdftex.def Info: Figures/ch7/P_UML3.png  used on input line 722.
-(pdftex.def)             Requested size: 318.38637pt x 491.87675pt.
+Package pdftex.def Info: Figures/ch7/P_UML3.png  used on input line 741.
+(pdftex.def)             Requested size: 360.84047pt x 557.46254pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [88 <./Figures/ch7/P_UML2.png>]
-<Figures/ch7/P_UML4.png, id=2115, 958.58125pt x 745.78625pt>
+ [90 <./Figures/ch7/P_UML3.png>]
+<Figures/ch7/P_UML4.png, id=2155, 958.58125pt x 745.78625pt>
 File: Figures/ch7/P_UML4.png Graphic file (type png)
 <use Figures/ch7/P_UML4.png>
-Package pdftex.def Info: Figures/ch7/P_UML4.png  used on input line 740.
-(pdftex.def)             Requested size: 318.38637pt x 247.70338pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [89 <./Figures/ch7/P_UML3.png>]
-<Figures/ch7/P_UML5.png, id=2121, 836.12375pt x 1098.1025pt>
+Package pdftex.def Info: Figures/ch7/P_UML4.png  used on input line 759.
+(pdftex.def)             Requested size: 360.84047pt x 280.73886pt.
+ [91 <./Figures/ch7/P_UML4.png>]
+<Figures/ch7/P_UML5.png, id=2161, 836.12375pt x 1098.1025pt>
 File: Figures/ch7/P_UML5.png Graphic file (type png)
 <use Figures/ch7/P_UML5.png>
-Package pdftex.def Info: Figures/ch7/P_UML5.png  used on input line 758.
-(pdftex.def)             Requested size: 318.38637pt x 418.15457pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [90 <./Figures/ch7/P_UML4.png>]
-<Figures/ch7/P_UML6.png, id=2127, 913.4125pt x 639.38875pt>
+Package pdftex.def Info: Figures/ch7/P_UML5.png  used on input line 777.
+(pdftex.def)             Requested size: 360.84047pt x 473.9007pt.
+<Figures/ch7/P_UML6.png, id=2162, 913.4125pt x 639.38875pt>
 File: Figures/ch7/P_UML6.png Graphic file (type png)
 <use Figures/ch7/P_UML6.png>
-Package pdftex.def Info: Figures/ch7/P_UML6.png  used on input line 776.
-(pdftex.def)             Requested size: 318.38637pt x 222.86256pt.
+Package pdftex.def Info: Figures/ch7/P_UML6.png  used on input line 795.
+(pdftex.def)             Requested size: 360.84047pt x 252.58017pt.
+ [92 <./Figures/ch7/P_UML5.png>]
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 10.0pt on input line 846.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [91 <./Figures/ch7/P_UML5.png>] [92 <./Figures/ch7/P_UML6.png>] [93]
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.0pt on input line 906.
+ [93 <./Figures/ch7/P_UML6.png>]
+Underfull \vbox (badness 7273) has occurred while \output is active []
 
-Underfull \hbox (badness 10000) in paragraph at lines 958--958
+ [94] (D:\MiKTex\tex/latex/newtx\ts1ntxtt.fd)
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtt in TS1 encoding.
+            Default family used instead on input line 909.
+
+Underfull \vbox (badness 6842) has occurred while \output is active []
+
+ [95] [96]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [97]
+Underfull \hbox (badness 10000) in paragraph at lines 1013--1013
 []|\OT1/ntxtt/m/n/10 plot freq[]Hz V(2) --out
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [94]
-Underfull \hbox (badness 10000) in paragraph at lines 986--986
+Underfull \hbox (badness 10000) in paragraph at lines 1039--1039
 []|\OT1/ntxtlf/m/n/10.95 (+20) Measurement en-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 986--986
+Underfull \hbox (badness 10000) in paragraph at lines 1039--1039
 []|\OT1/ntxtlf/m/n/10.95 (+20) T2[]MeasTranScalar,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 986--986
+Underfull \hbox (badness 10000) in paragraph at lines 1039--1039
 \OT1/ntxtlf/m/n/10.95 (+20) T2[]MeasWindowed, Meas-
  []
 
 
-Underfull \hbox (badness 2653) in paragraph at lines 986--986
+Underfull \hbox (badness 2653) in paragraph at lines 1039--1039
 \OT1/ntxtlf/m/n/10.95 (+20) Tran-ValidTest, and Me-asS-in-
  []
 
 
-Underfull \hbox (badness 1596) in paragraph at lines 986--986
+Underfull \hbox (badness 1596) in paragraph at lines 1039--1039
 \OT1/ntxtlf/m/n/10.95 (+20) threshold-crossing, and periodic-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 986--986
+Underfull \hbox (badness 10000) in paragraph at lines 1039--1039
 []|\OT1/ntxtlf/m/n/10.95 (+20) T2[]CalcScalar,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 986--986
+Underfull \hbox (badness 10000) in paragraph at lines 1039--1039
 \OT1/ntxtlf/m/n/10.95 (+20) T2[]CalcWaveFunc,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 986--986
+Underfull \hbox (badness 10000) in paragraph at lines 1039--1039
 \OT1/ntxtlf/m/n/10.95 (+20) T2[]CalcReduce, and
  []
 
 
-Underfull \hbox (badness 1478) in paragraph at lines 986--986
+Underfull \hbox (badness 1478) in paragraph at lines 1039--1039
 []|\OT1/ntxtlf/m/n/10.95 (+20) CLI guard paths and sig-nal
  []
 
 
-Underfull \vbox (badness 2600) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [95]) [96] [97] [98
-
-]
+ [98] [99]) [100]
 Chapter 8.
-(MainMatter/Chapter8.tex) [99
+(MainMatter/Chapter8.tex) [101
 
-] [100
-
-]
-Chapter 9.
-(MainMatter/Chapter9.tex) [101
 
 ] [102
 
-] [103] [104
+]
+Chapter 9.
+(MainMatter/Chapter9.tex) [103
+
+] [104
+
+] [105] [106
 
 ]
 Appendix A.
-(BackMatter/AppendixA.tex) [105
+(BackMatter/AppendixA.tex) [107
 
 ] (mthesis.aux)
  ***********
@@ -2381,23 +2374,23 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2020/03/25>
  ***********
 Package rerunfilecheck Info: File `mthesis.out' has not changed.
-(rerunfilecheck)             Checksum: EB78A25334F4095F6AA98C6F69B61CAB;38749.
+(rerunfilecheck)             Checksum: 0511B97F5511D1CA9C5FEFD4448C9AE9;40593.
 Package logreq Info: Writing requests to 'mthesis.run.xml'.
 \openout1 = `mthesis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 59775 strings out of 467871
- 1310741 string characters out of 5435211
- 2418063 words of memory out of 5000000
- 86614 multiletter control sequences out of 15000+600000
- 695858 words of font info for 474 fonts, out of 8000000 for 9000
+ 59890 strings out of 467871
+ 1312746 string characters out of 5435211
+ 2418480 words of memory out of 5000000
+ 86712 multiletter control sequences out of 15000+600000
+ 697014 words of font info for 485 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 125i,15n,121p,1224b,2909s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<D:/MiKTex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmmi12.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmmi6.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmmi8.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmr12.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmr6.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmr8.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:/MiKTex/fonts/type1/public/tex-gyre/qtmr.pfb><D:/MiKTex/fonts/type1/public/txfonts/txbtt.pfb><D:/MiKTex/fonts/type1/public/txfonts/txtt.pfb><D:/MiKTex/fonts/type1/public/txfonts/txtt.pfb><D:/MiKTex/fonts/type1/public/newtx/ztmb.pfb><D:/MiKTex/fonts/type1/public/newtx/ztmr.pfb><D:/MiKTex/fonts/type1/public/newtx/ztmri.pfb>
-Output written on mthesis.pdf (122 pages, 10035183 bytes).
+ 125i,15n,121p,1223b,2909s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\ahmed\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt1200.pk><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmmi12.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmmi6.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmmi8.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmr12.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmr6.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmr8.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/MiKTex/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:/MiKTex/fonts/type1/public/tex-gyre/qtmr.pfb><D:/MiKTex/fonts/type1/public/txfonts/txbtt.pfb><D:/MiKTex/fonts/type1/public/txfonts/txtt.pfb><D:/MiKTex/fonts/type1/public/txfonts/txtt.pfb><D:/MiKTex/fonts/type1/public/newtx/ztmb.pfb><D:/MiKTex/fonts/type1/public/newtx/ztmr.pfb><D:/MiKTex/fonts/type1/public/newtx/ztmri.pfb>
+Output written on mthesis.pdf (124 pages, 10050524 bytes).
 PDF statistics:
- 2427 PDF objects out of 2487 (max. 8388607)
+ 2462 PDF objects out of 2487 (max. 8388607)
  584 named destinations out of 1000 (max. 500000)
- 98437 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 99501 words of extra memory for PDF output out of 106986 (max. 10000000)
 

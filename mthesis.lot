@@ -9,9 +9,11 @@
 \contentsline {table}{\numberline {6.2}{\ignorespaces Newton-Raphson iteration limits for each analysis type.}}{55}{table.caption.59}%
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {7.1}{\ignorespaces Summary of Commands}}{75}{table.caption.62}%
-\contentsline {table}{\numberline {7.2}{\ignorespaces CLI and Time-Domain Tests (Cases 1.1 -- 1.27)}}{94}{table.caption.74}%
-\contentsline {table}{\numberline {7.3}{\ignorespaces AC Analysis, Bode, and Export Tests (Cases 2.1 -- 2.32)}}{95}{table.caption.75}%
-\contentsline {table}{\numberline {7.4}{\ignorespaces Summary of automated post-processing validation coverage.}}{95}{table.caption.76}%
+\contentsline {table}{\numberline {7.2}{\ignorespaces Examples of intercepted File I/O and Interpreter errors.}}{95}{table.caption.75}%
+\contentsline {table}{\numberline {7.3}{\ignorespaces Examples of engine-level logic and domain errors.}}{95}{table.caption.76}%
+\contentsline {table}{\numberline {7.4}{\ignorespaces CLI and Time-Domain Tests (Cases 1.1 -- 1.27)}}{98}{table.caption.77}%
+\contentsline {table}{\numberline {7.5}{\ignorespaces AC Analysis, Bode, and Export Tests (Cases 2.1 -- 2.32)}}{98}{table.caption.78}%
+\contentsline {table}{\numberline {7.6}{\ignorespaces Summary of automated post-processing validation coverage.}}{99}{table.caption.79}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
