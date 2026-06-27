@@ -21,139 +21,133 @@
 \contentsline {section}{\numberline {4.2}Related Work}{7}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Summary}{7}{section.4.3}%
 \contentsline {chapter}{\numberline {5}\MakeUppercase []{Mathematical Modelling}}{9}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Introduction}{11}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Devices}{11}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Resistor}{11}{subsection.5.2.1}%
-\contentsline {subsubsection}{\numberline {5.2.1.1}Device Model}{11}{subsubsection.5.2.1.1}%
+\contentsline {section}{\numberline {5.1}Introduction}{9}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Devices}{12}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Resistor}{12}{subsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.1.1}Device Model}{12}{subsubsection.5.2.1.1}%
 \contentsline {subsubsection}{\numberline {5.2.1.2}Software Implementation}{12}{subsubsection.5.2.1.2}%
-\contentsline {subsubsection}{\numberline {5.2.1.3}Workflow and Flowchart}{12}{subsubsection.5.2.1.3}%
-\contentsline {subsection}{\numberline {5.2.2}Capacitor}{12}{subsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.1.3}Workflow and Flowchart}{13}{subsubsection.5.2.1.3}%
+\contentsline {subsection}{\numberline {5.2.2}Capacitor}{13}{subsection.5.2.2}%
 \contentsline {subsubsection}{\numberline {5.2.2.1}Device Model}{13}{subsubsection.5.2.2.1}%
-\contentsline {subsubsection}{\numberline {5.2.2.2}Software Implementation}{13}{subsubsection.5.2.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.2.2}Software Implementation}{14}{subsubsection.5.2.2.2}%
 \contentsline {subsubsection}{\numberline {5.2.2.3}Workflow and Flowchart}{14}{subsubsection.5.2.2.3}%
-\contentsline {subsection}{\numberline {5.2.3}Inductor}{14}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.3}Inductor}{15}{subsection.5.2.3}%
 \contentsline {subsubsection}{\numberline {5.2.3.1}Device Model}{15}{subsubsection.5.2.3.1}%
-\contentsline {subsubsection}{\numberline {5.2.3.2}Software Implementation}{15}{subsubsection.5.2.3.2}%
+\contentsline {subsubsection}{\numberline {5.2.3.2}Software Implementation}{16}{subsubsection.5.2.3.2}%
 \contentsline {subsubsection}{\numberline {5.2.3.3}Workflow and Flowchart}{16}{subsubsection.5.2.3.3}%
-\contentsline {subsection}{\numberline {5.2.4}Diode}{16}{subsection.5.2.4}%
-\contentsline {subsubsection}{\numberline {5.2.4.1}Device Model}{16}{subsubsection.5.2.4.1}%
-\contentsline {subsubsection}{\numberline {5.2.4.2}Software Implementation}{17}{subsubsection.5.2.4.2}%
-\contentsline {subsubsection}{\numberline {5.2.4.3}Workflow and Flowchart}{17}{subsubsection.5.2.4.3}%
-\contentsline {subsection}{\numberline {5.2.5}Junction Field-Effect Transistor (JFET)}{18}{subsection.5.2.5}%
-\contentsline {subsubsection}{\numberline {5.2.5.1}Device Model}{18}{subsubsection.5.2.5.1}%
-\contentsline {subsubsection}{\numberline {5.2.5.2}Software Implementation}{19}{subsubsection.5.2.5.2}%
-\contentsline {subsubsection}{\numberline {5.2.5.3}Workflow and Flowchart}{20}{subsubsection.5.2.5.3}%
-\contentsline {subsection}{\numberline {5.2.6}Metal-Oxide-Semiconductor Field-Effect Transistor (MOSFET)}{20}{subsection.5.2.6}%
-\contentsline {subsubsection}{\numberline {5.2.6.1}Device Model}{20}{subsubsection.5.2.6.1}%
-\contentsline {subsubsection}{\numberline {5.2.6.2}Software Implementation}{21}{subsubsection.5.2.6.2}%
-\contentsline {subsubsection}{\numberline {5.2.6.3}Workflow and Flowchart}{22}{subsubsection.5.2.6.3}%
-\contentsline {subsection}{\numberline {5.2.7}Bipolar Junction Transistor (BJT)}{22}{subsection.5.2.7}%
-\contentsline {subsubsection}{\numberline {5.2.7.1}Device Model}{22}{subsubsection.5.2.7.1}%
-\contentsline {subsubsection}{\numberline {5.2.7.2}Software Implementation}{23}{subsubsection.5.2.7.2}%
-\contentsline {subsubsection}{\numberline {5.2.7.3}Workflow and Flowchart}{24}{subsubsection.5.2.7.3}%
-\contentsline {subsection}{\numberline {5.2.8}Independent Voltage Source (VS)}{24}{subsection.5.2.8}%
-\contentsline {subsubsection}{\numberline {5.2.8.1}Device Model}{24}{subsubsection.5.2.8.1}%
-\contentsline {subsubsection}{\numberline {5.2.8.2}Software Implementation}{25}{subsubsection.5.2.8.2}%
-\contentsline {subsubsection}{\numberline {5.2.8.3}Workflow and Flowchart}{25}{subsubsection.5.2.8.3}%
-\contentsline {subsection}{\numberline {5.2.9}Independent Current Source (CS)}{26}{subsection.5.2.9}%
-\contentsline {subsubsection}{\numberline {5.2.9.1}Device Model}{26}{subsubsection.5.2.9.1}%
-\contentsline {subsubsection}{\numberline {5.2.9.2}Software Implementation}{27}{subsubsection.5.2.9.2}%
-\contentsline {subsubsection}{\numberline {5.2.9.3}Workflow and Flowchart}{27}{subsubsection.5.2.9.3}%
-\contentsline {subsection}{\numberline {5.2.10}Voltage-Controlled Current Source (VCCS)}{28}{subsection.5.2.10}%
-\contentsline {subsubsection}{\numberline {5.2.10.1}Device Model}{28}{subsubsection.5.2.10.1}%
-\contentsline {subsubsection}{\numberline {5.2.10.2}Software Implementation}{28}{subsubsection.5.2.10.2}%
-\contentsline {subsubsection}{\numberline {5.2.10.3}Workflow and Flowchart}{29}{subsubsection.5.2.10.3}%
-\contentsline {subsection}{\numberline {5.2.11}Voltage-Controlled Voltage Source (VCVS)}{29}{subsection.5.2.11}%
-\contentsline {subsubsection}{\numberline {5.2.11.1}Device Model}{29}{subsubsection.5.2.11.1}%
-\contentsline {subsubsection}{\numberline {5.2.11.2}Software Implementation}{29}{subsubsection.5.2.11.2}%
-\contentsline {subsubsection}{\numberline {5.2.11.3}Workflow and Flowchart}{30}{subsubsection.5.2.11.3}%
-\contentsline {subsection}{\numberline {5.2.12}Current-Controlled Current Source (CCCS)}{30}{subsection.5.2.12}%
-\contentsline {subsubsection}{\numberline {5.2.12.1}Device Model}{30}{subsubsection.5.2.12.1}%
-\contentsline {subsubsection}{\numberline {5.2.12.2}Software Implementation}{30}{subsubsection.5.2.12.2}%
-\contentsline {subsubsection}{\numberline {5.2.12.3}Workflow and Flowchart}{31}{subsubsection.5.2.12.3}%
-\contentsline {subsection}{\numberline {5.2.13}Current-Controlled Voltage Source (CCVS)}{31}{subsection.5.2.13}%
-\contentsline {subsubsection}{\numberline {5.2.13.1}Device Model}{31}{subsubsection.5.2.13.1}%
-\contentsline {subsubsection}{\numberline {5.2.13.2}Software Implementation}{31}{subsubsection.5.2.13.2}%
-\contentsline {subsubsection}{\numberline {5.2.13.3}Workflow and Flowchart}{32}{subsubsection.5.2.13.3}%
-\contentsline {section}{\numberline {5.3}Modified Nodal Analysis (MNA)}{32}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Matrix Representation}{32}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Sparse Matrix Construction}{33}{subsection.5.3.2}%
-\contentsline {subsection}{\numberline {5.3.3}Linear and Non-Linear Partitioning}{33}{subsection.5.3.3}%
-\contentsline {subsection}{\numberline {5.3.4}Matrix Global Operations and Orchestration}{34}{subsection.5.3.4}%
-\contentsline {subsection}{\numberline {5.3.5}KLU Solver Integration}{34}{subsection.5.3.5}%
-\contentsline {section}{\numberline {5.4}Unit Tests}{34}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Resistor}{34}{subsection.5.4.1}%
-\contentsline {subsubsection}{\numberline {5.4.1.1}Internal C++ Unit Tests (Google Test)}{34}{subsubsection.5.4.1.1}%
-\contentsline {subsubsection}{\numberline {5.4.1.2}NGSpice Verification}{35}{subsubsection.5.4.1.2}%
-\contentsline {subsection}{\numberline {5.4.2}Capacitor}{35}{subsection.5.4.2}%
-\contentsline {subsubsection}{\numberline {5.4.2.1}Internal C++ Unit Tests (Google Test)}{36}{subsubsection.5.4.2.1}%
-\contentsline {subsubsection}{\numberline {5.4.2.2}NGSpice Verification}{36}{subsubsection.5.4.2.2}%
-\contentsline {subsection}{\numberline {5.4.3}Inductor}{37}{subsection.5.4.3}%
-\contentsline {subsubsection}{\numberline {5.4.3.1}Internal C++ Unit Tests (Google Test)}{37}{subsubsection.5.4.3.1}%
-\contentsline {subsubsection}{\numberline {5.4.3.2}NGSpice Verification}{37}{subsubsection.5.4.3.2}%
-\contentsline {subsection}{\numberline {5.4.4}Diode}{38}{subsection.5.4.4}%
-\contentsline {subsubsection}{\numberline {5.4.4.1}Internal C++ Unit Tests (Google Test)}{38}{subsubsection.5.4.4.1}%
-\contentsline {subsubsection}{\numberline {5.4.4.2}NGSpice Verification}{38}{subsubsection.5.4.4.2}%
-\contentsline {subsection}{\numberline {5.4.5}Junction Field-Effect Transistor (JFET)}{39}{subsection.5.4.5}%
-\contentsline {subsubsection}{\numberline {5.4.5.1}Internal C++ Unit Tests (Google Test)}{39}{subsubsection.5.4.5.1}%
-\contentsline {subsubsection}{\numberline {5.4.5.2}NGSpice Verification}{40}{subsubsection.5.4.5.2}%
-\contentsline {subsection}{\numberline {5.4.6}Metal-Oxide-Semiconductor Field-Effect Transistor (MOSFET)}{40}{subsection.5.4.6}%
-\contentsline {subsubsection}{\numberline {5.4.6.1}Internal C++ Unit Tests (Google Test)}{40}{subsubsection.5.4.6.1}%
-\contentsline {subsubsection}{\numberline {5.4.6.2}NGSpice Verification}{41}{subsubsection.5.4.6.2}%
-\contentsline {subsection}{\numberline {5.4.7}Bipolar Junction Transistor (BJT)}{43}{subsection.5.4.7}%
-\contentsline {subsubsection}{\numberline {5.4.7.1}Internal C++ Unit Tests (Google Test)}{43}{subsubsection.5.4.7.1}%
-\contentsline {subsubsection}{\numberline {5.4.7.2}NGSpice Verification}{43}{subsubsection.5.4.7.2}%
-\contentsline {subsection}{\numberline {5.4.8}Independent Voltage Source (VS)}{44}{subsection.5.4.8}%
-\contentsline {subsubsection}{\numberline {5.4.8.1}Internal C++ Unit Tests (Google Test)}{44}{subsubsection.5.4.8.1}%
-\contentsline {subsubsection}{\numberline {5.4.8.2}NGSpice Verification}{45}{subsubsection.5.4.8.2}%
-\contentsline {subsection}{\numberline {5.4.9}Independent Current Source (CS)}{45}{subsection.5.4.9}%
-\contentsline {subsubsection}{\numberline {5.4.9.1}Internal C++ Unit Tests (Google Test)}{46}{subsubsection.5.4.9.1}%
-\contentsline {subsubsection}{\numberline {5.4.9.2}NGSpice Verification}{46}{subsubsection.5.4.9.2}%
-\contentsline {subsection}{\numberline {5.4.10}Voltage-Controlled Current Source (VCCS)}{47}{subsection.5.4.10}%
-\contentsline {subsubsection}{\numberline {5.4.10.1}Internal C++ Unit Tests}{47}{subsubsection.5.4.10.1}%
-\contentsline {subsubsection}{\numberline {5.4.10.2}NGSpice Verification}{47}{subsubsection.5.4.10.2}%
-\contentsline {subsection}{\numberline {5.4.11}Voltage-Controlled Voltage Source (VCVS)}{48}{subsection.5.4.11}%
-\contentsline {subsubsection}{\numberline {5.4.11.1}Internal C++ Unit Tests}{48}{subsubsection.5.4.11.1}%
-\contentsline {subsubsection}{\numberline {5.4.11.2}NGSpice Verification}{48}{subsubsection.5.4.11.2}%
-\contentsline {subsection}{\numberline {5.4.12}Current-Controlled Current Source (CCCS)}{49}{subsection.5.4.12}%
-\contentsline {subsubsection}{\numberline {5.4.12.1}Internal C++ Unit Tests}{49}{subsubsection.5.4.12.1}%
-\contentsline {subsubsection}{\numberline {5.4.12.2}NGSpice Verification}{50}{subsubsection.5.4.12.2}%
-\contentsline {subsection}{\numberline {5.4.13}Current-Controlled Voltage Source (CCVS)}{51}{subsection.5.4.13}%
-\contentsline {subsubsection}{\numberline {5.4.13.1}Internal C++ Unit Tests}{51}{subsubsection.5.4.13.1}%
-\contentsline {subsubsection}{\numberline {5.4.13.2}NGSpice Verification}{51}{subsubsection.5.4.13.2}%
-\contentsline {chapter}{\numberline {6}\MakeUppercase []{Simulation Engine}}{53}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Introduction}{53}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Device Factory}{54}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}Model Extraction}{54}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}Node Registration and Branch Assignment}{54}{subsection.6.2.2}%
-\contentsline {subsection}{\numberline {6.2.3}Device Instantiation}{54}{subsection.6.2.3}%
-\contentsline {section}{\numberline {6.3}Simulation Parameters}{55}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}Convergence Tolerances}{55}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}Iteration Limits}{55}{subsection.6.3.2}%
-\contentsline {subsection}{\numberline {6.3.3}Transient and Solver Configuration}{56}{subsection.6.3.3}%
-\contentsline {section}{\numberline {6.4}Linear Solver Architecture}{56}{section.6.4}%
-\contentsline {subsection}{\numberline {6.4.1}Abstract Solver Interface}{56}{subsection.6.4.1}%
-\contentsline {subsection}{\numberline {6.4.2}KLU Solver}{57}{subsection.6.4.2}%
-\contentsline {subsection}{\numberline {6.4.3}NICSLU Solver}{57}{subsection.6.4.3}%
-\contentsline {subsection}{\numberline {6.4.4}Complex Solver for AC Analysis}{58}{subsection.6.4.4}%
-\contentsline {section}{\numberline {6.5}Nonlinear Solution -- Newton-Raphson Method}{58}{section.6.5}%
-\contentsline {subsection}{\numberline {6.5.1}Newton-Raphson Iteration}{58}{subsection.6.5.1}%
-\contentsline {subsection}{\numberline {6.5.2}SPICE Convergence Criterion}{59}{subsection.6.5.2}%
-\contentsline {subsection}{\numberline {6.5.3}Convergence Aids}{59}{subsection.6.5.3}%
-\contentsline {subsection}{\numberline {6.5.4}DC Operating Point Analysis}{60}{subsection.6.5.4}%
-\contentsline {section}{\numberline {6.6}Analysis Framework}{61}{section.6.6}%
-\contentsline {subsection}{\numberline {6.6.1}Analysis Manager and Command Dispatch}{61}{subsection.6.6.1}%
-\contentsline {subsection}{\numberline {6.6.2}DC Sweep Analysis}{62}{subsection.6.6.2}%
-\contentsline {subsection}{\numberline {6.6.3}AC Small-Signal Analysis}{62}{subsection.6.6.3}%
-\contentsline {section}{\numberline {6.7}Transient Analysis}{63}{section.6.7}%
-\contentsline {subsection}{\numberline {6.7.1}Time-Stepping Loop}{63}{subsection.6.7.1}%
-\contentsline {subsection}{\numberline {6.7.2}Integration Methods}{64}{subsection.6.7.2}%
-\contentsline {subsection}{\numberline {6.7.3}Adaptive Timestep Control}{64}{subsection.6.7.3}%
-\contentsline {section}{\numberline {6.8}Output Generation}{65}{section.6.8}%
-\contentsline {subsection}{\numberline {6.8.1}Console Output}{65}{subsection.6.8.1}%
-\contentsline {subsection}{\numberline {6.8.2}Raw File Output}{66}{subsection.6.8.2}%
-\contentsline {subsection}{\numberline {6.8.3}Diagnostic Reporting}{66}{subsection.6.8.3}%
-\contentsline {section}{\numberline {6.9}Summary}{67}{section.6.9}%
+\contentsline {subsection}{\numberline {5.2.4}Diode}{17}{subsection.5.2.4}%
+\contentsline {subsubsection}{\numberline {5.2.4.1}Device Model}{17}{subsubsection.5.2.4.1}%
+\contentsline {subsubsection}{\numberline {5.2.4.2}Software Implementation}{18}{subsubsection.5.2.4.2}%
+\contentsline {subsubsection}{\numberline {5.2.4.3}Workflow and Flowchart}{18}{subsubsection.5.2.4.3}%
+\contentsline {subsection}{\numberline {5.2.5}Junction Field-Effect Transistor (JFET)}{19}{subsection.5.2.5}%
+\contentsline {subsubsection}{\numberline {5.2.5.1}Device Model}{19}{subsubsection.5.2.5.1}%
+\contentsline {subsubsection}{\numberline {5.2.5.2}Software Implementation}{20}{subsubsection.5.2.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.5.3}Workflow and Flowchart}{21}{subsubsection.5.2.5.3}%
+\contentsline {subsection}{\numberline {5.2.6}Metal-Oxide-Semiconductor Field-Effect Transistor (MOSFET)}{21}{subsection.5.2.6}%
+\contentsline {subsubsection}{\numberline {5.2.6.1}Device Model}{21}{subsubsection.5.2.6.1}%
+\contentsline {subsubsection}{\numberline {5.2.6.2}Software Implementation}{22}{subsubsection.5.2.6.2}%
+\contentsline {subsubsection}{\numberline {5.2.6.3}Workflow and Flowchart}{23}{subsubsection.5.2.6.3}%
+\contentsline {subsection}{\numberline {5.2.7}Bipolar Junction Transistor (BJT)}{23}{subsection.5.2.7}%
+\contentsline {subsubsection}{\numberline {5.2.7.1}Device Model}{23}{subsubsection.5.2.7.1}%
+\contentsline {subsubsection}{\numberline {5.2.7.2}Software Implementation}{24}{subsubsection.5.2.7.2}%
+\contentsline {subsubsection}{\numberline {5.2.7.3}Workflow and Flowchart}{25}{subsubsection.5.2.7.3}%
+\contentsline {subsection}{\numberline {5.2.8}Independent Voltage Source (VS)}{25}{subsection.5.2.8}%
+\contentsline {subsubsection}{\numberline {5.2.8.1}Device Model}{25}{subsubsection.5.2.8.1}%
+\contentsline {subsubsection}{\numberline {5.2.8.2}Software Implementation}{26}{subsubsection.5.2.8.2}%
+\contentsline {subsubsection}{\numberline {5.2.8.3}Workflow and Flowchart}{26}{subsubsection.5.2.8.3}%
+\contentsline {subsection}{\numberline {5.2.9}Independent Current Source (CS)}{27}{subsection.5.2.9}%
+\contentsline {subsubsection}{\numberline {5.2.9.1}Device Model}{27}{subsubsection.5.2.9.1}%
+\contentsline {subsubsection}{\numberline {5.2.9.2}Software Implementation}{28}{subsubsection.5.2.9.2}%
+\contentsline {subsubsection}{\numberline {5.2.9.3}Workflow and Flowchart}{28}{subsubsection.5.2.9.3}%
+\contentsline {subsection}{\numberline {5.2.10}Voltage-Controlled Current Source (VCCS)}{29}{subsection.5.2.10}%
+\contentsline {subsubsection}{\numberline {5.2.10.1}Device Model}{29}{subsubsection.5.2.10.1}%
+\contentsline {subsubsection}{\numberline {5.2.10.2}Software Implementation}{29}{subsubsection.5.2.10.2}%
+\contentsline {subsubsection}{\numberline {5.2.10.3}Workflow and Flowchart}{30}{subsubsection.5.2.10.3}%
+\contentsline {subsection}{\numberline {5.2.11}Voltage-Controlled Voltage Source (VCVS)}{30}{subsection.5.2.11}%
+\contentsline {subsubsection}{\numberline {5.2.11.1}Device Model}{30}{subsubsection.5.2.11.1}%
+\contentsline {subsubsection}{\numberline {5.2.11.2}Software Implementation}{30}{subsubsection.5.2.11.2}%
+\contentsline {subsubsection}{\numberline {5.2.11.3}Workflow and Flowchart}{31}{subsubsection.5.2.11.3}%
+\contentsline {subsection}{\numberline {5.2.12}Current-Controlled Current Source (CCCS)}{31}{subsection.5.2.12}%
+\contentsline {subsubsection}{\numberline {5.2.12.1}Device Model}{31}{subsubsection.5.2.12.1}%
+\contentsline {subsubsection}{\numberline {5.2.12.2}Software Implementation}{31}{subsubsection.5.2.12.2}%
+\contentsline {subsubsection}{\numberline {5.2.12.3}Workflow and Flowchart}{32}{subsubsection.5.2.12.3}%
+\contentsline {subsection}{\numberline {5.2.13}Current-Controlled Voltage Source (CCVS)}{32}{subsection.5.2.13}%
+\contentsline {subsubsection}{\numberline {5.2.13.1}Device Model}{32}{subsubsection.5.2.13.1}%
+\contentsline {subsubsection}{\numberline {5.2.13.2}Software Implementation}{32}{subsubsection.5.2.13.2}%
+\contentsline {subsubsection}{\numberline {5.2.13.3}Workflow and Flowchart}{33}{subsubsection.5.2.13.3}%
+\contentsline {section}{\numberline {5.3}Modified Nodal Analysis (MNA)}{33}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Matrix Representation}{33}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Sparse Matrix Construction}{34}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}Linear and Non-Linear Partitioning}{34}{subsection.5.3.3}%
+\contentsline {subsection}{\numberline {5.3.4}Matrix Global Operations and Orchestration}{35}{subsection.5.3.4}%
+\contentsline {subsection}{\numberline {5.3.5}KLU Solver Integration}{35}{subsection.5.3.5}%
+\contentsline {section}{\numberline {5.4}Unit Tests}{35}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Resistor}{35}{subsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.1.1}Internal C++ Unit Tests (Google Test)}{35}{subsubsection.5.4.1.1}%
+\contentsline {subsubsection}{\numberline {5.4.1.2}NGSpice Verification}{36}{subsubsection.5.4.1.2}%
+\contentsline {subsection}{\numberline {5.4.2}Capacitor}{36}{subsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.2.1}Internal C++ Unit Tests (Google Test)}{37}{subsubsection.5.4.2.1}%
+\contentsline {subsubsection}{\numberline {5.4.2.2}NGSpice Verification}{37}{subsubsection.5.4.2.2}%
+\contentsline {subsection}{\numberline {5.4.3}Inductor}{38}{subsection.5.4.3}%
+\contentsline {subsubsection}{\numberline {5.4.3.1}Internal C++ Unit Tests (Google Test)}{38}{subsubsection.5.4.3.1}%
+\contentsline {subsubsection}{\numberline {5.4.3.2}NGSpice Verification}{38}{subsubsection.5.4.3.2}%
+\contentsline {subsection}{\numberline {5.4.4}Diode}{39}{subsection.5.4.4}%
+\contentsline {subsubsection}{\numberline {5.4.4.1}Internal C++ Unit Tests (Google Test)}{39}{subsubsection.5.4.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.4.2}NGSpice Verification}{39}{subsubsection.5.4.4.2}%
+\contentsline {subsection}{\numberline {5.4.5}Junction Field-Effect Transistor (JFET)}{40}{subsection.5.4.5}%
+\contentsline {subsubsection}{\numberline {5.4.5.1}Internal C++ Unit Tests (Google Test)}{40}{subsubsection.5.4.5.1}%
+\contentsline {subsubsection}{\numberline {5.4.5.2}NGSpice Verification}{41}{subsubsection.5.4.5.2}%
+\contentsline {subsection}{\numberline {5.4.6}Metal-Oxide-Semiconductor Field-Effect Transistor (MOSFET)}{41}{subsection.5.4.6}%
+\contentsline {subsubsection}{\numberline {5.4.6.1}Internal C++ Unit Tests (Google Test)}{41}{subsubsection.5.4.6.1}%
+\contentsline {subsubsection}{\numberline {5.4.6.2}NGSpice Verification}{42}{subsubsection.5.4.6.2}%
+\contentsline {subsection}{\numberline {5.4.7}Bipolar Junction Transistor (BJT)}{44}{subsection.5.4.7}%
+\contentsline {subsubsection}{\numberline {5.4.7.1}Internal C++ Unit Tests (Google Test)}{44}{subsubsection.5.4.7.1}%
+\contentsline {subsubsection}{\numberline {5.4.7.2}NGSpice Verification}{44}{subsubsection.5.4.7.2}%
+\contentsline {subsection}{\numberline {5.4.8}Independent Voltage Source (VS)}{45}{subsection.5.4.8}%
+\contentsline {subsubsection}{\numberline {5.4.8.1}Internal C++ Unit Tests (Google Test)}{45}{subsubsection.5.4.8.1}%
+\contentsline {subsubsection}{\numberline {5.4.8.2}NGSpice Verification}{46}{subsubsection.5.4.8.2}%
+\contentsline {subsection}{\numberline {5.4.9}Independent Current Source (CS)}{46}{subsection.5.4.9}%
+\contentsline {subsubsection}{\numberline {5.4.9.1}Internal C++ Unit Tests (Google Test)}{47}{subsubsection.5.4.9.1}%
+\contentsline {subsubsection}{\numberline {5.4.9.2}NGSpice Verification}{47}{subsubsection.5.4.9.2}%
+\contentsline {subsection}{\numberline {5.4.10}Voltage-Controlled Current Source (VCCS)}{48}{subsection.5.4.10}%
+\contentsline {subsubsection}{\numberline {5.4.10.1}Internal C++ Unit Tests}{48}{subsubsection.5.4.10.1}%
+\contentsline {subsubsection}{\numberline {5.4.10.2}NGSpice Verification}{48}{subsubsection.5.4.10.2}%
+\contentsline {subsection}{\numberline {5.4.11}Voltage-Controlled Voltage Source (VCVS)}{49}{subsection.5.4.11}%
+\contentsline {subsubsection}{\numberline {5.4.11.1}Internal C++ Unit Tests}{49}{subsubsection.5.4.11.1}%
+\contentsline {subsubsection}{\numberline {5.4.11.2}NGSpice Verification}{49}{subsubsection.5.4.11.2}%
+\contentsline {subsection}{\numberline {5.4.12}Current-Controlled Current Source (CCCS)}{50}{subsection.5.4.12}%
+\contentsline {subsubsection}{\numberline {5.4.12.1}Internal C++ Unit Tests}{50}{subsubsection.5.4.12.1}%
+\contentsline {subsubsection}{\numberline {5.4.12.2}NGSpice Verification}{51}{subsubsection.5.4.12.2}%
+\contentsline {subsection}{\numberline {5.4.13}Current-Controlled Voltage Source (CCVS)}{52}{subsection.5.4.13}%
+\contentsline {subsubsection}{\numberline {5.4.13.1}Internal C++ Unit Tests}{52}{subsubsection.5.4.13.1}%
+\contentsline {subsubsection}{\numberline {5.4.13.2}NGSpice Verification}{52}{subsubsection.5.4.13.2}%
+\contentsline {chapter}{\numberline {6}\MakeUppercase []{Simulation Engine}}{55}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Introduction}{55}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Input from Mathematical Modelling}{56}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Analysis Framework}{56}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}DC Operating Point (\texttt {.OP})}{57}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}DC Sweep (\texttt {.DC})}{57}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}AC Small-Signal (\texttt {.AC})}{58}{subsection.6.3.3}%
+\contentsline {subsection}{\numberline {6.3.4}Transient (\texttt {.TRAN})}{58}{subsection.6.3.4}%
+\contentsline {section}{\numberline {6.4}Linear Solver Architecture}{58}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Abstract Solver Interface}{58}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}KLU Solver}{59}{subsection.6.4.2}%
+\contentsline {subsection}{\numberline {6.4.3}Alternative Backend}{59}{subsection.6.4.3}%
+\contentsline {subsection}{\numberline {6.4.4}Complex Solver for AC Analysis}{60}{subsection.6.4.4}%
+\contentsline {section}{\numberline {6.5}Nonlinear Solution --- Newton--Raphson Method}{60}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}Newton--Raphson Iteration}{60}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}SPICE Convergence Criterion}{61}{subsection.6.5.2}%
+\contentsline {subsection}{\numberline {6.5.3}Convergence Aids}{61}{subsection.6.5.3}%
+\contentsline {subsection}{\numberline {6.5.4}Additional Transient Safeguards}{62}{subsection.6.5.4}%
+\contentsline {section}{\numberline {6.6}Transient Analysis}{62}{section.6.6}%
+\contentsline {subsection}{\numberline {6.6.1}Time-Stepping Loop}{63}{subsection.6.6.1}%
+\contentsline {subsection}{\numberline {6.6.2}Integration Methods}{63}{subsection.6.6.2}%
+\contentsline {subsection}{\numberline {6.6.3}Adaptive Timestep Control}{64}{subsection.6.6.3}%
+\contentsline {section}{\numberline {6.7}Output Generation}{65}{section.6.7}%
+\contentsline {subsection}{\numberline {6.7.1}Console Output}{65}{subsection.6.7.1}%
+\contentsline {subsection}{\numberline {6.7.2}Raw File Output}{65}{subsection.6.7.2}%
+\contentsline {subsection}{\numberline {6.7.3}Diagnostic Reporting}{66}{subsection.6.7.3}%
+\contentsline {section}{\numberline {6.8}Summary}{66}{section.6.8}%
 \contentsline {chapter}{\numberline {7}\MakeUppercase []{Post-Processing}}{69}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Introduction}{69}{section.7.1}%
 \contentsline {section}{\numberline {7.2}Methodological Architecture}{70}{section.7.2}%
@@ -259,5 +253,5 @@
 \contentsline {section}{\numberline {9.1}Introduction}{103}{section.9.1}%
 \contentsline {section}{\numberline {9.2}Related Work}{103}{section.9.2}%
 \contentsline {section}{\numberline {9.3}Summary}{103}{section.9.3}%
-\contentsline {chapter}{\nameref {ch_references}}{105}{chapter*.82}%
+\contentsline {chapter}{\nameref {ch_references}}{105}{chapter*.81}%
 \contentsline {chapter}{\numberline {A}\MakeUppercase []{Appendix A Title}}{107}{appendix.A}%
