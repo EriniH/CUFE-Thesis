@@ -1,17 +1,22 @@
 \setstretch{1}
 \setlength{\parskip}{\baselineskip}
 
-Figure~\ref{fig:math_mod_uml} illustrates the overall UML class diagram for the mathematical modeling architecture.
+\section{Introduction}
+This chapter presents the mathematical modeling of electronic devices and the construction of the system equations using Modified Nodal Analysis (MNA). It covers the implementation details of various circuit components, the architecture of the matrix assembly system, and the unit testing strategies employed to ensure the correctness of the models.
+
+\begin{sidewaysfigure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{Figures/Ch5/Devices_Implementations.png}
+    \caption{UML Class Diagram of the Device Implementations.}
+    \label{fig:devices_uml}
+\end{sidewaysfigure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{Figures/Ch5/mathematical_modeling.png}
-    \caption{UML Class Diagram of the Mathematical Modeling Architecture.}
-    \label{fig:math_mod_uml}
+    \includegraphics[width=\textwidth,height=0.85\textheight,keepaspectratio]{Figures/Ch5/MNA_Matrix_Assembly_System.png}
+    \caption{UML Class Diagram of the MNA Matrix Assembly System.}
+    \label{fig:mna_uml}
 \end{figure}
-
-\section{Introduction}
-This chapter presents the mathematical modeling of electronic devices and the construction of the system equations using Modified Nodal Analysis (MNA). It covers the implementation details of various circuit components, the architecture of the matrix assembly system, and the unit testing strategies employed to ensure the correctness of the models.
 
 \section{Devices}
 This section details the mathematical models and software implementation of the supported circuit components. Each device is encapsulated in a class that inherits from a common \texttt{Device} interface, ensuring a consistent API for the simulation engine. To follow an educational progression, the devices are grouped into passive elements, active elements, and sources.
