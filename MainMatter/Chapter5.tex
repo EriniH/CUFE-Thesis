@@ -816,6 +816,14 @@ The simulator represents the MNA system using three core data structures encapsu
     \item \textbf{C Matrix (Capacitance/Inductance):} A sparse matrix containing the reactive components used during AC and transient analyses.
     \item \textbf{RHS Vector (Right-Hand Side):} A dense vector containing the independent source stimuli and the Norton equivalent currents ($I_{eq}$) resulting from the linearisation of non-linear devices.
 \end{itemize}
+
+Unlike some basic implementations that merge all terms into a single numerical matrix, this architecture deliberately maintains two separate matrices ($G$ and $C$). This separation is mathematically and computationally crucial because the simulation engine must combine them differently depending on the analysis type:
+\begin{itemize}
+    \item \textbf{DC and OP Analyses:} Only the static $G$ matrix is utilized, as derivatives with respect to time are zero.
+    \item \textbf{AC Analysis:} The system is formulated in the frequency domain, requiring the solution of the complex system $(G + j\omega C) \cdot V = I$.
+    \item \textbf{Transient Analysis:} The dynamic memory-dependent components are integrated using methods like Backward Euler or Trapezoidal, leading to systems formulated as $(G + \alpha C) \cdot X^{[n+1]} = \text{RHS}$, where the coefficient $\alpha$ varies dynamically with the integration timestep $\Delta t$.
+\end{itemize}
+
 The \texttt{CircuitMatrix} acts as the orchestrator, determining the active analysis mode (e.g., \texttt{OP}, \texttt{AC}, \texttt{TRANS}) and directing all devices to stamp their contributions into the appropriate matrices via methods like \texttt{stampDC}, \texttt{stampAC}, and \texttt{stampTransient}.
 
 \subsection{Sparse Matrix Construction}
@@ -824,6 +832,12 @@ To achieve high performance, especially for large circuits, the MNA matrices are
     \item \textbf{Structural Build Phase:} During the initial iteration, devices stamp their contributions using standard triplet format (row, column, value). Once all devices are stamped, the \texttt{finalize()} method compresses the matrix into the standard Compressed Sparse Column (CSC) format, explicitly capturing the sparsity pattern.
     \item \textbf{Numeric Update Phase:} In subsequent Newton-Raphson iterations, the structural sparsity pattern remains constant. The matrix switches into a numeric update mode where the \texttt{addEntryAccumulate()} method directly updates the numerical values in the existing CSC arrays (\texttt{Ax\_}) without reallocating memory or altering the structural arrays (\texttt{Ap\_}, \texttt{Ai\_}). This dramatically reduces the overhead of MNA assembly.
 \end{enumerate}
+
+The \textbf{Compressed Sparse Column (CSC)} format was explicitly chosen over Compressed Sparse Row (CSR) for several critical reasons:
+\begin{itemize}
+    \item \textbf{Solver Compatibility:} The primary linear solver engine, KLU (SuiteSparse), requires CSC format natively. Using CSC avoids expensive runtime memory transpositions before solving the equations.
+    \item \textbf{Matrix Structure and Traversal:} Circuit MNA matrices are characteristically asymmetric but exhibit a nearly lower-triangular structure. KLU exploits this lower-triangular structure through Block Triangular Form (BTF) and Approximate Minimum Degree (AMD) ordering. CSC's column-oriented data layout maps optimally to KLU's specific LU factorization algorithms for these circuit matrices.
+\end{itemize}
 
 \subsection{Linear and Non-Linear Partitioning}
 To further optimize the MNA assembly during iterative non-linear analysis, the \texttt{CircuitMatrix} categorizes the circuit elements into two groups via the \texttt{classifyDevices()} method:
