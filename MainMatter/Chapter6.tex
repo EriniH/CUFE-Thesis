@@ -17,7 +17,7 @@ Figure~\ref{Figure:fig-sim-architecture} shows the full pipeline. The process ha
 The chapter is organised as follows. Section~6.2 describes the interface between the mathematical modelling layer and the engine. Section~6.3 introduces the four analysis modes in plain terms, explaining what each one does and when to use it. Section~6.4 dives into the linear solver that powers all analysis types. Section~6.5 explains how the engine handles nonlinear devices through the Newton--Raphson method. Section~6.6 provides the detailed transient analysis algorithms. Section~6.7 describes how results are written to output files.
 
 \gfigure{Simulation engine pipeline.}
-  {fig-sim-architecture}{width=0.95\textwidth}{Figures/Ch6/thesis-flow}
+  {fig-sim-architecture}{width=0.95\textwidth}{Figures/Ch6/flow-overview}
 
 \section{Input from Mathematical Modelling}
 \seclbl{engine-input}
@@ -60,28 +60,40 @@ The following subsections describe each analysis at a conceptual level; the tech
 
 The operating point analysis finds the steady-state voltages and currents in a circuit. Think of it as a snapshot: if you built this circuit on a breadboard and powered it up, what would a multimeter read at each node? Every nonlinear device is active, so the engine must iterate to find the solution --- this is where the Newton--Raphson method (Section~6.5) is essential.
 
-The result serves as the starting point for AC analysis (which linearises transistors around their bias point) and transient analysis (which uses it as the initial condition). When no analysis command is specified, a default operating-point analysis is run automatically.
+The result serves as the starting point for AC analysis (which linearises transistors around their bias point) and transient analysis (which uses it as the initial condition). When no analysis command is specified, a default operating-point analysis is run automatically. Figure~\ref{Figure:fig-flow-op} illustrates the complete flow, from warm-start through the Newton--Raphson convergence loop to result storage.
+
+\gfigure{DC operating point flow: warm-start from lastSolution, Newton--Raphson with KLU solver, convergence check, and result storage.}
+  {fig-flow-op}{width=0.85\textwidth}{Figures/Ch6/flow-op}
 
 \subsection{DC Sweep (\texttt{.DC})}
 \seclbl{analysis-dc}
 
 The DC sweep answers the question: ``How does the circuit behave when I vary one source voltage?'' It is like turning a dimmer knob from zero to maximum and watching how the output changes.
 
-The engine sweeps a specified voltage source through a range of values, running an operating-point analysis at each step. Each point starts from the previous point's converged solution, which typically reduces iterations from 5--15 (cold start) to 1--3 per point. The result is a transfer curve --- for example, the input-output characteristic of an amplifier showing gain, linear range, and saturation points.
+The engine sweeps a specified voltage source through a range of values, running an operating-point analysis at each step. Each point starts from the previous point's converged solution, which typically reduces iterations from 5--15 (cold start) to 1--3 per point. The result is a transfer curve --- for example, the input-output characteristic of an amplifier showing gain, linear range, and saturation points. Figure~\ref{Figure:fig-flow-dc} shows the sweep flow, where each point delegates to a full OPAnalysis with warm-start.
+
+\gfigure{DC sweep flow: each sweep point runs a full OPAnalysis, warm-started from the previous point's converged solution.}
+  {fig-flow-dc}{width=0.85\textwidth}{Figures/Ch6/flow-dc}
 
 \subsection{AC Small-Signal (\texttt{.AC})}
 \seclbl{analysis-ac}
 
 The AC analysis shows how a circuit responds to different frequencies --- like a speaker's frequency response chart or an audio equaliser curve. It sends a small sinusoidal signal through the circuit and measures the output amplitude and phase shift at each frequency.
 
-The engine first finds the DC operating point to linearise all nonlinear devices, then solves the complex system $(\mathbf{G} + j\omega\mathbf{C}) \cdot \mathbf{V} = \mathbf{I}$ at each frequency point (Section~6.4.4). Three sweep types are available: logarithmic decade sweep (\texttt{DEC}), linear sweep (\texttt{LIN}), and logarithmic octave sweep (\texttt{OCT}). The result is a Bode plot showing gain and phase versus frequency.
+The engine first finds the DC operating point to linearise all nonlinear devices, then solves the complex system $(\mathbf{G} + j\omega\mathbf{C}) \cdot \mathbf{V} = \mathbf{I}$ at each frequency point (Section~6.4.4). Three sweep types are available: logarithmic decade sweep (\texttt{DEC}), linear sweep (\texttt{LIN}), and logarithmic octave sweep (\texttt{OCT}). The result is a Bode plot showing gain and phase versus frequency. Figure~\ref{Figure:fig-flow-ac} details the AC flow: a single DC bias call, then ComplexKLU per frequency.
+
+\gfigure{AC small-signal flow: DC bias linearisation via OPAnalysis (once), then ComplexKLU solve per frequency point.}
+  {fig-flow-ac}{width=0.85\textwidth}{Figures/Ch6/flow-ac}
 
 \subsection{Transient (\texttt{.TRAN})}
 \seclbl{analysis-tran}
 
 Transient analysis shows how voltages and currents evolve over time --- like an oscilloscope recording. You specify a time window, and the engine simulates every moment from start to finish. This is useful for switching behaviour, pulse responses, oscillator startup, and any time-varying signals.
 
-The engine divides time into small steps. At each step it combines the conductance and capacitance matrices with a method-dependent coefficient (Section~6.6), solves the nonlinear system via Newton--Raphson, and estimates the error to decide whether to accept the step or retry with a smaller step. The technical details of timestep control, integration methods, and adaptive sizing are covered in Section~6.6.
+The engine divides time into small steps. At each step it combines the conductance and capacitance matrices with a method-dependent coefficient (Section~6.6), solves the nonlinear system via Newton--Raphson, and estimates the error to decide whether to accept the step or retry with a smaller step. The technical details of timestep control, integration methods, and adaptive sizing are covered in Section~6.6. Figure~\ref{Figure:fig-flow-tran} shows the two-phase transient flow: initial DC bias followed by per-timepoint inline Newton--Raphson.
+
+\gfigure{Transient analysis flow: Phase~1 initial DC bias, Phase~2 per-timepoint inline Newton--Raphson with integration method and adaptive step control.}
+  {fig-flow-tran}{width=0.85\textwidth}{Figures/Ch6/flow-tran}
 
 \section{Linear Solver Architecture}
 \seclbl{linear-solver}
@@ -143,6 +155,9 @@ Each iteration proceeds as follows:
 \end{enumerate}
 
 Up to $\text{ITL1} = 100$ iterations are attempted for DC operating point analysis before falling back to convergence aids. The solution vector is 1-based (index~0 is unused ground) and preserved between calls. This enables warm-starting --- each analysis begins from the previous converged solution, which dramatically reduces iteration counts.
+
+\gfigure{Newton--Raphson solve loop: KLU factor/solve, convergence check, and retry up to ITL1=100 iterations.}
+  {fig-flow-solver}{width=0.85\textwidth}{Figures/Ch6/flow-solver}
 
 \gfigure{Newton--Raphson convergence: drain voltage of a common-source NMOS amplifier over 6 iterations.}
   {fig-nr-convergence}{width=0.7\textwidth}{Figures/Ch6/fig-nr-conv}
