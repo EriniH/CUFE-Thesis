@@ -35,23 +35,7 @@ These become the inputs to all analysis modes described below.
 \section{Analysis Framework}
 \seclbl{analysis-framework}
 
-The engine offers four analysis modes, like different instruments on a Swiss Army knife. Each mode answers a different question about the circuit. Table~\ref{Table:mode-comparison} summarises them at a glance.
-
-\begin{table}[h]
-\centering
-\begin{tabularx}{\textwidth}{l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
-\toprule
-Mode & What It Measures & Output Type & Typical Use \\
-\midrule
-\texttt{.OP} & Steady-state voltages and currents across all nodes & Numerical table & Finding bias conditions, verifying DC operating points \\
-\texttt{.DC} & Output response as one source voltage is swept & Transfer curve (voltage/current vs.~source) & Amplifier transfer characteristics, threshold voltage measurement \\
-\texttt{.AC} & Gain and phase shift at each frequency & Bode plot (gain/dB vs.~frequency) & Filter response, bandwidth analysis, stability margins \\
-\texttt{.TRAN} & Voltage and current evolution over time & Time-domain waveform (voltage/current vs.~time) & Switching behaviour, pulse response, oscillator startup \\
-\bottomrule
-\end{tabularx}
-\tablbl{mode-comparison}
-\caption{Comparison of the four simulation analysis modes.}
-\end{table}
+The engine offers four analysis modes, each suited to a different type of circuit behaviour. Table~\ref{Table:mode-comparison} summarises them at a glance.
 
 The following subsections describe each analysis at a conceptual level; the technical details of how the solver works are covered in Sections~6.4 and~6.5.
 
@@ -80,9 +64,9 @@ The engine sweeps a specified voltage source through a range of values, running 
 
 The AC analysis shows how a circuit responds to different frequencies --- like a speaker's frequency response chart or an audio equaliser curve. It sends a small sinusoidal signal through the circuit and measures the output amplitude and phase shift at each frequency.
 
-The engine first finds the DC operating point to linearise all nonlinear devices, then solves the complex system $(\mathbf{G} + j\omega\mathbf{C}) \cdot \mathbf{V} = \mathbf{I}$ at each frequency point (Section~6.4.4). Three sweep types are available: logarithmic decade sweep (\texttt{DEC}), linear sweep (\texttt{LIN}), and logarithmic octave sweep (\texttt{OCT}). The result is a Bode plot showing gain and phase versus frequency. Figure~\ref{Figure:fig-flow-ac} details the AC flow: a single DC bias call, then ComplexKLU per frequency.
+The engine first finds the DC operating point to linearise all nonlinear devices, then solves the complex system $(\mathbf{G} + j\omega\mathbf{C}) \cdot \mathbf{V} = \mathbf{I}$ at each frequency point (Section~6.4.4). Three sweep types are available: logarithmic decade sweep (\texttt{DEC}), linear sweep (\texttt{LIN}), and logarithmic octave sweep (\texttt{OCT}). The result is a Bode plot showing gain and phase versus frequency. Figure~\ref{Figure:fig-flow-ac} details the AC flow: the DC operating point is only computed when nonlinear devices exist; purely linear circuits skip the OP step and assemble G + C directly.
 
-\gfigure{AC small-signal flow: DC bias linearisation via OPAnalysis (once), then ComplexKLU solve per frequency point.}
+\gfigure{AC small-signal flow: a nonlinearity check determines whether a DC operating point is needed before assembling the G + C matrices and solving via ComplexKLU at each frequency.}
   {fig-flow-ac}{width=0.85\textwidth}{Figures/Ch6/flow-ac}
 
 \subsection{Transient (\texttt{.TRAN})}
@@ -94,6 +78,22 @@ The engine divides time into small steps. At each step it combines the conductan
 
 \gfigure{Transient analysis flow: Phase~1 initial DC bias, Phase~2 per-timepoint inline Newton--Raphson with integration method and adaptive step control.}
   {fig-flow-tran}{width=0.85\textwidth}{Figures/Ch6/flow-tran}
+
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+Mode & What It Measures & Output Type & Typical Use \\
+\midrule
+\texttt{.OP} & Steady-state voltages and currents across all nodes & Numerical table & Finding bias conditions, verifying DC operating points \\
+\texttt{.DC} & Output response as one source voltage is swept & Transfer curve (voltage/current vs.~source) & Amplifier transfer characteristics, threshold voltage measurement \\
+\texttt{.AC} & Gain and phase shift at each frequency & Bode plot (gain/dB vs.~frequency) & Filter response, bandwidth analysis, stability margins \\
+\texttt{.TRAN} & Voltage and current evolution over time & Time-domain waveform (voltage/current vs.~time) & Switching behaviour, pulse response, oscillator startup \\
+\bottomrule
+\end{tabularx}
+\caption{Comparison of the four simulation analysis modes.}
+\tablbl{mode-comparison}
+\end{table}
 
 \section{Linear Solver Architecture}
 \seclbl{linear-solver}
