@@ -4,26 +4,15 @@
 \label{sec:pp-introduction}
 The post-processing framework is the analysis and visualization layer developed to process and interpret circuit simulation results. After the simulation phase, the generated waveform data must be converted into meaningful engineering information through measurements, mathematical operations, and graphical representation.
 
-The developed framework provides a unified command-driven environment that enables users to interact directly with simulation results through a programmable interface. It integrates waveform management, numerical measurement extraction, mathematical expression evaluation, and automated visualization within a single
-workflow.
+The developed framework provides a unified command-driven environment that enables users to interact directly with simulation results through a programmable interface. It integrates waveform management, numerical measurement extraction, mathematical expression evaluation, and automated visualization within a single workflow.
 
-The framework is based on an in-memory Waveform Database that stores and organizes
-simulation results after parsing standard SPICE raw files. This database provides a
-common data representation that allows different processing modules, including the
-Measurement Engine, Calculation Engine, and Visualization Engine, to operate
-efficiently on the same waveform data.
+The framework is based on an in-memory Waveform Database that stores and organizes simulation results after parsing standard SPICE raw files. This database provides a common data representation that allows different processing modules, including the Measurement Engine, Calculation Engine, and Visualization Engine, to operate efficiently on the same waveform data.
 
-For visualization, the framework utilizes Gnuplot as an external rendering backend.
-The Plot Engine is responsible for preparing waveform data and generating the
-required plotting instructions, while Gnuplot performs the final graphical
-rendering. This separation provides a flexible visualization architecture while
-keeping the analysis modules independent from the plotting implementation.
+For visualization, the framework utilizes Gnuplot as an external rendering backend. The Plot Engine is responsible for preparing waveform data and generating the required plotting instructions, while Gnuplot performs the final graphical rendering. This separation provides a flexible visualization architecture while keeping the analysis modules independent from the plotting implementation.
 
-This chapter presents the design and implementation of the proposed post-processing
-framework. It describes the system architecture, waveform data model, command
-interface, processing algorithms, visualization pipeline, and validation scenarios
-used to evaluate the accuracy, robustness, and reliability of the developed tool.
+This chapter presents the design and implementation of the proposed post-processing framework. It describes the system architecture, waveform data model, command interface, processing algorithms, visualization pipeline, and validation scenarios used to evaluate the accuracy, robustness, and reliability of the developed tool.
 \newpage
+
 \section{Methodological Architecture}
 \label{sec:pp-architecture}
 % ---------------------------------------------------------------------------
@@ -56,6 +45,7 @@ The overall organization of the post-processing framework is illustrated in Figu
   \label{fig:postprocessing_flow}
 \end{figure}}
 \newpage
+
 % ---------------------------------------------------------------------------
 The framework consists of the following components:
 
@@ -106,11 +96,7 @@ The independent variable may represent time in transient analysis, frequency in 
 \subsection{\texttt{RawfileReader}}
 \label{subsec:rawfile-reader}
 
-The \texttt{RawfileReader} is implemented as a stateless utility component that parses a simulation output
-file and returns a fully populated in-memory structure.  The file format
-follows standard SPICE output conventions: an ASCII header section describes the
-metadata and variable list, followed by a binary data block that
-stores all sample values in row-major order.
+The \texttt{RawfileReader} is implemented as a stateless utility component that parses a simulation output file and returns a fully populated in-memory structure.  The file format follows standard SPICE output conventions: an ASCII header section describes the metadata and variable list, followed by a binary data block that stores all sample values in row-major order.
 
 \paragraph{Parsing Algorithm}
 
@@ -131,43 +117,40 @@ Algorithm~\ref{alg:raw-reader} summarizes the main parsing procedure.
 
 The parsing process consists of two main stages: metadata extraction and binary waveform reconstruction.
 \newpage
+
 \paragraph{Header fields parsed.}
 The reader extracts the following fields from the ASCII header:
 \begin{itemize}
   \item \texttt{Title} --- a free-text description of the simulation.
   \item \texttt{Date} --- the timestamp written by the simulator.
-  \item \texttt{Plotname} --- a keyword that identifies the analysis type
-        (\texttt{Transient}, \texttt{AC}, \texttt{DC}, or
-        \texttt{Operating Point}).
-  \item \texttt{Flags} --- set to \texttt{complex} for AC analyses; absent or
-        empty for real analyses.
+  \item \texttt{Plotname} --- a keyword that identifies the analysis type (\texttt{Transient}, \texttt{AC}, \texttt{DC}, or \texttt{Operating Point}).
+  \item \texttt{Flags} --- set to \texttt{complex} for AC analyses; absent or empty for real analyses.
   \item \texttt{No.\ Variables} --- total number of signals (including the sweep variable).
   \item \texttt{No.\ Points} --- total number of time/frequency steps.
-  \item \texttt{Variables} block --- one tab-delimited line per signal giving
-        its index, name, and type.
+  \item \texttt{Variables} block --- one tab-delimited line per signal giving its index, name, and type.
 \end{itemize}
 
 \paragraph{Binary data layout and Constraints.}
-For \emph{real} analyses the binary section stores doubles in row-major order.
-For \emph{complex} AC analyses the sweep variable occupies a single double per
-row, while each remaining variable occupies two consecutive doubles
-(real part followed by imaginary part). The reader reconstructs the waveform vectors by mapping each binary sample position to the corresponding variable index extracted from the header. Only the \texttt{Binary:} data
-section is supported. Signal names are looked up case-insensitively.
+For \emph{real} analyses the binary section stores doubles in row-major order. For \emph{complex} AC analyses the sweep variable occupies a single double per row, while each remaining variable occupies two consecutive doubles (real part followed by imaginary part). The reader reconstructs the waveform vectors by mapping each binary sample position to the corresponding variable index extracted from the header. Only the \texttt{Binary:} data section is supported. Signal names are looked up case-insensitively.
 
 \subsection{Waveform Database}
 \label{subsec:waveform-db}
 
-The waveform database (\texttt{WaveformDB}) is the central in-memory repository
-that maintains all loaded simulation results. The database abstraction avoids direct coupling between file parsing and analysis modules. After loading, all engines operate on a unified waveform representation rather than depending on the original storage format.  Each call to the
-\texttt{load} method parses one raw file and appends a \emph{plot record}
-to an internal list.
+The waveform database (\texttt{WaveformDB}) is the central in-memory repository that maintains all loaded simulation results. The database abstraction avoids direct coupling between file parsing and analysis modules. After loading, all engines operate on a unified waveform representation rather than depending on the original storage format. Each call to the \texttt{load} method parses one raw file and appends a \emph{plot record} to an internal list.
+
+The database also supports derived signals created by the expression calculator. When a \texttt{calc} command produces a waveform result, that waveform is stored in an overlay map and subsequently treated as a first-class signal by measurement and plotting commands. Signal lookup is therefore performed in the following order:
+\begin{enumerate}
+  \item Computed signals created by \texttt{calc}.
+  \item Raw records in reverse-load order (most recently loaded first).
+  \item Lazy-evaluated complex accessors such as \texttt{mag(...)}, \texttt{ph(...)}, \texttt{db(...)}, \texttt{re(...)}, and \texttt{im(...)}.
+\end{enumerate}
+This lookup order enables convenience functions such as \texttt{plot freq\_Hz V(2)} while preserving explicit user control over derived expressions.
 
 \subsection{PlotRecord}
 \label{subsec:plotrecord}
 Each record carries:
 \begin{itemize}
-  \item A short \emph{tag} derived automatically from the file stem
-        (e.g., \texttt{test\_rc\_TRAN\_0}).
+  \item A short \emph{tag} derived automatically from the file stem (e.g., \texttt{test\_rc\_TRAN\_0}).
   \item The analysis type: \texttt{OP}, \texttt{DC}, \texttt{TRAN}, or \texttt{AC}.
   \item The X-axis vector and a map of Y signal names to sample vectors.
   \item For AC results, the imaginary column is named with a \texttt{\_im} suffix.
@@ -178,9 +161,7 @@ When a command requests a signal by name, the database searches:
 \begin{enumerate}
   \item Computed (derived) signals created by the \texttt{calc} command.
   \item Raw records in reverse-load order (most recently loaded first).
-  \item Lazy-evaluated complex-accessor wrappers (\texttt{mag(\ldots)},
-        \texttt{ph(\ldots)}, \texttt{db(\ldots)}, \texttt{re(\ldots)},
-        \texttt{im(\ldots)}).
+  \item Lazy-evaluated complex-accessor wrappers (\texttt{mag(\ldots)}, \texttt{ph(\ldots)}, \texttt{db(\ldots)}, \texttt{re(\ldots)}, \texttt{im(\ldots)}).
 \end{enumerate}
 
 \section{Command Interface}
@@ -189,9 +170,7 @@ When a command requests a signal by name, the database searches:
 \subsection{Grammar}
 \label{subsec:command-grammar}
 
-The command-line interface follows a small verb-first grammar. The syntax is
-intentionally constrained so that every command can be parsed deterministically
-before it is dispatched to a specialised engine.
+The command-line interface follows a small verb-first grammar. The syntax is intentionally constrained so that every command can be parsed deterministically before it is dispatched to a specialised engine.
 
 \begin{itemize}
   \item \textbf{Command Structure:} \texttt{<Verb> <Arguments> <Options>}
@@ -200,44 +179,32 @@ before it is dispatched to a specialised engine.
   \item \textbf{Calculation Command:} \texttt{calc <Expression>}
 \end{itemize}
 
-The grammar intentionally separates command identification from argument processing, allowing the interpreter to validate command structure before execution.
+The interpreter tokenises input on whitespace and commas while preserving quoted strings, then dispatches each command to a concrete \texttt{ICommand} handler object. This architecture keeps parsing, validation, and execution separate, which simplifies extension and reduces the chance of inconsistent error handling.
 
 % ---------------------------------------------------------------------------
 \subsection{Execution Modes}
 \label{sec:pp-invocation}
 % ---------------------------------------------------------------------------
 
-The post-processor is invoked as a standalone executable.  Three modes of
-operation are supported:
+The post-processor is invoked as a standalone executable.  Three modes of operation are supported:
 
 \begin{description}
-  \item[One-shot mode] One or more raw files are given as positional
-    arguments followed by a command and its arguments.  The tool loads all
-    files, executes the single command, prints the result, and exits.
-    Example syntax: \\[0.3em]
+  \item[One-shot mode] One or more raw files are given as positional arguments followed by a command and its arguments.  The tool loads all files, executes the single command, prints the result, and exits.  Example syntax: \\[0.3em]
    \textit{file.raw} [\textit{file2.raw}~\ldots] \textit{command} [\textit{args}]
 
-  \item[Interactive mode] Invoked with the \texttt{-i} (or
-    \texttt{--interactive}) flag, or with no arguments at all, the tool
-    starts a prompt-driven REPL (\texttt{spice>}).  The user may load
-    additional files, run any number of commands, and exit by typing
-    \texttt{exit}, \texttt{quit}, or \texttt{q}.
+  \item[Interactive mode] Invoked with the \texttt{-i} (or \texttt{--interactive}) flag, or with no arguments at all, the tool starts a prompt-driven REPL (\texttt{spice>}).  The user may load additional files, run any number of commands, and exit by typing \texttt{exit}, \texttt{quit}, or \texttt{q}.
 
-  \item[Script mode] Invoked with \texttt{--script \textit{file}}, the
-    tool reads commands from a plain-text script file line by line.  Lines
-    beginning with \texttt{\#} are treated as comments and skipped.
+  \item[Script mode] Invoked with \texttt{--script \textit{file}}, the tool reads commands from a plain-text script file line by line.  Lines beginning with \texttt{\#} are treated as comments and skipped.
 \end{description}
 
-In all modes, netlist files with extensions \texttt{.cir}, \texttt{.sp}, or
-\texttt{.prm} supplied on the command line are automatically simulated before
-any command is executed, and their results are loaded into the database.
+In all modes, netlist files with extensions \texttt{.cir}, \texttt{.sp}, or \texttt{.prm} supplied on the command line are automatically simulated before any command is executed, and their results are loaded into the database. The \texttt{source} command also provides an explicit simulator interface for running netlist files in-process with options such as \texttt{-v}/\texttt{--verbose}, \texttt{-o}/\texttt{--output-dir}, \texttt{--raw}, and \texttt{--no-raw}.
 
 % ---------------------------------------------------------------------------
 \subsection{Command Categories}
 \label{sec:pp-commands}
 % ---------------------------------------------------------------------------
 
-The command set is logically divided into four main categories based on functionality: Data Commands (\texttt{load}, \texttt{db}, \texttt{list}, \texttt{info}, \texttt{print}, \texttt{export}, \texttt{help}, \texttt{exit}), Analysis Commands (\texttt{meas}, \texttt{calc}), Visualization Commands (\texttt{plot}), and Simulation Commands (\texttt{source}). Table~\ref{tab:commands} summarizes the available commands, their functions, and the underlying engine responsible for their execution.
+The command set is logically divided into six main categories based on functionality: Data Commands, Analysis Commands, Visualization Commands, Simulation Commands, Export Commands, and Shell Utilities. Table~\ref{tab:commands} summarizes the available commands, their functions, and the underlying engine responsible for their execution.
 
 \begin{table}[H]
 \centering
@@ -247,17 +214,21 @@ The command set is logically divided into four main categories based on function
 \hline
 \textbf{Command} & \textbf{Function} & \textbf{Engine} \\ \hline
 \texttt{load} & Load raw waveform data & \texttt{RawfileReader} \\
-\texttt{db} & Display database status & \texttt{WaveformDB} \\
+\texttt{db}, \texttt{records} & Display database status & \texttt{WaveformDB} \\
 \texttt{list} & List available signals & \texttt{WaveformDB} \\
 \texttt{info} & Show simulation metadata & \texttt{WaveformDB} \\
+\texttt{print} & Print signal values in tabular form & \texttt{WaveformDB} \\
+\texttt{export} & Export waveform data to CSV & Export Module \\
+\texttt{help} & Show command manual & Interpreter \\
+\texttt{exit} & Terminate application & Interpreter \\
 \texttt{meas} & Numerical measurements & \texttt{MeasEngine} \\
 \texttt{calc} & Expression evaluation & \texttt{CalcEngine} \\
 \texttt{plot} & Visualization & \texttt{PlotEngine} \\
-\texttt{source} & Execute simulation input & Simulator Interface \\
-\texttt{export} & Export waveform data & Export Module \\
-\texttt{print} & Print scalar values & \texttt{WaveformDB} \\
-\texttt{help} & Show command manual & Interpreter \\
-\texttt{exit} & Terminate application & Interpreter \\ \hline
+\texttt{source}, \texttt{run} & Execute simulation input & Simulator Interface \\
+\texttt{cd} & Change current working directory & Shell Utility \\
+\texttt{ls}, \texttt{dir} & List directory contents & Shell Utility \\
+\texttt{pwd} & Print working directory & Shell Utility \\
+\hline
 \end{tabular}
 \end{table}
 
@@ -266,17 +237,36 @@ Among the available commands, the core analytical and visualization capabilities
 \subsubsection{\texttt{meas}}
 \textbf{Syntax:} \texttt{meas \textit{mtype} \textit{sig} [\textit{params}]}\\
 \textbf{Example:} \texttt{spice> meas max V(out) from 1ms to 2ms}\\
-\textbf{Description:} Computes a scalar measurement on the named signal.
+\textbf{Description:} Computes a scalar measurement on the named signal. Supported measurement types and their parameters are described in Section~\ref{sec:pp-meas}.
 
 \subsubsection{\texttt{calc}}
 \textbf{Syntax:} \texttt{calc \textit{expression}}\\
 \textbf{Example:} \texttt{spice> calc V(1) * I(R1)}\\
-\textbf{Description:} Evaluates an arithmetic expression over signals. Waveform results are stored in the database.
+\textbf{Description:} Evaluates an arithmetic expression over signals. Waveform results are stored in the database under the expression string, making them available for subsequent commands.
 
 \subsubsection{\texttt{plot}}
-\textbf{Syntax:} \texttt{plot \textit{xsig} \textit{ysig} [\ldots]}\\
-\textbf{Example:} \texttt{spice> plot time V(out)}\\
-\textbf{Description:} Produces a PNG waveform plot (time-domain, DC, or Bode for AC).
+\textbf{Syntax:} \texttt{plot \textit{xsig} \textit{ysig} [\ldots] [--out \textit{file}] [--title \textit{"title"}]}\\
+\textbf{Example:} \texttt{spice> plot time V(out) --out transient.png --title "Output Voltage"}\\
+\textbf{Description:} Produces a PNG waveform plot (time-domain, DC, or Bode for AC). The plot engine automatically selects the appropriate rendering mode based on the X-axis signal name.
+
+\subsubsection{\texttt{source}}
+\textbf{Syntax:} \texttt{source \textit{netlist.cir} [ -v | --verbose ] [ -o DIR | --output-dir DIR ] [ --raw | --no-raw ]}\\
+\textbf{Example:} \texttt{spice> source amplifier.cir -v --output-dir ./results}\\
+\textbf{Description:} Runs the circuit simulator in-process on the given netlist file. The \texttt{-v/--verbose} flag enables detailed diagnostic output. The \texttt{-o/--output-dir} specifies where to write result files. The \texttt{--raw} (default) writes binary \texttt{.raw} files; \texttt{--no-raw} suppresses binary output and prints simulation results to the console/CSV. After simulation, the framework automatically loads any generated \texttt{.raw} files into the database.
+
+\subsubsection{\texttt{export}}
+\textbf{Syntax:} \texttt{export --csv \textit{outfile} [\textit{signal1}] [\textit{signal2}] ...}\\
+\textbf{Example:} \texttt{spice> export --csv data.csv time V(out) V(in)}\\
+\textbf{Description:} Exports the specified signals (or all signals if none are given) to a CSV file. The X-axis (e.g., time) is included if not explicitly listed. The output is written to a subdirectory \texttt{exports/} next to the raw file, unless an absolute path is provided.
+
+\subsubsection{Shell Utilities}
+The following commands provide basic file-system navigation within the REPL:
+
+\begin{itemize}
+  \item \texttt{cd [path]} --- changes the current working directory. If no path is given, changes to the user's home directory.
+  \item \texttt{ls [path]} --- lists the contents of the specified directory (or the current directory if no path is given). Directories are shown with a trailing slash.
+  \item \texttt{pwd} --- prints the absolute path of the current working directory.
+\end{itemize}
 
 \subsection{Signal Convention and Examples}
 
@@ -285,8 +275,8 @@ Signal names follow the convention established by the simulator:
   \item \textbf{Node voltages:} \texttt{V(out)}, \texttt{V(1)}, \texttt{V(vdd)}
   \item \textbf{Branch currents:} \texttt{I(R1)}, \texttt{Ib(Q1)}
   \item \textbf{Sweep variable:} \texttt{time} (transient), \texttt{freq\_Hz} (AC)
-  \item \textbf{AC imaginary part:} \texttt{V(2)\_im}
-  \item \textbf{Complex accessors:} \texttt{mag(sig)}, \texttt{ph(sig)}, \texttt{db(sig)}, \texttt{re(sig)}, \texttt{im(sig)}
+  \item \textbf{AC imaginary part:} \texttt{V(2)\_im} (automatically generated)
+  \item \textbf{Complex accessors:} \texttt{mag(sig)}, \texttt{ph(sig)}, \texttt{db(sig)}, \texttt{re(sig)}, \texttt{im(sig)} --- these are evaluated lazily and do not require explicit storage.
 \end{itemize}
 Signal names are matched case-insensitively.
 
@@ -385,7 +375,7 @@ The available measurements are classified into the following categories.
 \paragraph{\texttt{find}}
 \textbf{Syntax:} \texttt{meas find \textit{sig\_y} when \textit{sig\_x}=\textit{val} [cross=\textit{N}]}\\
 \textbf{Example:} \texttt{spice> meas find I(R1) when V(out)=2.5 cross=2}\\
-\textbf{Description:} Interpolates \textit{sig\_y} at the exact point where \textit{sig\_x} reaches \textit{val}.
+\textbf{Description:} Interpolates \textit{sig\_y} at the exact point where \textit{sig\_x} reaches \textit{val}. The optional \texttt{cross=N} parameter selects the $N$-th crossing if the condition occurs multiple times.
 
 \subsection{Measurement Specification and User Interaction}
 \label{sec:meas-spec}
@@ -459,13 +449,12 @@ where $y_i$ is the $i$-th waveform sample.
 y = y_1 + \frac{x - x_1}{x_2 - x_1} (y_2 - y_1)
 \]
 \newpage
+
 \subsection{Expression Evaluation}
 \label{sec:pp-expr}
 % ---------------------------------------------------------------------------
 
-The expression calculator (\texttt{CalcEngine}) evaluates arithmetic
-expressions over signals. The parser implements standard infix arithmetic
-with parenthesised sub-expressions.
+The expression calculator (\texttt{CalcEngine}) evaluates arithmetic expressions over signals. The parser implements standard infix arithmetic with parenthesised sub-expressions.
 
 \begin{figure}[H]
   \centering
@@ -503,17 +492,12 @@ The calculator supports the following element-wise functions on waveforms:
 It also supports reduction functions that convert a waveform to a scalar:
 \texttt{max}, \texttt{min}, \texttt{avg}, \texttt{mean}, \texttt{rms}.
 
-If an evaluated result is a waveform, it is automatically stored in the
-database under the text of its expression (e.g. \texttt{V(out)-V(in)}),
-making it available to subsequent \texttt{plot} and \texttt{meas} commands.
+If an evaluated result is a waveform, it is automatically stored in the database under the text of its expression (e.g. \texttt{V(out)-V(in)}), making it available to subsequent \texttt{plot} and \texttt{meas} commands.
 
 \subsection{Expression Evaluation Specification and User Interaction}
 \label{sec:calc-spec}
 
-The expression calculator accepts arithmetic expressions defined by the supported grammar and produces
-either a scalar or a waveform result. The subsections below specify the
-expected output for representative expressions drawn from the automated
-test suite.
+The expression calculator accepts arithmetic expressions defined by the supported grammar and produces either a scalar or a waveform result. The subsections below specify the expected output for representative expressions drawn from the automated test suite.
 
 \subsubsection{Scalar Arithmetic}
 \textbf{Syntax/Example:} \texttt{calc 2+3*4}\\
@@ -551,10 +535,9 @@ test suite.
 \label{sec:pp-plot}
 % ---------------------------------------------------------------------------
 
-The visualization module, implemented by the \texttt{PlotEngine} class, converts waveform data into graphical
-PNG output using \texttt{gnuplot}. PlotEngine does not directly generate graphical primitives. Instead, it converts waveform data into an intermediate format and delegates rendering to \texttt{gnuplot}. This separation allows the visualization backend to be replaced without modifying analysis logic. It dynamically writes a temporary CSV data
-file and a \texttt{gnuplot} script before executing \texttt{gnuplot} as a subprocess.
+The visualization module, implemented by the \texttt{PlotEngine} class, converts waveform data into graphical PNG output using \texttt{gnuplot}. PlotEngine does not directly generate graphical primitives. Instead, it converts waveform data into an intermediate format and delegates rendering to \texttt{gnuplot}. This separation allows the visualization backend to be replaced without modifying analysis logic. It dynamically writes a temporary CSV data file and a \texttt{gnuplot} script before executing \texttt{gnuplot} as a subprocess.
 \newpage
+
 \paragraph{Plot Generation Algorithm}
 
 Algorithm~\ref{alg:plot-engine} summarizes the visualization workflow.
@@ -576,30 +559,20 @@ Algorithm~\ref{alg:plot-engine} summarizes the visualization workflow.
 
 \paragraph{Rendering Modes.}
 \begin{description}
-  \item[Normal Mode:] Time-domain or DC signals. Uses linear axes. Multiple
-        signals are grouped into dynamic sub-panels based on their data ranges
-        and physical types (e.g. current vs. voltage) to avoid squashing small signals.
-  \item[Bode Mode:] Triggered automatically if the X-axis is \texttt{freq\_Hz}.
-        Generates two stacked panels (Magnitude in dB, Phase in degrees)
-        using a logarithmic frequency X-axis. Automatically utilizes the
-        \texttt{\_im} complex columns.
+  \item[Normal Mode:] Time-domain or DC signals. Uses linear axes. Multiple signals are grouped into dynamic sub-panels based on their data ranges and physical types (e.g. current vs. voltage) to avoid squashing small signals.
+  \item[Bode Mode:] Triggered automatically if the X-axis is \texttt{freq\_Hz}. Generates two stacked panels (Magnitude in dB, Phase in degrees) using a logarithmic frequency X-axis. Automatically utilizes the \texttt{\_im} complex columns.
 \end{description}
 
 \paragraph{ASCII Fallback.}
-The module searches for \texttt{gnuplot} locally or on the system PATH.
-If \texttt{gnuplot} cannot be found, it gracefully falls back to rendering
-a simplified ASCII representation of the plot directly into the terminal console.
+The module searches for \texttt{gnuplot} locally or on the system PATH. If \texttt{gnuplot} cannot be found, it gracefully falls back to rendering a simplified ASCII representation of the plot directly into the terminal console.
 
 \paragraph{Output Path Handling.}
-Plots are saved in a \texttt{plots/} directory situated next to the raw file.
-Names are sanitised by substituting underscores for spaces and parentheses.
+Plots are saved in a \texttt{plots/} directory situated next to the raw file. Names are sanitised by substituting underscores for spaces and parentheses.
 
 \subsection{Plotting Specification and User Interaction}
 \label{sec:plot-spec}
 
-The plotting interface provides a direct mapping between user commands and
-generated graphical outputs. The presentation follows an explain, specify,
-validate, show flow.
+The plotting interface provides a direct mapping between user commands and generated graphical outputs. The presentation follows an explain, specify, validate, show flow.
 
 \subsubsection{Plot Command Specification and Behaviour}
 \label{sec:plot-spec2}
@@ -671,33 +644,22 @@ The subsequent subsections outline the behaviour of the \texttt{plot} command fo
 \subsection{Command Interpreter}
 \label{subsec:interpreter}
 
-The \texttt{Interpreter} maintains a dispatch table mapping command keyword
-strings to command handler objects (\texttt{ICommand}).  Each handler
-receives the tokenised input and a shared context (\texttt{InterpreterContext})
-containing references to the database and engine objects.
+The \texttt{Interpreter} maintains a dispatch table mapping command keyword strings to command handler objects (\texttt{ICommand}).  Each handler receives the tokenised input and a shared context (\texttt{InterpreterContext}) containing references to the database and engine objects.
 
 \paragraph{Tokenisation and Suggestions.}
-Input lines are split on whitespace and commas, preserving text enclosed in
-double quotation marks (\texttt{"..."}).  If an unrecognised command is typed,
-a Levenshtein edit distance search suggests commands within a distance of two.
-Fuzzy substring search suggests signal names if a signal is not found.
+Input lines are split on whitespace and commas, preserving text enclosed in double quotation marks (\texttt{"..."}).  If an unrecognised command is typed, a Levenshtein edit distance search suggests commands within a distance of two. Fuzzy substring search suggests signal names if a signal is not found.
 \newpage
+
 \subsection{UML Diagrams}
 \label{sec:pp-uml}
 % ---------------------------------------------------------------------------
 
-The class-level design is divided into six logical subsystems for clarity.
-The following diagrams illustrate the static structure, composition, and dependencies of each package.
+The class-level design is divided into six logical subsystems for clarity. The following diagrams illustrate the static structure, composition, and dependencies of each package.
 
 \subsubsection{Application Entry and Core Interpreter}
 \label{subsec:uml-entry-interpreter}
 
-This diagram focuses on the top-level wiring of the application.
-It includes the \textbf{Application Entry} package (containing the \texttt{Main} class),
-the core components of the \textbf{Command Interpreter System}
-(specifically \texttt{Interpreter}, \texttt{InterpreterContext}, and \texttt{ConstraintGuard}),
-along with the \textbf{Utilities} package (\texttt{intrp\_util} and \texttt{GlobalHelpers})
-and the \textbf{Standard Library} exception hierarchy.
+This diagram focuses on the top-level wiring of the application. It includes the \textbf{Application Entry} package (containing the \texttt{Main} class), the core components of the \textbf{Command Interpreter System} (specifically \texttt{Interpreter}, \texttt{InterpreterContext}, and \texttt{ConstraintGuard}), along with the \textbf{Utilities} package (\texttt{intrp\_util} and \texttt{GlobalHelpers}) and the \textbf{Standard Library} exception hierarchy.
 
 \begin{figure}[H]
   \centering
@@ -708,15 +670,11 @@ and the \textbf{Standard Library} exception hierarchy.
 
 Figure~\ref{fig:UML1} presents the application structure. The Interpreter acts as the central coordination component and communicates with the database and analysis modules through InterpreterContext. The command architecture enables independent extension of new analysis features.
 \newpage
+
 \subsubsection{Command Hierarchy}
 \label{subsec:uml-commands}
 
-This diagram details the command dispatch system. It shows the \texttt{ICommand}
-interface and its concrete implementations grouped by their logical sub-packages:
-\textbf{Data Commands} (\texttt{LoadCommand}, \texttt{DbCommand}, \texttt{InfoCommand}, \texttt{ListCommand}, \texttt{PrintCommand}), 
-\textbf{Analysis Commands} (\texttt{MeasCommand}, \texttt{CalcCommand}, \texttt{PlotCommand}),
-\textbf{File Commands} (\texttt{SourceCommand}, \texttt{ExportCommand}), and
-\textbf{Utility Commands} (\texttt{HelpCommand}).
+This diagram details the command dispatch system. It shows the \texttt{ICommand} interface and its concrete implementations grouped by their logical sub-packages: \textbf{Data Commands} (\texttt{LoadCommand}, \texttt{DbCommand}, \texttt{InfoCommand}, \texttt{ListCommand}, \texttt{PrintCommand}), \textbf{Analysis Commands} (\texttt{MeasCommand}, \texttt{CalcCommand}, \texttt{PlotCommand}), \textbf{File Commands} (\texttt{SourceCommand}, \texttt{ExportCommand}), and \textbf{Utility Commands} (\texttt{HelpCommand}).
 
 \begin{figure}[H]
   \centering
@@ -725,16 +683,11 @@ interface and its concrete implementations grouped by their logical sub-packages
   \label{fig:UML2}
 \end{figure}
 
-
-
-
 \newpage
 \subsubsection{Expression Calculator Engine}
 \label{subsec:uml-calc}
 
-This diagram focuses exclusively on the \texttt{CalcEngine} group within the Engines package.
-It depicts the \texttt{CalcEngine} class, its inner \texttt{Value} structure,
-and the \texttt{CalcResult} struct it produces. 
+This diagram focuses exclusively on the \texttt{CalcEngine} group within the Engines package. It depicts the \texttt{CalcEngine} class, its inner \texttt{Value} structure, and the \texttt{CalcResult} struct it produces. 
 
 \begin{figure}[H]
   \centering
@@ -743,16 +696,10 @@ and the \texttt{CalcResult} struct it produces.
   \label{fig:UML3}
 \end{figure}
 
-
-
-
-
 \subsubsection{Measurement Module and Visualization Module}
 \label{subsec:uml-meas-plot}
 
-This diagram covers the remaining components in the Engines package: the
-\texttt{MeasEngine} and the \texttt{PlotEngine}. It shows \texttt{MeasEngine}
-alongside its \texttt{MeasResult} struct, and the \texttt{PlotEngine} class.
+This diagram covers the remaining components in the Engines package: the \texttt{MeasEngine} and the \texttt{PlotEngine}. It shows \texttt{MeasEngine} alongside its \texttt{MeasResult} struct, and the \texttt{PlotEngine} class.
 
 \begin{figure}[H]
   \centering
@@ -761,16 +708,11 @@ alongside its \texttt{MeasResult} struct, and the \texttt{PlotEngine} class.
   \label{fig:UML4}
 \end{figure}
 
-
-
-
 \newpage
 \subsubsection{Waveform Database and Data Records}
 \label{subsec:uml-waveformdb}
 
-This diagram illustrates the \textbf{Data Management} layer. It includes
-the \texttt{WaveformDB} class, the \texttt{PlotRecord} struct it contains, and the
-\texttt{AnalysisType} enumeration.
+This diagram illustrates the \textbf{Data Management} layer. It includes the \texttt{WaveformDB} class, the \texttt{PlotRecord} struct it contains, and the \texttt{AnalysisType} enumeration.
 
 \begin{figure}[H]
   \centering
@@ -779,16 +721,10 @@ the \texttt{WaveformDB} class, the \texttt{PlotRecord} struct it contains, and t
   \label{fig:UML5}
 \end{figure}
 
-
-
-
-
 \subsubsection{File I/O Layer}
 \label{subsec:uml-fileio}
 
-The final diagram presents the \textbf{File I/O} layer. It shows the
-\texttt{RawfileReader} class, the \texttt{RawFile} structure it returns, and the
-\texttt{RawSignal} struct representing individual signals inside the file.
+The final diagram presents the \textbf{File I/O} layer. It shows the \texttt{RawfileReader} class, the \texttt{RawFile} structure it returns, and the \texttt{RawSignal} struct representing individual signals inside the file.
 
 \begin{figure}[H]
   \centering
@@ -805,7 +741,15 @@ To ensure robustness and user-friendliness, the Post-Processing module implement
 
 \subsubsection{Error Handling Strategy}
 
-The error propagation mechanism relies on a hybrid approach of C++ exceptions for fatal I/O operations and state-based return structs for domain logic. This separation follows the principle that exceptions are reserved for unexpected system failures, while expected computational failures are represented explicitly through return values. This ensures predictable control flow and avoids the performance overhead of stack unwinding during heavy simulation loops, as illustrated in Figure~\ref{fig:error_handling_strategy}.
+The error propagation mechanism relies on a hybrid approach of C++ exceptions for fatal I/O operations and state-based return structs for domain logic. This separation is deliberate: exceptions are reserved for unexpected system failures such as missing or malformed input files, while expected computational failures are represented explicitly through return values. This ensures predictable control flow and avoids the performance overhead of stack unwinding during analysis operations, as illustrated in Figure~\ref{fig:error_handling_strategy}.
+
+File I/O operations in \texttt{RawfileReader} throw \texttt{std::runtime\_error} when a file cannot be opened or the header is invalid. The interpreter catches these exceptions during \texttt{load} and \texttt{source} execution, prints a formatted error message, and continues without terminating the REPL.
+
+The post-processing framework is designed to recover cleanly from invalid user input without terminating the REPL. It separates fatal file errors from expected domain failures and reports both through consistent, user-friendly messages.
+
+File I/O errors are handled by exceptions because missing or corrupted raw files are true failures at the system boundary. Analytical failures inside the engines are represented by result structs rather than exceptions.
+
+The interpreter is the central coordinator for error handling. It validates input, catches I/O exceptions, evaluates engine results, and formats all failures with an \texttt{[ERROR]} prefix.
 
 \begin{figure}[H]
     \centering
@@ -848,17 +792,27 @@ The error propagation mechanism relies on a hybrid approach of C++ exceptions fo
     \label{fig:error_handling_strategy}
 \end{figure}
 
-The strategy dictates the following workflow:
+The interpreter uses a consistent workflow for both I/O and domain errors:
 \begin{enumerate}
-    \item \textbf{Input Validation:} The \texttt{Interpreter} performs primary syntax and argument validation. If a command is malformed, it immediately halts execution and prints an \texttt{[ERROR]} alongside helpful hints (e.g., fuzzy matching suggestions).
-    \item \textbf{Exception Handling (I/O):} The File I/O layer uses standard C++ exceptions (\texttt{std::runtime\_error}) because missing or corrupted data files are fundamental failures. The interpreter catches these exceptions gracefully.
-    \item \textbf{State-based Error Returns (Engines):} To avoid the performance overhead and control-flow ambiguity of exceptions in heavy computational tasks, the \texttt{MeasEngine} and \texttt{CalcEngine} return wrapper structs (e.g., \texttt{MeasResult}, \texttt{CalcResult}). These structs contain a boolean \texttt{valid} flag and an \texttt{error} string. 
-    \item \textbf{Interception and Formatting:} The \texttt{Interpreter} inspects the returned struct. If \texttt{valid} is false, it intercepts the raw error string, formats it with the standard \texttt{[ERROR]} prefix, and prints it to \texttt{std::cerr}.
+    \item \textbf{Validate the command:} check syntax and required parameters before execution.
+    \item \textbf{Catch I/O exceptions:} file loading errors from \texttt{RawfileReader} are caught and reported as user-facing errors.
+    \item \textbf{Inspect engine results:} \texttt{CalcResult} and \texttt{MeasResult} carry a boolean \texttt{valid} flag and an \texttt{error} string.
+    \item \textbf{Reject invalid results:} failed calculations or measurements do not alter the database.
+    \item \textbf{Suggest corrections:} unknown signals and commands trigger fuzzy-match suggestions and help text.
 \end{enumerate}
 
-The following tables provide selected examples of how this strategy manifests across the different modules.
+\subsubsection{Error Classification and Examples}
 
-\subsubsection{Selected Error Examples}
+Errors are categorised into four main types, each handled according to its nature:
+
+\begin{enumerate}
+  \item \textbf{File I/O Errors:} Occur during raw file parsing. They are thrown as exceptions and caught at the interpreter level. Examples: file not found, malformed header, unsupported ASCII data format.
+  \item \textbf{Command Syntax Errors:} Arise from incomplete or incorrectly formatted commands. The interpreter detects these before dispatching and reports a usage hint.
+  \item \textbf{Domain Errors:} Originate from mathematical or logical failures inside the engines, such as division by zero, logarithm of a negative number, or insufficient data for period detection. These are returned as part of a result struct and printed with contextual information.
+  \item \textbf{Data Availability Errors:} Occur when a requested signal or record does not exist, or when the analysis type constraint does not match any loaded record. The interpreter uses fuzzy matching to suggest close matches.
+\end{enumerate}
+
+The following tables illustrate representative error cases in practice.
 
 \begin{table}[H]
     \centering
@@ -930,9 +884,7 @@ The first validation scenario assesses the accuracy of the \texttt{MeasEngine} a
 
 \subsection{Scenario B: Periodic Signal Analysis and Phase Constraints}
 
-A dedicated evaluation was performed on periodic signals (sinusoidal and square waves) to evaluate the engine's boundary-condition logic.
-Commands like \texttt{freq}, \texttt{period}, and periodic \texttt{rms} inherently require a minimum of two full positive zero-crossings to yield valid results.
-The evaluation verified that the engine successfully measures periodic parameters when sufficient data is available. Crucially, when subjected to a simulation window that covers exactly one period or less, the framework accurately detected the boundary violation and aborted the frequency calculation, preventing the issuance of erroneous infinite or zero frequencies. Furthermore, the engine successfully computed multi-signal metrics, such as the phase \texttt{delay} between two independent square waves.
+A dedicated evaluation was performed on periodic signals (sinusoidal and square waves) to evaluate the engine's boundary-condition logic. Commands like \texttt{freq}, \texttt{period}, and periodic \texttt{rms} inherently require a minimum of two full positive zero-crossings to yield valid results. The evaluation verified that the engine successfully measures periodic parameters when sufficient data is available. Crucially, when subjected to a simulation window that covers exactly one period or less, the framework accurately detected the boundary violation and aborted the frequency calculation, preventing the issuance of erroneous infinite or zero frequencies. Furthermore, the engine successfully computed multi-signal metrics, such as the phase \texttt{delay} between two independent square waves.
 
 % ---------------------------------------------------------------------------
 \subsection{Scenario C: Expression Parsing Robustness}
@@ -1013,9 +965,7 @@ The visualization subsystem was evaluated against a wide array of plotting scena
 \end{tabularx}
 \end{table}
 
-Additional engine-level validations (\texttt{DirectEngineValidation}) bypass the 
-CLI and call \texttt{PlotEngine::plot()} directly with edge-case token lists 
-to guarantee internal guard paths are robust against malformed programmatic input.
+Additional engine-level validations (\texttt{DirectEngineValidation}) bypass the CLI and call \texttt{PlotEngine::plot()} directly with edge-case token lists to guarantee internal guard paths are robust against malformed programmatic input.
 % ---------------------------------------------------------------------------
 \subsection{Evaluation Summary}
 \label{subsec:validation-summary}
@@ -1071,10 +1021,6 @@ where $M$ is the number of recorded signals (including currents, voltages, and d
 
 For large-scale integrated circuits (LSI) with tens of thousands of nodes simulated over millions of timesteps, this in-memory strategy introduces a substantial memory trade-off. However, because modern workstations are equipped with significant RAM, trading space for time yields a vastly superior interactive user experience. Users can instantly execute sequential \texttt{meas} and \texttt{calc} commands without enduring repetitive parsing overheads associated with out-of-core processors like traditional SPICE utilities.
 
-
-
-
-
 % ---------------------------------------------------------------------------
 \section{Conclusion}
 \label{sec:pp-summary}
@@ -1083,5 +1029,3 @@ For large-scale integrated circuits (LSI) with tens of thousands of nodes simula
 In this chapter, a novel, decoupled post-processing framework for electronic simulation analysis was proposed and evaluated. By structurally isolating data acquisition, in-memory waveform management, and specialized computational engines (measurement, expression evaluation, and plotting), the architecture resolves the extensibility and latency limitations of traditional SPICE post-processors. 
 
 Mathematical models underpinning discrete waveform processing were formally defined, and a comprehensive empirical evaluation confirmed the numerical accuracy, robustness against edge cases, and deterministic execution of the framework. The implemented Command-Line Interface provides an interactive REPL suitable for immediate engineering inquiry, alongside powerful batch-scripting support for automated analysis loops. The empirical performance models established that while the in-memory architecture incurs a linear space trade-off, it successfully delivers the sub-millisecond execution latencies required for rapid iterative design.
-
-
