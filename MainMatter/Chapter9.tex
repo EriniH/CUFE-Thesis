@@ -1,12 +1,15 @@
 \setstretch{1}
 \setlength{\parskip}{\baselineskip}
 
-\section{Introduction}
-References throughout the thesis are cited using a number between square brackets [\#]. The default bibliography style used is CUFE included in files \texttt{cufe.bbx} and \texttt{cufe.bst} for BibLaTeX and BibTeX, respectively. 
+\section{Conclusion}
+This thesis has presented the comprehensive design, implementation, and evaluation of a high-performance, SPICE-level CAD simulator. By systematically addressing the core requirements of circuit simulation—from robust netlist parsing and accurate mathematical modeling using Modified Nodal Analysis (MNA), to an efficient simulation engine powered by the KLU sparse matrix library and advanced post-processing capabilities—the developed tool stands as a reliable platform for analyzing complex electronic circuits. The modular architecture not only ensures high performance but also provides a strong foundation for future extensibility and integration in professional environments.
 
-You can cite a source \cite{Bouwkamp1963}, two sources \cite{Newmark1971,Caravani1973}, or multiple sources \cite{Ruiz1969, INFORMS,Ibrahim2012} at once. The references will appear in the references list at the end of your thesis by their citation order.
-\section{Related Work}
-\lipsum[150]
-\section{Summary}
-\lipsum[100]
+\section{Future Work}
+While the current version of the simulator provides a robust and feature-rich environment, there are several avenues for future enhancement and expansion. The following key areas have been identified for future work:
 
+\begin{itemize}
+    \item \textbf{Device Support Expansion:} Extend the mathematical modeling and device factory to support more complex devices, specifically focusing on the implementation of mutual inductance and transmission lines.
+    \item \textbf{Post-Processing Enhancements:} Broaden the capabilities of the post-processing engine by supporting a wider array of measurement and analysis commands within the \texttt{.meas} parser and the expression evaluator.
+    \item \textbf{Control Block Integration:} Refactor the architecture to support executing post-processing tasks directly from within the Control Block, allowing for more dynamic and automated simulation workflows.
+    \item \textbf{Comprehensive Database Management:} Implement a system to support saving all device parameters, simulation states, and extracted models directly into a centralized database for improved data persistence, querying, and post-simulation analysis.
+\end{itemize}

@@ -2,11 +2,18 @@
 \setlength{\parskip}{\baselineskip}
 
 \section{Introduction}
-References throughout the thesis are cited using a number between square brackets [\#]. The default bibliography style used is CUFE included in files \texttt{cufe.bbx} and \texttt{cufe.bst} for BibLaTeX and BibTeX, respectively. 
+The increasing complexity of modern electronic circuits demands highly efficient, accurate, and scalable simulation tools. This thesis introduces a newly developed high-performance SPICE-level CAD simulator designed to compete with established industry standards such as HSPICE, LTSPICE, and NGSPICE. The primary objective of this tool is to provide a reliable and extensible platform capable of analyzing complex electronic circuit topologies in both academic and professional environments.
 
-You can cite a source \cite{Bouwkamp1963}, two sources \cite{Newmark1971,Caravani1973}, or multiple sources \cite{Ruiz1969, INFORMS,Ibrahim2012} at once. The references will appear in the references list at the end of your thesis by their citation order.
-\section{Related Work}
-\lipsum[150]
-\section{Summary}
-\lipsum[100]
+To achieve these goals, the simulator's architecture is strategically divided into several distinct, cohesive modules:
+\begin{enumerate}
+    \item \textbf{Netlist Parser:} Responsible for reading and interpreting the circuit description. It is subdivided into tasks including a lexical analyzer (tokenizer), a syntax parser, parameter and model extractors, data type definitions, error handling, and the management of control blocks (e.g., \texttt{.end}, \texttt{.op}, and \texttt{.ac}).
+    \item \textbf{Mathematical Modeling:} Translates the physical components into mathematical representations using the Modified Nodal Analysis (MNA) methodology. This module supports a wide array of devices including BJTs, MOSFETs, JFETs, inductors, capacitors, diodes, resistors, and various controlled sources (CCCS, CCVS, VCCS, VCVS).
+    \item \textbf{Simulator Engine (Solver):} The computational core of the tool. It comprises an Analysis Control Manager for high-level orchestration, a Linear Solver Interface for handling different simulation steps (AC, DC, DC Sweep, Transient), a Nonlinear Solver utilizing the Newton-Raphson method, convergence monitoring mechanisms (managing tolerances like ABSTOL and RELTOL), and performance optimization strategies. A key technical decision in this module is the prioritization of the KLU library for highly efficient, circuit-specific sparse matrix operations.
+    \item \textbf{Post-Processing:} A comprehensive simulation workflow built around a WaveformDB layer. This layer feeds three parallel subsystems: a Measurement Engine featuring a \texttt{.meas} parser for automated signal measurements, a PlotEngine utilizing an ImPlotAdapter for interactive waveform visualization, and a Calculator with an Expression Evaluator for user-defined computations. The final waveform outputs are rendered using Gnuplot.
+    \item \textbf{Output Generation:} Structured logging and data output to capture the results and performance metrics of the simulation.
+\end{enumerate}
 
+This chapter sets the stage for a detailed exploration of each of these modules, outlining the challenges encountered and the robust solutions implemented to deliver a professional-grade CAD tool.
+
+\section{Thesis Organization}
+The remainder of this thesis is structured as follows: Chapter 2 reviews the related literature in circuit simulation. Chapter 3 details the overall system architecture. Chapters 4 through 7 delve into the specific implementations of the Netlist Reader, Mathematical Modelling, Simulation Engine, and Post-Processing modules, respectively. Chapter 8 presents benchmarking results. Finally, Chapter 9 concludes the thesis and outlines directions for future work.
