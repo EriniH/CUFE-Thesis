@@ -2,8 +2,6 @@
 \setlength{\parskip}{\baselineskip}
 
 \section{Introduction}
-\seclbl{reader-intro}
-
 The Netlist Reader subsystem serves as the front-end input ingestion and compilation module for the circuit simulator. Its primary responsibility is the transformation of hierarchical SPICE circuit netlists into structured, memory-mapped data structures through lexical normalization, macro subcircuit expansion, dynamic parameter evaluation, and semantic verification prior to downstream simulation setup.
 
 Rather than populating numerical solver matrices directly, the Netlist Reader operates as a decoupled data provider. Upon completing its compilation pipeline, it exposes resolved structural entities—specifically the node mapping index, technology model database, and flattened component vectors—to the downstream \texttt{MathematicalModelling} subsystem, which physically realizes the devices and populates the Modified Nodal Analysis (MNA) matrices. Concurrently, simulation commands and control options are exposed to the core \texttt{Simulator} engine, enabling it to select appropriate device stamping modes and execute solver algorithms. To guarantee simulation determinism across execution runs, the subsystem executes a mandatory state isolation protocol before processing a netlist deck, resetting internal symbol tables, model registries, and expression evaluation caches.
@@ -444,7 +442,7 @@ To provide a comprehensive structural overview of the object-oriented design and
 \begin{sidewaysfigure}
 \centering
 \IfFileExists{Figures/Ch4/ClassDiagram.pdf}{%
-  \includegraphics[height=0.85\textheight,keepaspectratio]{Figures/Ch4/ClassDiagram.pdf}%
+  \includegraphics[width=0.95\textheight,height=0.85\textwidth,keepaspectratio]{Figures/Ch4/ClassDiagram.pdf}%
 }{%
   \framebox[\textwidth][c]{\rule{0pt}{8cm}\textbf{Figure Placeholder: ClassDiagram.pdf}}%
 }
@@ -462,12 +460,12 @@ The following subsections provide comprehensive documentation for each core clas
 \textbf{Inter-Module Communication:} Implements \texttt{INetlistReader} and interacts with downstream simulation engines. Internally, it manages the lifecycles of \texttt{NetlistFileOpener}, \texttt{NetlistPrepass}, \texttt{NetlistLexer}, \texttt{ParamParser}, \texttt{OptionParser}, \texttt{SubcktDefParser}, \texttt{SubcktInstParser}, \texttt{CompParser}, \texttt{ModelParser}, and \texttt{CommandParser}.
 
 \textbf{Comprehensive Error Models and Diagnostic Codes:}
-\begin{itemize}
+\begin{compactitem}
     \item \texttt{FILE\_NOT\_FOUND} / \texttt{FILE\_OPEN\_FAILED}: Raised when the physical path does not exist or stream initialization fails.
     \item \texttt{WRONG\_FILE\_FORMAT} / \texttt{FILE\_INVALID\_EXTENSION}: Raised when deck file extension is not supported.
     \item \texttt{FILE\_EMPTY}: Raised when zero bytes are read from input stream.
     \item \texttt{IErrorReporter} Status Intercept: Queries injected reporter; returns \texttt{false} if any syntactic or semantic errors occurred.
-\end{itemize}
+\end{compactitem}
 
 \textbf{Testing Methodology and Complete Traceability Matrix:} Tested using unit tests in \texttt{NetlistReaderTests} and end-to-end integration suites.
 
@@ -518,11 +516,11 @@ IT-NR-07 & Full Deck & Full deck with models, params, commands & Parses deck mat
 \textbf{Inter-Module Communication:} Invoked by \texttt{NetlistReader} during initialization, reporting diagnostic events directly to \texttt{IErrorReporter}.
 
 \textbf{Comprehensive Error Models and Diagnostic Codes:}
-\begin{itemize}
+\begin{compactitem}
     \item \texttt{WRONG\_FILE\_FORMAT}: Extension is not in the supported set (case-insensitive check).
     \item \texttt{FILE\_OPEN\_FAILED}: Stream could not be opened due to missing path or access restriction.
     \item \texttt{EMPTY\_FILE}: Zero bytes read from stream handle.
-\end{itemize}
+\end{compactitem}
 
 \textbf{Testing Methodology and Complete Traceability Matrix:} Tested using temporary real files in system temp directory via \texttt{NetlistFileOpenerTests}.
 
@@ -555,9 +553,9 @@ TC-FO-05 & Case Insensitive & Non-empty \texttt{.CIR} file & Returns valid strea
 \textbf{Inter-Module Communication:} Consumes input stream from \texttt{NetlistFileOpener} and passes clean logical lines to \texttt{NetlistLexer}.
 
 \textbf{Comprehensive Error Models and Diagnostic Codes:}
-\begin{itemize}
+\begin{compactitem}
     \item \texttt{CONTINUATION\_ERROR}: Raised when a continuation character (\texttt{+}) appears on the very first physical line or before any logical statement has been established.
-\end{itemize}
+\end{compactitem}
 
 \textbf{Testing Methodology and Complete Traceability Matrix:} Tested using in-memory streams and fake error reporters in \texttt{NetlistPrepassTests}.
 
@@ -590,7 +588,7 @@ TC-PP-05 & Orphan Continuation & \texttt{+} line before any statement & Emits \t
 \textbf{Inter-Module Communication:} Populates statement vectors consumed by \texttt{ParamParser}, \texttt{OptionParser}, \texttt{SubcktDefParser}, \texttt{CompParser}, \texttt{ModelParser}, and \texttt{CommandParser}.
 
 \textbf{Comprehensive Error Models and Diagnostic Codes:}
-\begin{itemize}
+\begin{compactitem}
     \item \texttt{UNTERMINATED\_QUOTE}: Missing closing quote for string token.
     \item \texttt{UNTERMINATED\_BRACE\_EXPR}: Missing closing brace for mathematical expression.
     \item \texttt{CONTROL\_BLOCK\_ERROR}: Nested \texttt{.control} blocks or orphan \texttt{.endc}.
@@ -606,7 +604,7 @@ TC-PP-05 & Orphan Continuation & \texttt{+} line before any statement & Emits \t
     \item \texttt{UNCLOSED\_CONTROL} / \texttt{UNCLOSED\_SUBCKT}: Block unclosed at end of input deck.
     \item \texttt{SUBCKT\_DISALLOWED\_OPTIONS}: Options statement placed inside a subcircuit block.
     \item \texttt{AFTER\_END\_IGNORED} (Warning): Statements present after \texttt{.end} are ignored.
-\end{itemize}
+\end{compactitem}
 
 \textbf{Testing Methodology and Complete Traceability Matrix:} Tested via token classification and statement routing validation in \texttt{NetlistLexerTests}.
 
@@ -683,12 +681,12 @@ TC-LX-27 & Generalized Cmds & Dotted outside / dotless inside & Routed to comman
 \textbf{Inter-Module Communication:} Interacts with \texttt{ValueParser} for expression evaluation and provides resolved parameter lookup tables to \texttt{SubcktInstParser}.
 
 \textbf{Comprehensive Error Models and Diagnostic Codes:}
-\begin{itemize}
+\begin{compactitem}
     \item \texttt{PARAM\_SYNTAX\_ERROR}: Syntax errors in parameter lines (missing \texttt{=}, too few tokens, or missing assignment expression).
     \item \texttt{PARAM\_UNDEFINED}: Attempting to retrieve a value for an undefined parameter identifier.
     \item \texttt{VALUE\_ERROR}: Circular dependency detected during evaluation (e.g., \texttt{a=\{b\}}, \texttt{b=\{a\}}).
     \item \texttt{PARAM\_ERROR}: Attempting to evaluate parameter values when \texttt{IValueParser} back-reference has not been bound.
-\end{itemize}
+\end{compactitem}
 
 \textbf{Testing Methodology and Complete Traceability Matrix:} Tested using mock value parsers in \texttt{ParamParserTests}.
 
@@ -731,10 +729,10 @@ TC-PR-10 & Overwrite Definition & Defining same parameter twice & Latest express
 \textbf{Inter-Module Communication:} Implements \texttt{IValueParser}. Injected into semantic parsers and maintains a two-phase pointer binding with \texttt{ParamParser}.
 
 \textbf{Comprehensive Error Models and Diagnostic Codes:}
-\begin{itemize}
+\begin{compactitem}
     \item \texttt{VALUE\_ERROR}: Empty or whitespace value string; missing numeric prefix in plain literal; division by zero; empty brace expression; unexpected token at end of expression; unterminated parenthesis; nested curly braces; undefined parameter during evaluation.
     \item \texttt{VALUE\_WARN}: Trailing suffix starts with unrecognized multiplier prefix (defaults to scale factor \texttt{1.0}).
-\end{itemize}
+\end{compactitem}
 
 \textbf{Testing Methodology and Complete Traceability Matrix:} Tested via unit test suite \texttt{ValueParserTests} and integration suite \texttt{ValueParserIntegrationTests}.
 
@@ -819,12 +817,12 @@ IT-VP-01 & Param Integration & \texttt{.param freq=1meg} evaluated in \texttt{\{
 \textbf{Inter-Module Communication:} Implements \texttt{IOptionParser}. Populates \texttt{SimulationOptions} returned by \texttt{NetlistReader::getOptions()}.
 
 \textbf{Comprehensive Error Models and Diagnostic Codes:}
-\begin{itemize}
+\begin{compactitem}
     \item \texttt{OPTION\_UNKNOWN}: Unrecognized option name specified on card.
     \item \texttt{OPTION\_MISSING\_VALUE}: Option requiring value specified without one.
     \item \texttt{OPTION\_INVALID\_VALUE}: Value cannot be parsed or does not match valid enum/boolean synonyms.
     \item \texttt{OPTION\_INVALID\_SYNTAX}: Empty option key specified on card.
-\end{itemize}
+\end{compactitem}
 
 \textbf{Testing Methodology and Complete Traceability Matrix:} Tested using \texttt{OptionParserTests} unit test suite.
 
@@ -873,11 +871,11 @@ TC-OP-13 & Remaining Options & \texttt{.options trtol=6.5 gminsteps=12} & Sets i
 \textbf{Inter-Module Communication:} Populates subcircuit blueprint catalogs consumed by \texttt{SubcktInstParser}.
 
 \textbf{Comprehensive Error Models and Diagnostic Codes:}
-\begin{itemize}
+\begin{compactitem}
     \item \texttt{SUBCKT\_INVALID\_SYNTAX}: Subcircuit header (\texttt{.subckt}) provided with fewer than 2 tokens.
     \item \texttt{SUBCKT\_ENDS\_NAME\_MISMATCH}: Optional name after \texttt{.ends} does not match subcircuit definition name.
     \item \texttt{SUBCKT\_DUPLICATE\_DEF}: Subcircuit with identical name defined multiple times in catalog.
-\end{itemize}
+\end{compactitem}
 
 \textbf{Testing Methodology and Complete Traceability Matrix:} Tested via template catalog assertions in \texttt{SubcktDefParserTests}.
 
@@ -922,14 +920,14 @@ TC-SD-11 & Definitions List & Query \texttt{getDefinitions()} & Returns complete
 \textbf{Inter-Module Communication:} Consumes blueprints from \texttt{SubcktDefParser} and outputs flattened statements to \texttt{CompParser}.
 
 \textbf{Comprehensive Error Models and Diagnostic Codes:}
-\begin{itemize}
+\begin{compactitem}
     \item \texttt{SUBCKT\_UNDEFINED}: Calling a subcircuit block that has not been defined in template catalog.
     \item \texttt{SUBCKT\_NODE\_COUNT\_MISMATCH}: Connection node count does not match definition terminal list.
     \item \texttt{SUBCKT\_RECURSION\_DETECTED}: Subcircuit recursively calls itself (direct or indirect cycle).
     \item \texttt{SUBCKT\_MISSING\_PARAMETER}: Parameter has no default value and is not passed in instance call.
     \item \texttt{PARAM\_UNDEFINED} / \texttt{VALUE\_ERROR}: Propagated during parameter evaluation.
     \item \texttt{SUBCKT\_INVALID\_CALL}: Instance call provided with fewer than 2 tokens.
-\end{itemize}
+\end{compactitem}
 
 \textbf{Testing Methodology and Complete Traceability Matrix:} Tested using multi-level expansion suites in \texttt{SubcktInstParserTests}.
 
@@ -994,12 +992,12 @@ TC-SI-21 & Bare Token & Trailing token without \texttt{=} & Bare token treated a
 \textbf{Inter-Module Communication:} Implements \texttt{ICompParser}. Interacts with \texttt{INodeManager} and \texttt{IValueParser}, supplying component lists to \texttt{NetlistReader}.
 
 \textbf{Comprehensive Error Models and Diagnostic Codes:}
-\begin{itemize}
+\begin{compactitem}
     \item \texttt{COMP\_INVALID\_SYNTAX}: Missing positional tokens, unclosed wave functions, or invalid source syntax.
     \item \texttt{COMP\_UNKNOWN\_PARAM}: Parameter key not present in static allowed parameter registry.
     \item \texttt{COMP\_INVALID\_PARAM\_VALUE}: Non-positive physical dimensions (e.g., MOSFET $w \le 0$ or $l \le 0$).
     \item \texttt{COMP\_UNKNOWN\_TYPE}: Unrecognized leading component type prefix character.
-\end{itemize}
+\end{compactitem}
 
 \textbf{Testing Methodology and Complete Traceability Matrix:} Tested across twelve component categories using \texttt{CompParserTests}.
 
@@ -1066,9 +1064,9 @@ TC-CP-22 & Param Retrieval & Query \texttt{getParameter} & Returns parsed value 
 \textbf{Inter-Module Communication:} Implements \texttt{INodeManager}. Utilized by \texttt{CompParser} and exposes node maps to \texttt{NetlistReader::getNodeMap()}.
 
 \textbf{Comprehensive Error Models and Diagnostic Codes:}
-\begin{itemize}
+\begin{compactitem}
     \item \texttt{INVALID\_NODE\_NAME}: Node name string is empty or contains only whitespace characters (returns \texttt{-1} index).
-\end{itemize}
+\end{compactitem}
 
 \textbf{Testing Methodology and Complete Traceability Matrix:} Tested via sequential index assertions in \texttt{NodeManagerTests}.
 
@@ -1107,11 +1105,11 @@ TC-NM-08 & Empty Validation & Pass empty or whitespace strings & Returns -1; rec
 \textbf{Inter-Module Communication:} Implements \texttt{IModelParser}. Delegates value evaluation to \texttt{IValueParser} and stores output model structures in \texttt{IModelDatabase}.
 
 \textbf{Comprehensive Error Models and Diagnostic Codes:}
-\begin{itemize}
+\begin{compactitem}
     \item \texttt{MODEL\_INVALID\_SYNTAX}: Insufficient positional tokens, empty fields, or missing parameter values.
     \item \texttt{MODEL\_REDEFINED} (Warning): Model identifier defined multiple times (overwrites existing record).
     \item \texttt{VALUE\_ERROR}: Propagated from \texttt{IValueParser} during model parameter expression resolution.
-\end{itemize}
+\end{compactitem}
 
 \textbf{Testing Methodology and Complete Traceability Matrix:} Tested using parameter resolution assertions in \texttt{ModelParserTests}.
 
@@ -1154,9 +1152,9 @@ TC-MP-10 & Bad Expression & \texttt{.model m8 nmos vto=\{gval*\}} & Propagates \
 \textbf{Inter-Module Communication:} Implements \texttt{IModelDatabase}. Populated by \texttt{ModelParser} and queried during simulation engine device instantiation.
 
 \textbf{Comprehensive Error Models and Diagnostic Codes:}
-\begin{itemize}
+\begin{compactitem}
     \item Missing models return \texttt{nullptr} (for \texttt{getModel}), empty string (for \texttt{getModelType}), default scalar values (for \texttt{getModelParam}), or empty maps (for \texttt{getModelParams}). No direct exceptions logged.
-\end{itemize}
+\end{compactitem}
 
 \textbf{Testing Methodology and Complete Traceability Matrix:} Tested via model storage and lookup verification in \texttt{ModelDatabaseTests}.
 
@@ -1207,7 +1205,7 @@ TC-MD-14 & Interface Check & Reference via \texttt{IModelDatabase*} & Works corr
 \textbf{Inter-Module Communication:} Implements \texttt{ICommandParser}. Relies on \texttt{IValueParser} for numeric argument evaluation and provides command vectors to \texttt{NetlistReader::getCommands()}.
 
 \textbf{Comprehensive Error Models and Diagnostic Codes:}
-\begin{itemize}
+\begin{compactitem}
     \item \texttt{CMD\_UNKNOWN\_TYPE}: Command head keyword is not recognized.
     \item \texttt{CMD\_INVALID\_SYNTAX}: Wrong argument count, missing parameters, or invalid structural format.
     \item \texttt{CMD\_INVALID\_VALUE}: Non-positive time steps, negative start times, zero DC step size, or invalid sweep direction signs.
@@ -1215,7 +1213,7 @@ TC-MD-14 & Interface Check & Reference via \texttt{IModelDatabase*} & Works corr
     \item \texttt{CMD\_UNMATCHED\_END}: Encountered \texttt{end} statement without preceding matching \texttt{if}.
     \item \texttt{CMD\_UNMATCHED\_IF}: Encountered \texttt{if} block without matching closing \texttt{end}.
     \item \texttt{CMD\_EXTRA\_ARGS} (Warning): Extra parameters provided on commands expecting none (e.g., \texttt{op}).
-\end{itemize}
+\end{compactitem}
 
 \textbf{Testing Methodology and Complete Traceability Matrix:} Tested across all supported analysis types and scripting constructs in \texttt{CommandParserTests}.
 
@@ -1258,6 +1256,17 @@ TC-CP-15 & PRINT / PLOT & \texttt{print v(out) v(in)} / \texttt{plot v(1,2)} & M
 \hline
 TC-CP-16 & MEAS Command & \texttt{meas tran val1 max v(out)} & Mapped to \texttt{Meas}; argument tokens preserved. \\
 \hline
+\end{tabular}
+\caption{Complete Test Traceability Matrix for CommandParser (Part 1)}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{|l|l|p{4.5cm}|p{4.5cm}|}
+\hline
+\textbf{Test ID} & \textbf{Test Scenario} & \textbf{Input Setup / Method} & \textbf{Expected Result} \\
+\hline
 TC-CP-17 & Unknown Command & \texttt{unknown\_command arg} & Error code \texttt{CMD\_UNKNOWN\_TYPE}. \\
 \hline
 TC-CP-18 & Empty Input & Empty list of statements & Returns empty command list; no warnings/errors. \\
@@ -1289,7 +1298,7 @@ TC-CP-30 & PRINT/PLOT Empty & \texttt{print} / \texttt{plot} & Error code \textt
 TC-CP-31 & MEAS Counts Check & \texttt{meas tran} / \texttt{meas tran val1} & Error code \texttt{CMD\_INVALID\_SYNTAX}. \\
 \hline
 \end{tabular}
-\caption{Complete Test Traceability Matrix for CommandParser}
+\caption{Complete Test Traceability Matrix for CommandParser (Part 2)}
 \end{table}
 
 
@@ -1343,6 +1352,3 @@ During development, the subsystem underwent planned structural refactorings to d
 \section{Conclusion}
 
 The Netlist Reader subsystem processes raw SPICE netlist files and produces validated, flattened circuit representations for numerical simulation. Through sequential stages of lexical normalization, subcircuit expansion, parameter evaluation, and semantic checking, the subsystem validates netlist constructs and populates the data structures required for matrix assembly.
-
-\section{Summary}
-\lipsum[100]
